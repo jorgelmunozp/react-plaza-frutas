@@ -1,0 +1,220 @@
+.App {
+  text-align: center;
+  font: 'Century Gothic', sans-serif;                        /*** Letra ***/
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+
+  background: url("/public/banner.jpg") no-repeat;
+  background-size: cover;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  width: 100%;                 
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 1);
+}
+.App-logo {
+  position: absolute;
+  left: 0;
+  width: 47px;
+  margin-left: 80px;
+  margin-top: -25px;
+}
+
+#titulo {
+  position: absolute;
+  left: 150px;
+  top: -20px;
+}
+#tiempo {
+  position: absolute;
+  margin-left: -50px;
+  top: -20px;
+}
+#vidas {
+  position: absolute;
+  left: 0;
+  width: 47px;
+  margin-left: -60px;
+  margin-top: -25px;
+}
+#tablero {
+  position: absolute;
+  right: 100px;
+  top: -20px;
+}
+
+.App-body {
+  background-color: #282c34;
+  min-height: 810px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+
+  background: url("/public/fondo.jpg") no-repeat;
+  background-size: cover;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+#toto {
+  height: 70px;
+  pointer-events: none;
+  position: absolute;
+
+  user-select: none;                    /* Impide seleccionar la imagen con el mouse*/
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+#gusano {
+  height: 70px;
+  pointer-events: none;
+  position: absolute;
+
+  user-select: none;                    /* Impide seleccionar la imagen con el mouse*/
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.App-fruta {
+  height: 45px;
+  pointer-events: none;
+  position: absolute;
+
+  user-select: none;                    /* Impide seleccionar la imagen con el mouse*/
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+
+  z-index: 1;
+}
+
+@keyframes image-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .App-fruta {
+    animation: image-spin infinite 20s linear;
+  }
+}
+
+.App-bloque {
+  pointer-events: none;
+  position: absolute;
+  height: 80px;
+}
+.App-bloquesH {
+  pointer-events: none;
+  position: absolute;
+  height: 48.75px;
+}
+.App-bloquesV {
+  pointer-events: none;
+  position: absolute;
+  height: 302px;
+}
+
+.App-cajamadera {
+  pointer-events: none;
+  position: absolute;
+
+  width: 190px;
+  margin-top: 300px;
+  margin-left: 520px;
+}
+
+#registro {                       /*Tiempo, frutas restantes */
+  position: absolute;
+  margin-top: -100px;
+  margin-left: -1300px;
+}
+#cuadrilatero {
+  width: 800px;
+  height: 600px;
+  position: absolute;
+  margin-top: 100px;
+}
+#resultados {                       /*Tiempo, frutas restantes */
+  position: absolute;
+  margin-top: -550px;
+  margin-left: 100px;
+}
+
+#flechas {                          /*Botones de flechas */
+  position: absolute;
+  margin-top: 0px;
+  margin-left: 500px;
+}
+.botonFlechas {
+  padding: 15px 25px 15px 25px;
+  font-size: 40px;
+  background-color: #500;
+  color:#ccc
+}
+.botonStart {
+  padding: 15px 15px 15px 15px;
+  font-size: 40px;
+  background-color: #500;
+  color:#ccc
+}
+
+#button {
+  color: white;
+  background-color: #666;
+  padding: 15px 0 15px 0;
+  border-radius: 30px;
+  letter-spacing: 3px;
+  font-size: medium;
+  width: 200px;
+  cursor: pointer;
+  filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 1));
+}
+
+input[type=text]{
+  color: #500;
+  background-color: #ddd;
+  padding: 10px 0 10px 0;
+  border-radius: 25px;
+  text-align: center;
+  font-size: medium;
+  width: 200px;
+  filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 1));
+}
+input[type=text]::placeholder{
+  color: #999;
+}
+
+#obstaculo {
+  width: 80px;
+  height: 80px;
+  border: 1px solid #fff;
+  position: absolute;
+
+}
+
