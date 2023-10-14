@@ -134,7 +134,7 @@ class App extends React.Component {
         </header>
         <body className="App-body">
           <div id='registro'>
-            <p>{dogname} en la frutería</p>
+            <p className='instructions'>{dogname} debe recolectar<br></br> todas las frutas antes <br></br>que Gusanor se lo coma</p>
             <p>Hola <b>{this.state.nombre}</b>!</p>
             <input type="text" id="nombre" onChange={this.campoNombre} value={this.state.nombre} placeholder="nombre" autoComplete='off'/>
             <h3>Ranking</h3>
