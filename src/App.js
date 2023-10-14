@@ -160,10 +160,8 @@ class App extends React.Component {
             <img id='fresa' src={fresa} className="App-fruta" alt="fresa" style={{'marginLeft': this.state.posicionHfresa,'marginTop':this.state.posicionVfresa}}/>
 
             <img id='bloque2' src={bloque} className="App-bloque" alt="bloque" style={{'marginTop': this.state.posicionVobstaculo + 200, 'marginLeft': this.state.posicionHobstaculo - 300}}/>
-
           </div>
-          <div id='resultados'></div>
-            <img id='cajamadera' src={cajamadera} className="App-cajamadera" alt="cajamadera" />
+          <div id='resultados'>
             <table id="flechas">
               <thead>
                 <tr>
@@ -184,7 +182,8 @@ class App extends React.Component {
                 </tr>
               </tbody>
             </table>
-
+            <img id='cajamadera' src={cajamadera} className="App-cajamadera" alt="cajamadera" />
+          </div>
         </body>
       </div>
     );
