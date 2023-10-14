@@ -1,5 +1,5 @@
 import logo from './logo.png';
-import toto from './dog.png';
+import dog from './dog.png';
 import gusano from './gusano.svg';
 import manzana from './manzana.svg';
 import banano from './banano.svg';
@@ -22,8 +22,8 @@ const dogname = "Doggy";
 const tiempo = 20;
 const vidas = 3;
 const cantidadfrutas = 4;
-const totoH = -50;
-const totoV = 530; 
+const dogH = -50;
+const dogV = 530; 
 const gusanoH = -50;
 const gusanoV = 0; 
 const manzanaH = 300;
@@ -40,7 +40,7 @@ const obstaculoV = 100;
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { segundos:tiempo, nombre:'', vidas:vidas, frutas:0, items: [], posicionHtoto:totoH, posicionVtoto:totoV, posicionHgusano:gusanoH, posicionVgusano:gusanoV, posicionHmanzana:manzanaH, posicionVmanzana:manzanaV, posicionHbanano:bananoH, posicionVbanano:bananoV, posicionHmango:mangoH, posicionVmango:mangoV, posicionHfresa:fresaH, posicionVfresa:fresaV,  posicionHobstaculo:obstaculoH, posicionVobstaculo:obstaculoV, estado:''  };
+    this.state = { segundos:tiempo, nombre:'', vidas:vidas, frutas:0, items: [], posicionHdog:dogH, posicionVdog:dogV, posicionHgusano:gusanoH, posicionVgusano:gusanoV, posicionHmanzana:manzanaH, posicionVmanzana:manzanaV, posicionHbanano:bananoH, posicionVbanano:bananoV, posicionHmango:mangoH, posicionVmango:mangoV, posicionHfresa:fresaH, posicionVfresa:fresaV,  posicionHobstaculo:obstaculoH, posicionVobstaculo:obstaculoV, estado:''  };
     this.campoNombre = this.campoNombre.bind(this);
     this.botonStart = this.botonStart.bind(this);
     this.flechasTeclado = this.flechasTeclado.bind(this);
@@ -64,7 +64,7 @@ class App extends React.Component {
       swalert(
         <div>
           <img src={logo} alt="logo" style={{'height':'20vmin'}} />
-          <h1> Toto está <FontAwesomeIcon icon={faFrown} /></h1>
+          <h1> {dogname} está <FontAwesomeIcon icon={faFrown} /></h1>
           <p>Vamos {this.state.nombre}, juega de nuevo!</p>
         </div>
       )
@@ -74,27 +74,27 @@ class App extends React.Component {
 
   tickGusano() {
     if(this.state.estado === 'start'){
-      if(this.state.posicionHtoto > this.state.posicionHgusano && this.state.posicionVtoto > this.state.posicionVgusano){           //Hace que el Gusano persiga a Toto
+      if(this.state.posicionHdog > this.state.posicionHgusano && this.state.posicionVdog > this.state.posicionVgusano){           //Hace que el Gusano persiga a dog
         this.state.posicionHgusano = this.state.posicionHgusano + 10;
         this.state.posicionVgusano = this.state.posicionVgusano + 10;
-      } else if(this.state.posicionHtoto > this.state.posicionHgusano && this.state.posicionVtoto < this.state.posicionVgusano){           
+      } else if(this.state.posicionHdog > this.state.posicionHgusano && this.state.posicionVdog < this.state.posicionVgusano){           
         this.state.posicionHgusano = this.state.posicionHgusano + 10;
         this.state.posicionVgusano = this.state.posicionVgusano - 10;
-      } else if(this.state.posicionHtoto === this.state.posicionHgusano && this.state.posicionVtoto > this.state.posicionVgusano){     
+      } else if(this.state.posicionHdog === this.state.posicionHgusano && this.state.posicionVdog > this.state.posicionVgusano){     
         this.state.posicionVgusano = this.state.posicionVgusano + 10;
-      } else if(this.state.posicionHtoto === this.state.posicionHgusano && this.state.posicionVtoto < this.state.posicionVgusano){  
+      } else if(this.state.posicionHdog === this.state.posicionHgusano && this.state.posicionVdog < this.state.posicionVgusano){  
         this.state.posicionVgusano = this.state.posicionVgusano - 10;
-      } else if(this.state.posicionHtoto < this.state.posicionHgusano && this.state.posicionVtoto > this.state.posicionVgusano){
+      } else if(this.state.posicionHdog < this.state.posicionHgusano && this.state.posicionVdog > this.state.posicionVgusano){
         this.state.posicionHgusano = this.state.posicionHgusano - 10;
         this.state.posicionVgusano = this.state.posicionVgusano + 10;
-      } else if(this.state.posicionHtoto < this.state.posicionHgusano && this.state.posicionVtoto < this.state.posicionVgusano){
+      } else if(this.state.posicionHdog < this.state.posicionHgusano && this.state.posicionVdog < this.state.posicionVgusano){
         this.state.posicionHgusano = this.state.posicionHgusano - 10;
         this.state.posicionVgusano = this.state.posicionVgusano - 10;
-      } else if(this.state.posicionHtoto > this.state.posicionHgusano && this.state.posicionVtoto === this.state.posicionVgusano){           //Hace que el Gusano persiga a Toto
+      } else if(this.state.posicionHdog > this.state.posicionHgusano && this.state.posicionVdog === this.state.posicionVgusano){           //Hace que el Gusano persiga a dog
         this.state.posicionHgusano = this.state.posicionHgusano + 10;
-      } else if(this.state.posicionHtoto < this.state.posicionHgusano && this.state.posicionVtoto === this.state.posicionVgusano){           //Hace que el Gusano persiga a Toto
+      } else if(this.state.posicionHdog < this.state.posicionHgusano && this.state.posicionVdog === this.state.posicionVgusano){           //Hace que el Gusano persiga a dog
         this.state.posicionHgusano = this.state.posicionHgusano - 10;
-      } else if(this.state.posicionHtoto === this.state.posicionHgusano && this.state.posicionVtoto === this.state.posicionVgusano){
+      } else if(this.state.posicionHdog === this.state.posicionHgusano && this.state.posicionVdog === this.state.posicionVgusano){
         this.vidas();
       }
     }
@@ -117,7 +117,7 @@ class App extends React.Component {
         <header className="App-header">
           <div>
             <img id='logo' src={logo} className="App-logo" alt="logo" />
-            <h2 id='titulo'>La Plaza de Frutas</h2>
+            <h2 id='titulo' className="App-tittle">La Plaza de Frutas</h2>
             <h2 id='tiempo'><FontAwesomeIcon icon={faClock} /> {this.state.segundos}</h2>
             <table id='tablero'>
               <tbody>
@@ -152,8 +152,8 @@ class App extends React.Component {
             <img id='bloquesVright2' src={bloquesV} className="App-bloquesV" alt="bloquesV" style={{'marginTop': 298, 'marginLeft': -488}}/>
             <img id='bloque1' src={bloque} className="App-bloque" alt="bloque" style={{'marginTop': this.state.posicionVobstaculo, 'marginLeft': this.state.posicionHobstaculo}}/>
 
-            <img id='toto' src={toto} className="App-toto" alt={dogname} style={{'marginTop': this.state.posicionVtoto, 'marginLeft': this.state.posicionHtoto}}/>
-            <img id='gusano' src={gusano} className="App-toto" alt="gusano" style={{'marginTop': this.state.posicionVgusano, 'marginLeft': this.state.posicionHgusano}}/>
+            <img id='dog' src={dog} className="App-dog" alt={dogname} style={{'marginTop': this.state.posicionVdog, 'marginLeft': this.state.posicionHdog}}/>
+            <img id='gusano' src={gusano} className="App-dog" alt="gusano" style={{'marginTop': this.state.posicionVgusano, 'marginLeft': this.state.posicionHgusano}}/>
             <img id='manzana' src={manzana} className="App-fruta" alt="manzana" style={{'marginLeft': this.state.posicionHmanzana,'marginTop':this.state.posicionVmanzana}}/>
             <img id='banano' src={banano} className="App-fruta" alt="banano" style={{'marginLeft': this.state.posicionHbanano,'marginTop':this.state.posicionVbanano}}/>
             <img id='mango' src={mango} className="App-fruta" alt="mango" style={{'marginLeft': this.state.posicionHmango,'marginTop':this.state.posicionVmango}}/>
@@ -208,33 +208,33 @@ class App extends React.Component {
   }
   botonUp(e) {                                    //Funciones para sensar los botones
     e.preventDefault();
-    if(this.state.posicionVtoto > -50){
+    if(this.state.posicionVdog > -50){
       this.setState(state => ({
-        posicionVtoto: this.state.posicionVtoto - 10
+        posicionVdog: this.state.posicionVdog - 10
       }));
     }
   }
   botonDown(e) {
     e.preventDefault();
-    if(this.state.posicionVtoto < 530){
+    if(this.state.posicionVdog < 530){
       this.setState(state => ({
-        posicionVtoto: this.state.posicionVtoto + 10
+        posicionVdog: this.state.posicionVdog + 10
       }));
     }
   }
   botonLeft(e) {
     e.preventDefault();
-    if(this.state.posicionHtoto > -420){
+    if(this.state.posicionHdog > -420){
       this.setState(state => ({
-        posicionHtoto: this.state.posicionHtoto - 10
+        posicionHdog: this.state.posicionHdog - 10
       }));
     }
   }
   botonRight(e) {
     e.preventDefault();
-    if(this.state.posicionHtoto < 350){
+    if(this.state.posicionHdog < 350){
       this.setState(state => ({
-        posicionHtoto: this.state.posicionHtoto + 10
+        posicionHdog: this.state.posicionHdog + 10
       }));
     }
   }
@@ -258,29 +258,29 @@ class App extends React.Component {
   }
 
   checkGanador(e) {
-    if((this.state.posicionHmanzana - 40  < this.state.posicionHtoto && this.state.posicionHtoto < this.state.posicionHmanzana + 40) &&
-       (this.state.posicionVmanzana - 40  < this.state.posicionVtoto && this.state.posicionVtoto < this.state.posicionVmanzana + 40)
+    if((this.state.posicionHmanzana - 40  < this.state.posicionHdog && this.state.posicionHdog < this.state.posicionHmanzana + 40) &&
+       (this.state.posicionVmanzana - 40  < this.state.posicionVdog && this.state.posicionVdog < this.state.posicionVmanzana + 40)
     ){
       this.state.frutas = this.state.frutas + 100; 
       this.state.posicionHmanzana = 580;
       this.state.posicionVmanzana = 340;
     }
-    if((this.state.posicionHbanano - 40  < this.state.posicionHtoto && this.state.posicionHtoto < this.state.posicionHbanano + 40) &&
-       (this.state.posicionVbanano - 40  < this.state.posicionVtoto && this.state.posicionVtoto < this.state.posicionVbanano + 40)
+    if((this.state.posicionHbanano - 40  < this.state.posicionHdog && this.state.posicionHdog < this.state.posicionHbanano + 40) &&
+       (this.state.posicionVbanano - 40  < this.state.posicionVdog && this.state.posicionVdog < this.state.posicionVbanano + 40)
     ){
       this.state.frutas = this.state.frutas + 100; 
       this.state.posicionHbanano = 630;
       this.state.posicionVbanano = 340;
     }
-    if((this.state.posicionHmango - 40  < this.state.posicionHtoto && this.state.posicionHtoto < this.state.posicionHmango + 40) &&
-       (this.state.posicionVmango - 40  < this.state.posicionVtoto && this.state.posicionVtoto < this.state.posicionVmango + 40)
+    if((this.state.posicionHmango - 40  < this.state.posicionHdog && this.state.posicionHdog < this.state.posicionHmango + 40) &&
+       (this.state.posicionVmango - 40  < this.state.posicionVdog && this.state.posicionVdog < this.state.posicionVmango + 40)
     ){
       this.state.frutas = this.state.frutas + 100;
       this.state.posicionHmango = 680;
       this.state.posicionVmango = 340;
     }
-    if((this.state.posicionHfresa - 40  < this.state.posicionHtoto && this.state.posicionHtoto < this.state.posicionHfresa + 40) &&
-       (this.state.posicionVfresa - 40  < this.state.posicionVtoto && this.state.posicionVtoto < this.state.posicionVfresa + 40)
+    if((this.state.posicionHfresa - 40  < this.state.posicionHdog && this.state.posicionHdog < this.state.posicionHfresa + 40) &&
+       (this.state.posicionVfresa - 40  < this.state.posicionVdog && this.state.posicionVdog < this.state.posicionVfresa + 40)
     ){
       this.state.frutas = this.state.frutas + 100; 
       this.state.posicionHfresa = 730;
@@ -310,8 +310,8 @@ class App extends React.Component {
   }
 
   checkObstaculo(e) {
-    if((this.state.posicionHobstaculo - 40  < this.state.posicionHtoto && this.state.posicionHtoto < this.state.posicionHobstaculo + 40) &&
-       (this.state.posicionVobstaculo - 40  < this.state.posicionVtoto && this.state.posicionVtoto < this.state.posicionVobstaculo + 40)
+    if((this.state.posicionHobstaculo - 40  < this.state.posicionHdog && this.state.posicionHdog < this.state.posicionHobstaculo + 40) &&
+       (this.state.posicionVobstaculo - 40  < this.state.posicionVdog && this.state.posicionVdog < this.state.posicionVobstaculo + 40)
     ){
       alert('Obstaculo');
     }
@@ -320,8 +320,8 @@ class App extends React.Component {
   vidas(){
     this.state.vidas = this.state.vidas - 1;
     this.state.segundos = tiempo;
-    this.state.posicionHtoto = totoH;
-    this.state.posicionVtoto = totoV;
+    this.state.posicionHdog = dogH;
+    this.state.posicionVdog = dogV;
     this.state.posicionHgusano = gusanoH;
     this.state.posicionVgusano = gusanoV;
     this.state.posicionHmanzana = manzanaH;
@@ -353,8 +353,8 @@ class App extends React.Component {
   reset(){
     this.state.segundos = tiempo;
     this.state.vidas = vidas;
-    this.state.posicionHtoto = totoH;
-    this.state.posicionVtoto = totoV;
+    this.state.posicionHdog = dogH;
+    this.state.posicionVdog = dogV;
     this.state.posicionHgusano = gusanoH;
     this.state.posicionVgusano = gusanoV;
     this.state.posicionHmanzana = manzanaH;

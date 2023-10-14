@@ -27,7 +27,9 @@
   margin-left: 80px;
   margin-top: -25px;
 }
-
+.App-tittle {
+  margin-left: 25px;
+}
 #titulo {
   position: absolute;
   left: 150px;
@@ -69,7 +71,7 @@
   color: #61dafb;
 }
 
-#toto {
+#dog {
   height: 70px;
   pointer-events: none;
   position: absolute;
