@@ -14,7 +14,7 @@ import './App.css';
 
 import React from 'react';
 
-import { faCaretUp, faCaretDown, faCaretLeft, faCaretRight, faClock, faPlayCircle, faFrown, faSmile, faMeh, faChild, faLemon} from "@fortawesome/fontawesome-free-solid";
+import { faCaretUp, faCaretDown, faCaretLeft, faCaretRight, faClock, faPlayCircle, faFrown, faRedoAlt, faSmile, faMeh, faLemon} from "@fortawesome/fontawesome-free-solid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";     //Importa iconos fontawesome
 import swalert from '@sweetalert/with-react';                         //Libreria alertas con diseño en JSX
 
@@ -116,16 +116,18 @@ class App extends React.Component {
         <header className="App-header">
           <div>
             <img id='logo' src={logo} className="App-logo" alt="logo" />
-            <h2 id='titulo'>Frutería Toto</h2>
+            <h2 id='titulo'>La Plaza de Frutas</h2>
             <h2 id='tiempo'><FontAwesomeIcon icon={faClock} /> {this.state.segundos}</h2>
             <table id='tablero'>
-              <tr>
-                <td><img id='vidas' src={logo} alt="vidas" /></td>
-                <td><h2>{this.state.vidas}</h2></td>
-                <td>&nbsp;&nbsp;&nbsp;</td>
-                <td><h2><FontAwesomeIcon icon={faLemon} />&nbsp;</h2></td>
-                <td><h2>{this.state.frutas}</h2></td>
-              </tr>
+              <tbody>
+                <tr>
+                  <td><img id='vidas' src={logo} alt="vidas" /></td>
+                  <td><h2>{this.state.vidas}</h2></td>
+                  <td>&nbsp;&nbsp;&nbsp;</td>
+                  <td><h2><FontAwesomeIcon icon={faLemon} />&nbsp;</h2></td>
+                  <td><h2>{this.state.frutas}</h2></td>
+                </tr>
+              </tbody>
             </table> 
           </div>
         </header>
@@ -156,16 +158,15 @@ class App extends React.Component {
             <img id='mango' src={mango} className="App-fruta" alt="mango" style={{'marginLeft': this.state.posicionHmango,'marginTop':this.state.posicionVmango}}/>
             <img id='fresa' src={fresa} className="App-fruta" alt="fresa" style={{'marginLeft': this.state.posicionHfresa,'marginTop':this.state.posicionVfresa}}/>
 
-            <div id='obstaculo' style={{'marginLeft': this.state.posicionHobstaculo,'marginTop': this.state.posicionVobstaculo}}>
+            <img id='bloque2' src={bloque} className="App-bloque" alt="bloque" style={{'marginTop': this.state.posicionVobstaculo + 200, 'marginLeft': this.state.posicionHobstaculo - 300}}/>
 
-            </div>
           </div>
-          <div id='resultados'>
+          <div id='resultados'></div>
             <img id='cajamadera' src={cajamadera} className="App-cajamadera" alt="cajamadera" />
             <table id="flechas">
               <thead>
                 <tr>
-                  <td colSpan={3}><button id="botonReset"  onMouseMove={this.botonReset} onClick={this.botonReset}>Reset</button></td>
+                  <td colSpan={3}><button id="botonReset"  onMouseMove={this.botonReset} onClick={this.botonReset} className='botonReset'><FontAwesomeIcon icon={faRedoAlt} /></button></td>
                 </tr>
               </thead>
               <tbody>
@@ -182,7 +183,7 @@ class App extends React.Component {
                 </tr>
               </tbody>
             </table>
-          </div>
+
         </body>
       </div>
     );

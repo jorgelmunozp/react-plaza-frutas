@@ -195,6 +195,15 @@
   cursor: pointer;
   filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 1));
 }
+.botonReset {
+  color: white;
+  background-color: #500;
+  padding: 15px 0 15px 0;
+  font-size: large;
+  width: 80px;
+  cursor: pointer;
+  filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 1));
+}
 
 input[type=text]{
   color: #500;

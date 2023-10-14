@@ -1,6 +1,6 @@
 {
-  "short_name": "Hola Toto",
-  "name": "Proyecto Hola Toto",
+  "short_name": "react-plaza-frutas",
+  "name": "Proyecto react-plaza-frutas",
   "icons": [
     {
       "src": "favicon.ico",
