@@ -1,5 +1,5 @@
-import logo from './logo.svg';
-import toto from './toto.svg';
+import logo from './logo.png';
+import toto from './dog.png';
 import gusano from './gusano.svg';
 import manzana from './manzana.svg';
 import banano from './banano.svg';
@@ -18,6 +18,7 @@ import { faCaretUp, faCaretDown, faCaretLeft, faCaretRight, faClock, faPlayCircl
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";     //Importa iconos fontawesome
 import swalert from '@sweetalert/with-react';                         //Libreria alertas con diseño en JSX
 
+const dogname = "Doggy";
 const tiempo = 20;
 const vidas = 3;
 const cantidadfrutas = 4;
@@ -62,7 +63,7 @@ class App extends React.Component {
     } else if(this.state.vidas === 0){     //Calcula tiempo, cantidad de frutas y si tiene vidas el jugador
       swalert(
         <div>
-          <img src={logo} alt="logo" style={{'height':'10vmin'}} />
+          <img src={logo} alt="logo" style={{'height':'20vmin'}} />
           <h1> Toto está <FontAwesomeIcon icon={faFrown} /></h1>
           <p>Vamos {this.state.nombre}, juega de nuevo!</p>
         </div>
@@ -121,7 +122,7 @@ class App extends React.Component {
             <table id='tablero'>
               <tbody>
                 <tr>
-                  <td><img id='vidas' src={logo} alt="vidas" /></td>
+                  <td><img id='vidas' src={logo}  className="App-logo" alt="vidas" /></td>
                   <td><h2>{this.state.vidas}</h2></td>
                   <td>&nbsp;&nbsp;&nbsp;</td>
                   <td><h2><FontAwesomeIcon icon={faLemon} />&nbsp;</h2></td>
@@ -133,7 +134,7 @@ class App extends React.Component {
         </header>
         <body className="App-body">
           <div id='registro'>
-            <p>Toto en la frutería</p>
+            <p>{dogname} en la frutería</p>
             <p>Hola <b>{this.state.nombre}</b>!</p>
             <input type="text" id="nombre" onChange={this.campoNombre} value={this.state.nombre} placeholder="nombre" autoComplete='off'/>
             <h3>Ranking</h3>
@@ -151,7 +152,7 @@ class App extends React.Component {
             <img id='bloquesVright2' src={bloquesV} className="App-bloquesV" alt="bloquesV" style={{'marginTop': 298, 'marginLeft': -488}}/>
             <img id='bloque1' src={bloque} className="App-bloque" alt="bloque" style={{'marginTop': this.state.posicionVobstaculo, 'marginLeft': this.state.posicionHobstaculo}}/>
 
-            <img id='toto' src={toto} className="App-toto" alt="toto" style={{'marginTop': this.state.posicionVtoto, 'marginLeft': this.state.posicionHtoto}}/>
+            <img id='toto' src={toto} className="App-toto" alt={dogname} style={{'marginTop': this.state.posicionVtoto, 'marginLeft': this.state.posicionHtoto}}/>
             <img id='gusano' src={gusano} className="App-toto" alt="gusano" style={{'marginTop': this.state.posicionVgusano, 'marginLeft': this.state.posicionHgusano}}/>
             <img id='manzana' src={manzana} className="App-fruta" alt="manzana" style={{'marginLeft': this.state.posicionHmanzana,'marginTop':this.state.posicionVmanzana}}/>
             <img id='banano' src={banano} className="App-fruta" alt="banano" style={{'marginLeft': this.state.posicionHbanano,'marginTop':this.state.posicionVbanano}}/>
@@ -299,8 +300,8 @@ class App extends React.Component {
       }
       swalert(
         <div>
-          <img src={logo} alt="logo" style={{'height':'10vmin'}} />
-          <h1>Toto está <FontAwesomeIcon icon={faSmile} /></h1>
+          <img src={logo} alt="logo" style={{'height':'20vmin'}} />
+          <h1>{dogname} está <FontAwesomeIcon icon={faSmile} /></h1>
           <p>Ganáste {this.state.nombre}! buen juego</p>
         </div>
       )
@@ -336,7 +337,7 @@ class App extends React.Component {
     swalert(
       <div>
         <img src={logo} alt="logo" style={{'height':'10vmin'}} />
-        <h1>Toto está <FontAwesomeIcon icon={faMeh} /></h1>
+        <h1>{dogname} está <FontAwesomeIcon icon={faMeh} /></h1>
         <p>Lo siento {this.state.nombre}, intenta otra vez</p>
       </div>
     )
