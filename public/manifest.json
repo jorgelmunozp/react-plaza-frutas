@@ -1,6 +1,6 @@
 {
-  "short_name": "react-plaza-frutas",
-  "name": "Proyecto react-plaza-frutas",
+  "short_name": "Plaza de Frutas",
+  "name": "React Plaza de Frutas",
   "icons": [
     {
       "src": "favicon.ico",

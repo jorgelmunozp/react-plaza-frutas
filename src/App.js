@@ -115,14 +115,22 @@ class App extends React.Component {
     return (
       <div className="App">
         <header className="App-header">
-          <div>
-            <img id='logo' src={logo} className="App-logo" alt="logo" />
-            <h2 id='titulo' className="App-tittle">La Plaza de Frutas</h2>
-            <h2 id='tiempo'><FontAwesomeIcon icon={faClock} /> {this.state.segundos}</h2>
+          <div className="App-header-content">
+            <table className='App-slogan'>
+              <tbody>
+                <tr>
+                  <td><img id='logo' src={logo} className="App-logo" alt="logo" /></td>
+                  <td><h2 className="App-tittle">Plaza de Frutas</h2></td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h2 className='tiempo'><FontAwesomeIcon icon={faClock} /> {this.state.segundos}</h2>
+            
             <table id='tablero'>
               <tbody>
                 <tr>
-                  <td><img id='vidas' src={logo}  className="App-logo" alt="vidas" /></td>
+                  <td><img className='vidas' src={logo} alt=" " />&nbsp;</td>
                   <td><h2>{this.state.vidas}</h2></td>
                   <td>&nbsp;&nbsp;&nbsp;</td>
                   <td><h2><FontAwesomeIcon icon={faLemon} />&nbsp;</h2></td>
@@ -133,57 +141,57 @@ class App extends React.Component {
           </div>
         </header>
         <body className="App-body">
-          <div id='registro'>
-            <p className='instructions'>{dogname} debe recolectar<br></br> todas las frutas antes <br></br>que Gusanor se lo coma</p>
-            <p>Hola <b>{this.state.nombre}</b>!</p>
-            <input type="text" id="nombre" onChange={this.campoNombre} value={this.state.nombre} placeholder="nombre" autoComplete='off'/>
-            <h3>Ranking</h3>
-            <ListaRanking items={this.state.items}/>
-          </div>
+            <div id='registro'>
+              <p className='instructions'>{dogname} debe recolectar<br></br> todas las frutas antes <br></br>que Gusanor se lo coma</p>
+              <p>Hola <b>{this.state.nombre}</b>!</p>
+              <input type="text" id="nombre" onChange={this.campoNombre} value={this.state.nombre} placeholder="nombre" autoComplete='off'/>
+              <h3>Ranking</h3>
+              <ListaRanking items={this.state.items}/>
+            </div>
 
-          <div id="cuadrilatero">
-            <img id='bloquesHup1' src={bloquesH} className="App-bloquesH" alt="bloquesH" style={{'marginTop': -50, 'marginLeft': 0}}/>
-            <img id='bloquesHup2' src={bloquesH} className="App-bloquesH" alt="bloquesH" style={{'marginTop': -50, 'marginLeft': -490}}/>
-            <img id='bloquesHdown1' src={bloquesH} className="App-bloquesH" alt="bloquesH" style={{'marginTop': 600, 'marginLeft': 0}}/>
-            <img id='bloquesHdown2' src={bloquesH} className="App-bloquesH" alt="bloquesH" style={{'marginTop': 600, 'marginLeft': -490}}/>
-            <img id='bloquesVleft1' src={bloquesV} className="App-bloquesV" alt="bloquesV" style={{'marginTop': -2, 'marginLeft': -488}}/>
-            <img id='bloquesVleft2' src={bloquesV} className="App-bloquesV" alt="bloquesV" style={{'marginTop': 298, 'marginLeft': 401}}/>
-            <img id='bloquesVright1' src={bloquesV} className="App-bloquesV" alt="bloquesV" style={{'marginTop': -2, 'marginLeft': 401}}/>
-            <img id='bloquesVright2' src={bloquesV} className="App-bloquesV" alt="bloquesV" style={{'marginTop': 298, 'marginLeft': -488}}/>
-            <img id='bloque1' src={bloque} className="App-bloque" alt="bloque" style={{'marginTop': this.state.posicionVobstaculo, 'marginLeft': this.state.posicionHobstaculo}}/>
+            <div id="cuadrilatero">
+              <img id='bloquesHup1' src={bloquesH} className="App-bloquesH" alt="bloquesH" style={{'marginTop': -50, 'marginLeft': 0}}/>
+              <img id='bloquesHup2' src={bloquesH} className="App-bloquesH" alt="bloquesH" style={{'marginTop': -50, 'marginLeft': -490}}/>
+              <img id='bloquesHdown1' src={bloquesH} className="App-bloquesH" alt="bloquesH" style={{'marginTop': 600, 'marginLeft': 0}}/>
+              <img id='bloquesHdown2' src={bloquesH} className="App-bloquesH" alt="bloquesH" style={{'marginTop': 600, 'marginLeft': -490}}/>
+              <img id='bloquesVleft1' src={bloquesV} className="App-bloquesV" alt="bloquesV" style={{'marginTop': -2, 'marginLeft': -488}}/>
+              <img id='bloquesVleft2' src={bloquesV} className="App-bloquesV" alt="bloquesV" style={{'marginTop': 298, 'marginLeft': 401}}/>
+              <img id='bloquesVright1' src={bloquesV} className="App-bloquesV" alt="bloquesV" style={{'marginTop': -2, 'marginLeft': 401}}/>
+              <img id='bloquesVright2' src={bloquesV} className="App-bloquesV" alt="bloquesV" style={{'marginTop': 298, 'marginLeft': -488}}/>
+              <img id='bloque1' src={bloque} className="App-bloque" alt="bloque" style={{'marginTop': this.state.posicionVobstaculo, 'marginLeft': this.state.posicionHobstaculo}}/>
 
-            <img id='dog' src={dog} className="App-dog" alt={dogname} style={{'marginTop': this.state.posicionVdog, 'marginLeft': this.state.posicionHdog}}/>
-            <img id='gusano' src={gusano} className="App-dog" alt="gusano" style={{'marginTop': this.state.posicionVgusano, 'marginLeft': this.state.posicionHgusano}}/>
-            <img id='manzana' src={manzana} className="App-fruta" alt="manzana" style={{'marginLeft': this.state.posicionHmanzana,'marginTop':this.state.posicionVmanzana}}/>
-            <img id='banano' src={banano} className="App-fruta" alt="banano" style={{'marginLeft': this.state.posicionHbanano,'marginTop':this.state.posicionVbanano}}/>
-            <img id='mango' src={mango} className="App-fruta" alt="mango" style={{'marginLeft': this.state.posicionHmango,'marginTop':this.state.posicionVmango}}/>
-            <img id='fresa' src={fresa} className="App-fruta" alt="fresa" style={{'marginLeft': this.state.posicionHfresa,'marginTop':this.state.posicionVfresa}}/>
+              <img id='dog' src={dog} className="App-dog" alt={dogname} style={{'marginTop': this.state.posicionVdog, 'marginLeft': this.state.posicionHdog}}/>
+              <img id='gusano' src={gusano} className="App-dog" alt="gusano" style={{'marginTop': this.state.posicionVgusano, 'marginLeft': this.state.posicionHgusano}}/>
+              <img id='manzana' src={manzana} className="App-fruta" alt="manzana" style={{'marginLeft': this.state.posicionHmanzana,'marginTop':this.state.posicionVmanzana}}/>
+              <img id='banano' src={banano} className="App-fruta" alt="banano" style={{'marginLeft': this.state.posicionHbanano,'marginTop':this.state.posicionVbanano}}/>
+              <img id='mango' src={mango} className="App-fruta" alt="mango" style={{'marginLeft': this.state.posicionHmango,'marginTop':this.state.posicionVmango}}/>
+              <img id='fresa' src={fresa} className="App-fruta" alt="fresa" style={{'marginLeft': this.state.posicionHfresa,'marginTop':this.state.posicionVfresa}}/>
 
-            <img id='bloque2' src={bloque} className="App-bloque" alt="bloque" style={{'marginTop': this.state.posicionVobstaculo + 200, 'marginLeft': this.state.posicionHobstaculo - 300}}/>
-          </div>
-          <div id='resultados'>
-            <table id="flechas">
-              <thead>
-                <tr>
-                  <td colSpan={3}><button id="botonReset"  onMouseMove={this.botonReset} onClick={this.botonReset} className='botonReset'><FontAwesomeIcon icon={faRedoAlt} /></button></td>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td colSpan={3}><button type='button' onMouseMove={this.botonUp} onClick={this.botonUp} className='botonFlechas' ><FontAwesomeIcon icon={faCaretUp} /></button></td>
-                </tr>
-                <tr>
-                  <td><button type='button' onMouseMove={this.botonLeft} onClick={this.botonLeft} className='botonFlechas' ><FontAwesomeIcon icon={faCaretLeft} /></button></td>
-                  <td><button type="button" onClick={this.botonStart} onKeyDown={this.flechasTeclado} className='botonStart' value="start" id="start"><FontAwesomeIcon icon={faPlayCircle} /></button></td>
-                  <td><button type='button' onMouseMove={this.botonRight} onClick={this.botonRight} className='botonFlechas' ><FontAwesomeIcon icon={faCaretRight} /></button></td>
-                </tr>
-                <tr>
-                  <td colSpan={3}><button type='button' onMouseMove={this.botonDown} onClick={this.botonDown} className='botonFlechas' ><FontAwesomeIcon icon={faCaretDown} /></button></td>
-                </tr>
-              </tbody>
-            </table>
-            <img id='cajamadera' src={cajamadera} className="App-cajamadera" alt="cajamadera" />
-          </div>
+              <img id='bloque2' src={bloque} className="App-bloque" alt="bloque" style={{'marginTop': this.state.posicionVobstaculo + 200, 'marginLeft': this.state.posicionHobstaculo - 300}}/>
+            </div>
+            <div id='resultados'>
+              <table id="flechas">
+                <thead>
+                  <tr>
+                    <td colSpan={3}><button id="botonReset"  onMouseMove={this.botonReset} onClick={this.botonReset} className='botonReset'><FontAwesomeIcon icon={faRedoAlt} /></button></td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td colSpan={3}><button type='button' onMouseMove={this.botonUp} onClick={this.botonUp} className='botonFlechas' ><FontAwesomeIcon icon={faCaretUp} /></button></td>
+                  </tr>
+                  <tr>
+                    <td><button type='button' onMouseMove={this.botonLeft} onClick={this.botonLeft} className='botonFlechas' ><FontAwesomeIcon icon={faCaretLeft} /></button></td>
+                    <td><button type="button" onClick={this.botonStart} onKeyDown={this.flechasTeclado} className='botonStart' value="start" id="start"><FontAwesomeIcon icon={faPlayCircle} /></button></td>
+                    <td><button type='button' onMouseMove={this.botonRight} onClick={this.botonRight} className='botonFlechas' ><FontAwesomeIcon icon={faCaretRight} /></button></td>
+                  </tr>
+                  <tr>
+                    <td colSpan={3}><button type='button' onMouseMove={this.botonDown} onClick={this.botonDown} className='botonFlechas' ><FontAwesomeIcon icon={faCaretDown} /></button></td>
+                  </tr>
+                </tbody>
+              </table>
+              <img id='cajamadera' src={cajamadera} className="App-cajamadera" alt="cajamadera" />
+            </div>
         </body>
       </div>
     );

@@ -1,18 +1,22 @@
+:root {
+  --white-color: #fff;
+}
+
 .App {
   text-align: center;
   font: 'Century Gothic', sans-serif;                        /*** Letra ***/
 }
 
+/****************************** HEADER ******************************/
 .App-header {
   background-color: #282c34;
-  min-height: 80px;
+  min-height: 10vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-
+  font-size: 2.5vmin;
+  color: var(--white-color);
   background: url("/public/banner.jpg") no-repeat;
   background-size: cover;
   background-color: rgba(0, 0, 0, 0.5);
@@ -20,37 +24,31 @@
   width: 100%;                 
   text-shadow: 2px 2px 2px rgba(0, 0, 0, 1);
 }
-.App-logo {
+.App-header-content {
+
+}
+.App-slogan {
   position: absolute;
-  left: 0;
-  height: 50px;
-  margin-left: 80px;
-  margin-top: -25px;
+  left: 5vw;
+  top: -0.5vw;
+}
+.App-logo {
+  height: 3vw;
 }
 .App-tittle {
-  margin-left: 25px;
+  margin-left: 1vw;
 }
-#titulo {
-  position: absolute;
-  left: 150px;
-  top: -20px;
-}
-#tiempo {
-  position: absolute;
-  margin-left: -50px;
-  top: -20px;
-}
-#vidas {
-  position: absolute;
-  left: 0;
-  width: 47px;
-  margin-left: -60px;
-  margin-top: -25px;
+.tiempo {
+  top: -1.1vw;
 }
 #tablero {
   position: absolute;
-  right: 100px;
-  top: -20px;
+  right: 5vw;
+  top: 0vw;
+}
+.vidas {
+  width: 3.5vw;
+  height: 3vw;
 }
 
 .App-body {
@@ -61,10 +59,12 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
-
+  color: var(--white-color);
   background: url("/public/fondo.jpg") no-repeat;
   background-size: cover;
+}
+.App-content {
+  
 }
 
 .App-link {
@@ -190,7 +190,7 @@
 }
 
 #button {
-  color: white;
+  color: var(--white-color);
   background-color: #666;
   padding: 15px 0 15px 0;
   border-radius: 30px;
@@ -201,7 +201,7 @@
   filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 1));
 }
 .botonReset {
-  color: white;
+  color: var(--white-color);
   background-color: #500;
   padding: 15px 0 15px 0;
   font-size: large;
@@ -227,8 +227,37 @@ input[type=text]::placeholder{
 #obstaculo {
   width: 80px;
   height: 80px;
-  border: 1px solid #fff;
+  border: 1px solid var(--white-color);;
   position: absolute;
+}
 
+
+
+
+
+
+
+
+
+/*****************************************************************************************/
+/***************************************** MOVIL *****************************************/
+@media (orientation: landscape) {
+
+}
+@media (orientation: portrait) {
+
+}
+/******************************** TABLETS ********************************/
+@media screen and (max-width: 1200px) {
+
+}
+
+/******************************** CELL PHONES  ********************************/
+@media screen and (max-width: 640px) {
+  /******************************** Header ********************************/
+  .App-header {
+    min-height: 6vh;
+  }
+  /********************************* Body *********************************/
 }
 
