@@ -141,7 +141,8 @@ class App extends React.Component {
           </div>
         </header>
         <body className="App-body">
-            <div id='registro'>
+          <div className="App-body-content">
+          <div id='registro'>
               <p className='instructions'>{dogname} debe recolectar<br></br> todas las frutas antes <br></br>que Gusanor se lo coma</p>
               <p>Hola <b>{this.state.nombre}</b>!</p>
               <input type="text" id="nombre" onChange={this.campoNombre} value={this.state.nombre} placeholder="nombre" autoComplete='off'/>
@@ -159,14 +160,12 @@ class App extends React.Component {
               <img id='bloquesVright1' src={bloquesV} className="App-bloquesV" alt="bloquesV" style={{'marginTop': -2, 'marginLeft': 401}}/>
               <img id='bloquesVright2' src={bloquesV} className="App-bloquesV" alt="bloquesV" style={{'marginTop': 298, 'marginLeft': -488}}/>
               <img id='bloque1' src={bloque} className="App-bloque" alt="bloque" style={{'marginTop': this.state.posicionVobstaculo, 'marginLeft': this.state.posicionHobstaculo}}/>
-
               <img id='dog' src={dog} className="App-dog" alt={dogname} style={{'marginTop': this.state.posicionVdog, 'marginLeft': this.state.posicionHdog}}/>
               <img id='gusano' src={gusano} className="App-dog" alt="gusano" style={{'marginTop': this.state.posicionVgusano, 'marginLeft': this.state.posicionHgusano}}/>
               <img id='manzana' src={manzana} className="App-fruta" alt="manzana" style={{'marginLeft': this.state.posicionHmanzana,'marginTop':this.state.posicionVmanzana}}/>
               <img id='banano' src={banano} className="App-fruta" alt="banano" style={{'marginLeft': this.state.posicionHbanano,'marginTop':this.state.posicionVbanano}}/>
               <img id='mango' src={mango} className="App-fruta" alt="mango" style={{'marginLeft': this.state.posicionHmango,'marginTop':this.state.posicionVmango}}/>
               <img id='fresa' src={fresa} className="App-fruta" alt="fresa" style={{'marginLeft': this.state.posicionHfresa,'marginTop':this.state.posicionVfresa}}/>
-
               <img id='bloque2' src={bloque} className="App-bloque" alt="bloque" style={{'marginTop': this.state.posicionVobstaculo + 200, 'marginLeft': this.state.posicionHobstaculo - 300}}/>
             </div>
             <div id='resultados'>
@@ -192,6 +191,8 @@ class App extends React.Component {
               </table>
               <img id='cajamadera' src={cajamadera} className="App-cajamadera" alt="cajamadera" />
             </div>
+          </div>
+
         </body>
       </div>
     );

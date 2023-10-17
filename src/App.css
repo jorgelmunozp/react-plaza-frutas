@@ -53,32 +53,32 @@
 
 .App-body {
   background-color: #282c34;
-  min-height: 810px;
+  min-height: 60vw;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: 3vmin;
   color: var(--white-color);
   background: url("/public/fondo.jpg") no-repeat;
   background-size: cover;
 }
-.App-content {
-  
+.App-body-content {
+  display: flex;
+  width: 30%;
 }
 
 .App-link {
   color: #61dafb;
 }
 .instructions {
-  margin-top: 100px;
+  margin-top: -15vw;
 }
 
 #dog {
-  height: 80px;
+  height: 6.25vw;
   pointer-events: none;
   position: absolute;
-
   user-select: none;                    /* Impide seleccionar la imagen con el mouse*/
   -moz-user-select: none;
   -webkit-user-drag: none;
@@ -88,10 +88,9 @@
   margin-right: auto;
 }
 #gusano {
-  height: 70px;
+  height: 5.5vw;
   pointer-events: none;
   position: absolute;
-
   user-select: none;                    /* Impide seleccionar la imagen con el mouse*/
   -moz-user-select: none;
   -webkit-user-drag: none;
@@ -102,94 +101,82 @@
 }
 
 .App-fruta {
-  height: 45px;
+  height: 3.5vw;
   pointer-events: none;
   position: absolute;
-
   user-select: none;                    /* Impide seleccionar la imagen con el mouse*/
   -moz-user-select: none;
   -webkit-user-drag: none;
   -webkit-user-select: none;
   -ms-user-select: none;
-
   z-index: 1;
 }
-
 @keyframes image-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 @media (prefers-reduced-motion: no-preference) {
-  .App-fruta {
-    animation: image-spin infinite 20s linear;
-  }
+  .App-fruta { animation: image-spin infinite 20s linear; }
 }
 
 .App-bloque {
   pointer-events: none;
   position: absolute;
-  height: 80px;
+  height: 6.25vw;
 }
 .App-bloquesH {
   pointer-events: none;
   position: absolute;
-  height: 48.75px;
+  height: 3.8vw;
 }
 .App-bloquesV {
   pointer-events: none;
   position: absolute;
-  height: 302px;
+  height: 23.6vw;
 }
 
 .App-cajamadera {
   pointer-events: none;
-  position: absolute;
-
-  width: 260px;
-  margin-top: 320px;
-  margin-left: 500px;
+  /* position: absolute; */
+  width: 20vw;
+  /* margin-top: 320px;
+  margin-left: 500px; */
 }
 
 #registro {                       /*Tiempo, frutas restantes */
-  position: absolute;
-  margin-top: -100px;
-  margin-left: -1300px;
+  /* position: absolute; */
+  /* margin-top: -9vw;
+  margin-left: -1300px; */
 }
 #cuadrilatero {
-  width: 800px;
-  height: 600px;
-  position: absolute;
-  margin-top: 100px;
+  /* position: absolute;
+  top: 10vw; */
 }
 #resultados {                       /*Tiempo, frutas restantes */
-  position: absolute;
-  margin-top: -550px;
-  margin-right: -40px;
+  /* position: absolute;
+  margin-top: -43vw;
+  margin-right: -4vw; */
 }
 
 #flechas {                          /*Botones de flechas */
-  position: absolute;
+  /* position: absolute;
   margin-top: 0px;
-  margin-left: 500px;
+  margin-left: 500px; */
 }
 .botonFlechas {
-  padding: 15px 25px 15px 25px;
-  font-size: 40px;
+  padding: 1.25vw 2vw 1.25vw 2vw;
+  font-size: 3vw;
   background-color: #500;
   color:#ccc
 }
 .botonStart {
-  padding: 15px 15px 15px 15px;
-  font-size: 40px;
+  padding: 1.25vw 1.25vw 1.25vw 1.25vw;
+  font-size: 3vw;
   background-color: #500;
   color:#ccc
 }
 
-#button {
+/* #button {
   color: var(--white-color);
   background-color: #666;
   padding: 15px 0 15px 0;
@@ -199,13 +186,13 @@
   width: 200px;
   cursor: pointer;
   filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 1));
-}
+} */
 .botonReset {
   color: var(--white-color);
   background-color: #500;
-  padding: 15px 0 15px 0;
-  font-size: large;
-  width: 80px;
+  padding: 1.25vw 0 1.25vw 0;
+  font-size: 3vmin;
+  width: 6.25vw;
   cursor: pointer;
   filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 1));
 }
@@ -225,8 +212,8 @@ input[type=text]::placeholder{
 }
 
 #obstaculo {
-  width: 80px;
-  height: 80px;
+  width: 6.25vw;
+  height: 6.25vw;
   border: 1px solid var(--white-color);;
   position: absolute;
 }
