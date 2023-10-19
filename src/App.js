@@ -23,25 +23,23 @@ const dogname = "Doggy";
 const tiempo = 20;
 const vidas = 3;
 const cantidadfrutas = 4;
-// const dogH = -50;
-// const dogV = 530; 
-//1px = (100vw / [document.documentElement.clientWidth] px)
-// const dogH = -5000/document.documentElement.clientWidth;
-// console.log("dogH: " + dogH);
+
 let dogH;
 let dogV;
 let gusanoH;
 let gusanoV;
 let manzanaH;
-let manzanaV = 40; 
-let bananoH = -350; 
-let bananoV = 40; 
-let mangoH = 300; 
-let mangoV = 510; 
-let fresaH = -350; 
-let fresaV = 510;
-let obstaculoH = 100; 
-let obstaculoV = 100;
+let manzanaV; 
+let bananoH; 
+let bananoV; 
+let mangoH; 
+let mangoV; 
+let fresaH; 
+let fresaV;
+let obstaculo1H; 
+let obstaculo1V;
+let obstaculo2H; 
+let obstaculo2V;
 
 const sizeWindow = document.documentElement.clientWidth;
 if(sizeWindow <= 600){
@@ -57,6 +55,10 @@ if(sizeWindow <= 600){
   mangoV = 150;
   fresaH = -100; 
   fresaV = 150;
+  obstaculo1H = 40; 
+  obstaculo1V = 40;
+  obstaculo2H = obstaculo1H - 100; 
+  obstaculo2V = obstaculo1V + 55;
 } else if(600 <= sizeWindow && sizeWindow <= 1200){
   dogH = -40;
   dogV = 490;
@@ -70,6 +72,10 @@ if(sizeWindow <= 600){
   mangoV = 480;
   fresaH = -340; 
   fresaV = 480;
+  obstaculo1H = 120; 
+  obstaculo1V = 125;
+  obstaculo2H = obstaculo1H - 310; 
+  obstaculo2V = obstaculo1V + 210;
 } else if(sizeWindow >= 1200){
   dogH = -45;
   dogV = 530;
@@ -83,48 +89,15 @@ if(sizeWindow <= 600){
   mangoV = 510;
   fresaH = -350; 
   fresaV = 510;
-
-  obstaculoH = 100; 
-  obstaculoV = 100;
+  obstaculo1H = 130; 
+  obstaculo1V = 135;
+  obstaculo2H = obstaculo1H - 330; 
+  obstaculo2V = obstaculo1V + 260;
 }
-
-// const gusanoH = -50;
-// const gusanoV = 0; 
-// const manzanaH = 300;
-// const manzanaV = 40; 
-// const bananoH = -350; 
-// const bananoV = 40; 
-// const mangoH = 300; 
-// const mangoV = 510; 
-// const fresaH = -350; 
-// const fresaV = 510;
-// const obstaculoH = 100; 
-// const obstaculoV = 100;
 
 
 function getPositionXY(dogH,dogV) {
-  // const sizeWindow = document.documentElement.clientWidth;
-  // console.log("sizeWindow: " + sizeWindow)
-  // if(sizeWindow <= 600){
-  //   dogH = -50;
-  //   dogV = 530;
-  // } else if(600 <= sizeWindow <= 1200){
-  //   dogH = -150;
-  //   dogV = 530;
-  // } else if(sizeWindow >= 1201){
-  //   dogH = -50;
-  //   dogV = 530;
-  // }
   console.log("dog(x,y) 1: " + dogH,dogV);
-
-  // const element = document.getElementById('dog');
-  // const rect = element.getBoundingClientRect(); 
-  // console.log("cord 1: " + rect.x,rect.y)
-  // const x = rect.left + window.scrollX;
-  // const y = rect.top + window.scrollY;
-  // const d = document.getElementById('dog').style.top;
-  // console.log("cord 2: " + x,y)
-  // console.log("d: " + d)
 
   return [dogH,dogV]
 }
@@ -133,7 +106,7 @@ function getPositionXY(dogH,dogV) {
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { segundos:tiempo, nombre:'', vidas:vidas, frutas:0, items: [], posicionHdog:dogH, posicionVdog:dogV, posicionHgusano:gusanoH, posicionVgusano:gusanoV, posicionHmanzana:manzanaH, posicionVmanzana:manzanaV, posicionHbanano:bananoH, posicionVbanano:bananoV, posicionHmango:mangoH, posicionVmango:mangoV, posicionHfresa:fresaH, posicionVfresa:fresaV,  posicionHobstaculo:obstaculoH, posicionVobstaculo:obstaculoV, estado:''  };
+    this.state = { segundos:tiempo, nombre:'', vidas:vidas, frutas:0, items: [], posicionHdog:dogH, posicionVdog:dogV, posicionHgusano:gusanoH, posicionVgusano:gusanoV, posicionHmanzana:manzanaH, posicionVmanzana:manzanaV, posicionHbanano:bananoH, posicionVbanano:bananoV, posicionHmango:mangoH, posicionVmango:mangoV, posicionHfresa:fresaH, posicionVfresa:fresaV, posicionHobstaculo1:obstaculo1H, posicionVobstaculo1:obstaculo1V,  posicionHobstaculo2:obstaculo2H, posicionVobstaculo2:obstaculo2V, estado:''  };
     this.campoNombre = this.campoNombre.bind(this);
     this.botonStart = this.botonStart.bind(this);
     this.flechasTeclado = this.flechasTeclado.bind(this);
@@ -145,8 +118,6 @@ class App extends React.Component {
   }
   
   tick() {
-    // const dogHxy = getPositionXY(dogH,dogV);
-    // console.log("dogHxy: " + dogHxy[0],dogHxy[1]);
     [dogH,dogV] = getPositionXY(dogH,dogV);
     console.log("[dogH,dogV]: " + [dogH,dogV]);
 
@@ -255,8 +226,8 @@ class App extends React.Component {
               <img id='banano' src={banano} className="App-fruta" alt="🍌" style={{'marginLeft': this.state.posicionHbanano,'marginTop':this.state.posicionVbanano}}/>
               <img id='mango' src={mango} className="App-fruta" alt="🥭" style={{'marginLeft': this.state.posicionHmango,'marginTop':this.state.posicionVmango}}/>
               <img id='fresa' src={fresa} className="App-fruta" alt="🍓" style={{'marginLeft': this.state.posicionHfresa,'marginTop':this.state.posicionVfresa}}/>
-              <img id='bloque1' src={bloque} className="App-bloque" alt="🧱" style={{'marginTop': this.state.posicionVobstaculo, 'marginLeft': this.state.posicionHobstaculo}}/>
-              <img id='bloque2' src={bloque} className="App-bloque" alt="🧱" style={{'marginTop': this.state.posicionVobstaculo + 200, 'marginLeft': this.state.posicionHobstaculo - 300}}/>
+              <img id='bloque1' src={bloque} className="App-bloque" alt="🧱" style={{'marginTop': this.state.posicionVobstaculo1, 'marginLeft': this.state.posicionHobstaculo1}}/>
+              <img id='bloque2' src={bloque} className="App-bloque" alt="🧱" style={{'marginTop': this.state.posicionVobstaculo2, 'marginLeft': this.state.posicionHobstaculo2}}/>
             </div>
             <div id='resultados'>
               <p>Hola <b>{this.state.nombre}</b>!</p>
