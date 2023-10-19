@@ -24,6 +24,8 @@ const tiempo = 20;
 const vidas = 3;
 const cantidadfrutas = 4;
 
+let cuadrilateroLimitsH;                               // Variables del juego
+let cuadrilateroLimitsV;                               
 let dogH;
 let dogV;
 let gusanoH;
@@ -40,9 +42,34 @@ let obstaculo1H;
 let obstaculo1V;
 let obstaculo2H; 
 let obstaculo2V;
+let posVFrutas;
 
-const sizeWindow = document.documentElement.clientWidth;
-if(sizeWindow <= 600) {
+// Orientación y tipo de dispositivo: Laptop | Tablet | Celular
+let dispositive;
+let dispositiveOrientation;
+const cellSize = [380,720];                                   // Dimensiones ancho por alto de los dispositivos
+const tabletSize = [720,1280];
+
+let windowWidth = document.documentElement.clientWidth;       // Tamaño horizontal de pantalla
+let windowHeight = document.documentElement.clientHeight;     // Tamaño vertical de pantalla
+
+if (windowWidth > windowHeight) {          
+    dispositiveOrientation = 'Landscape';                          // Orientación del dispositivo horizontal
+    if (windowWidth <= cellSize[1]) { dispositive = 'Cell' }       // Tipo de dispositivo Pc, Tablet o Celular
+    else if (cellSize[1] < windowWidth && windowWidth <= tabletSize[1]) { dispositive = 'Tablet' }
+    else if (windowWidth > tabletSize[1]) { dispositive = 'Laptop' }
+} else if ( windowHeight > windowWidth) { 
+    dispositiveOrientation = 'Portrait';                           // Orientación del dispositivo vertical
+    if (windowHeight <= cellSize[1]) { dispositive = 'Cell' }      // Tipo de dispositivo Pc, Tablet o Celular
+    else if (cellSize[1] < windowHeight && windowHeight <= tabletSize[1]) { dispositive = 'Tablet' }
+    else if (windowHeight > tabletSize[1]) { dispositive = 'Laptop' }
+}
+console.log("windowWidth: " + windowWidth)
+console.log("windowHeight: " + windowHeight)
+console.log("dispositive: " + dispositive)
+console.log("dispositiveOrientation: " + dispositiveOrientation)
+
+if(dispositive == 'Cell' && dispositiveOrientation == 'Portrait') {
     dogH = -10;
     dogV = 150;
     gusanoH = -7.5;
@@ -59,33 +86,57 @@ if(sizeWindow <= 600) {
     obstaculo1V = 40;
     obstaculo2H = obstaculo1H - 100; 
     obstaculo2V = obstaculo1V + 55;
-} else if(600 <= sizeWindow && sizeWindow <= 1200) {
-    dogH = -40;
-    dogV = 490;
-    gusanoH = -30;
+} else if(dispositive == 'Cell' && dispositiveOrientation == 'Landscape') {
+  cuadrilateroLimitsH = [-210,170];           // Límite horizontal bordes cuadrlátero
+  cuadrilateroLimitsV = [-30,260];            // Límite vertical bordes cuadrlátero
+  dogH = (cuadrilateroLimitsH[1] + cuadrilateroLimitsH[0])/2;
+  dogV = cuadrilateroLimitsV[1];
+  gusanoH = (cuadrilateroLimitsH[1] + cuadrilateroLimitsH[0])/2;
+  gusanoV = 0;
+  manzanaH = cuadrilateroLimitsH[1] - 20;
+  manzanaV = cuadrilateroLimitsV[0] + 50;
+  bananoH = cuadrilateroLimitsH[0] + 40; 
+  bananoV = cuadrilateroLimitsV[0] + 50;
+  mangoH = cuadrilateroLimitsH[1] - 20;
+  mangoV = cuadrilateroLimitsV[1];
+  fresaH = cuadrilateroLimitsH[0] + 40; 
+  fresaV = cuadrilateroLimitsV[1];
+  obstaculo1H = cuadrilateroLimitsH[1] - 110;
+  obstaculo1V = cuadrilateroLimitsV[0] + 100;
+  obstaculo2H = cuadrilateroLimitsH[0] + 110; 
+  obstaculo2V = cuadrilateroLimitsV[1] - 80;
+} else if(dispositive == 'Tablet' && dispositiveOrientation == 'Landscape') {
+    cuadrilateroLimitsH = [-380,310];           // Límite horizontal bordes cuadrlátero
+    cuadrilateroLimitsV = [-60,490];            // Límite vertical bordes cuadrlátero
+    dogH = (cuadrilateroLimitsH[1] + cuadrilateroLimitsH[0])/2;
+    dogV = cuadrilateroLimitsV[1];
+    gusanoH = (cuadrilateroLimitsH[1] + cuadrilateroLimitsH[0])/2;
     gusanoV = 0;
-    manzanaH = 300;
-    manzanaV = 30;
-    bananoH = -330; 
-    bananoV = 30;
-    mangoH = 300; 
-    mangoV = 480;
-    fresaH = -330; 
-    fresaV = 480;
-    obstaculo1H = 120; 
-    obstaculo1V = 125;
-    obstaculo2H = obstaculo1H - 310; 
-    obstaculo2V = obstaculo1V + 210;
-} else if(sizeWindow >= 1200) {
+    manzanaH = cuadrilateroLimitsH[1] - 10;
+    manzanaV = cuadrilateroLimitsV[0] + 80;
+    bananoH = cuadrilateroLimitsH[0] + 50; 
+    bananoV = cuadrilateroLimitsV[0] + 80;
+    mangoH = cuadrilateroLimitsH[1] - 10;
+    mangoV = cuadrilateroLimitsV[1];
+    fresaH = cuadrilateroLimitsH[0] + 50; 
+    fresaV = cuadrilateroLimitsV[1];
+    obstaculo1H = cuadrilateroLimitsH[1] - 160;
+    obstaculo1V = cuadrilateroLimitsV[0] + 170;
+    obstaculo2H = cuadrilateroLimitsH[0] + 190; 
+    obstaculo2V = cuadrilateroLimitsV[1] - 180;
+ } 
+  else if(dispositive == 'Laptop' && dispositiveOrientation == 'Landscape') {
+    cuadrilateroLimitsH = [-450,370];           // Límite horizontal bordes cuadrlátero
+    cuadrilateroLimitsV = [-70,590];            // Límite vertical bordes cuadrlátero
     dogH = -45;
     dogV = 590;
     gusanoH = -30;
     gusanoV = 0; 
-    manzanaH = 310;
+    manzanaH = 340;
     manzanaV = 40;
     bananoH = -380; 
     bananoV = 40;
-    mangoH = 300; 
+    mangoH = 340; 
     mangoV = 570;
     fresaH = -380; 
     fresaV = 570;
@@ -95,21 +146,12 @@ if(sizeWindow <= 600) {
     obstaculo2V = obstaculo1V + 260;
 }
 
-function setPositionXY(dogH,dogV,gusanoH,gusanoV) {
-  const elemento = document.getElementById('cajamadera');
-  console.log("elemento" + elemento);
-  const posicion = elemento.getBoundingClientRect();
-  const posVFrutas = Math.round((posicion.top + posicion.bottom)/2);
-  console.log("posVFrutas" + posVFrutas);
-
-  // return [dogH,dogV]
-}
 
 // function App() {
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { segundos:tiempo, nombre:'', vidas:vidas, frutas:0, items: [], posicionHdog:dogH, posicionVdog:dogV, posicionHgusano:gusanoH, posicionVgusano:gusanoV, posicionHmanzana:manzanaH, posicionVmanzana:manzanaV, posicionHbanano:bananoH, posicionVbanano:bananoV, posicionHmango:mangoH, posicionVmango:mangoV, posicionHfresa:fresaH, posicionVfresa:fresaV, posicionHobstaculo1:obstaculo1H, posicionVobstaculo1:obstaculo1V,  posicionHobstaculo2:obstaculo2H, posicionVobstaculo2:obstaculo2V, estado:''  };
+    this.state = { segundos:tiempo, nombre:'', vidas:vidas, frutas:0, items: [], posicionHdog:dogH, posicionVdog:dogV, posicionHgusano:gusanoH, posicionVgusano:gusanoV, posicionHmanzana:manzanaH, posicionVmanzana:manzanaV, posicionHbanano:bananoH, posicionVbanano:bananoV, posicionHmango:mangoH, posicionVmango:mangoV, posicionHfresa:fresaH, posicionVfresa:fresaV, posicionHobstaculo1:obstaculo1H, posicionVobstaculo1:obstaculo1V, posicionHobstaculo2:obstaculo2H, posicionVobstaculo2:obstaculo2V, estado:''  };
     this.campoNombre = this.campoNombre.bind(this);
     this.botonStart = this.botonStart.bind(this);
     this.flechasTeclado = this.flechasTeclado.bind(this);
@@ -120,10 +162,19 @@ class App extends React.Component {
     this.botonReset = this.botonReset.bind(this);
   }
 
-  tick() {
-    // [dogH,dogV] = setPositionXY(dogH,dogV);
-    // console.log("[dogH,dogV]: " + [dogH,dogV]);
+  tickDispositive() {
+    window.addEventListener("orientationchange", ()=> {
+      windowWidth = document.documentElement.clientWidth;       // Tamaño horizontal de pantalla
+      windowHeight = document.documentElement.clientHeight;     // Tamaño vertical de pantalla
+      if(windowWidth > windowHeight) { dispositiveOrientation ='Landscape';}      // Orientación del dispositivo horizontal         
+      else if(windowHeight > windowWidth) { dispositiveOrientation ='Portrait';}  // Orientación vertical del dispositivo 
+      else if(windowHeight == windowWidth) { dispositiveOrientation ='Landscape';}// Orientación vertical del dispositivo 
+      console.log("dispositiveOrientation: " + dispositiveOrientation)
+    }); 
+  }
 
+  /********************* THICKS (Métodos repetitivos) *********************/
+  tick() {
     if(this.state.estado === 'start'){
       this.setState(state => ({
         segundos: state.segundos - 1,
@@ -147,38 +198,65 @@ class App extends React.Component {
   tickGusano() {
     if(this.state.estado === 'start'){
       if(this.state.posicionHdog > this.state.posicionHgusano && this.state.posicionVdog > this.state.posicionVgusano){           //Hace que el Gusano persiga a dog
-        this.state.posicionHgusano = this.state.posicionHgusano + 10;
-        this.state.posicionVgusano = this.state.posicionVgusano + 10;
+        this.setState(state => ({
+          posicionHgusano: this.state.posicionHgusano + 10,
+          posicionVgusano: this.state.posicionVgusano + 10,
+        }));
       } else if(this.state.posicionHdog > this.state.posicionHgusano && this.state.posicionVdog < this.state.posicionVgusano){           
-        this.state.posicionHgusano = this.state.posicionHgusano + 10;
-        this.state.posicionVgusano = this.state.posicionVgusano - 10;
+        this.setState(state => ({
+          posicionHgusano: this.state.posicionHgusano + 10,
+          posicionVgusano: this.state.posicionVgusano - 10,
+        }));
       } else if(this.state.posicionHdog === this.state.posicionHgusano && this.state.posicionVdog > this.state.posicionVgusano){     
-        this.state.posicionVgusano = this.state.posicionVgusano + 10;
+        this.setState(state => ({  
+          posicionVgusano: this.state.posicionVgusano + 10,
+        }));
       } else if(this.state.posicionHdog === this.state.posicionHgusano && this.state.posicionVdog < this.state.posicionVgusano){  
-        this.state.posicionVgusano = this.state.posicionVgusano - 10;
+        this.setState(state => ({
+          posicionVgusano: this.state.posicionVgusano - 10,
+        }));
       } else if(this.state.posicionHdog < this.state.posicionHgusano && this.state.posicionVdog > this.state.posicionVgusano){
-        this.state.posicionHgusano = this.state.posicionHgusano - 10;
-        this.state.posicionVgusano = this.state.posicionVgusano + 10;
+        this.setState(state => ({
+          posicionHgusano: this.state.posicionHgusano - 10,
+          posicionVgusano: this.state.posicionVgusano + 10,
+        }));
       } else if(this.state.posicionHdog < this.state.posicionHgusano && this.state.posicionVdog < this.state.posicionVgusano){
-        this.state.posicionHgusano = this.state.posicionHgusano - 10;
-        this.state.posicionVgusano = this.state.posicionVgusano - 10;
+        this.setState(state => ({
+          posicionHgusano: this.state.posicionHgusano - 10,
+          posicionVgusano: this.state.posicionVgusano - 10,
+        }));
       } else if(this.state.posicionHdog > this.state.posicionHgusano && this.state.posicionVdog === this.state.posicionVgusano){           //Hace que el Gusano persiga a dog
-        this.state.posicionHgusano = this.state.posicionHgusano + 10;
+        this.setState(state => ({
+          posicionHgusano: this.state.posicionHgusano + 10,
+        }));
       } else if(this.state.posicionHdog < this.state.posicionHgusano && this.state.posicionVdog === this.state.posicionVgusano){           //Hace que el Gusano persiga a dog
-        this.state.posicionHgusano = this.state.posicionHgusano - 10;
+        this.setState(state => ({
+          posicionHgusano: this.state.posicionHgusano - 10,
+        }));
       } else if(this.state.posicionHdog === this.state.posicionHgusano && this.state.posicionVdog === this.state.posicionVgusano){
-        this.vidas();
+        
+          this.vidas();
+
       }
     }
   }
 
+  setPositionXY() {
+    const posicion = document.getElementById('cajamadera').getBoundingClientRect();
+    posVFrutas = Math.round((posicion.top + posicion.bottom)/2);
+    console.log("posVFrutas" + posVFrutas);
+  }
 
+  /*********** THICKS CONTROL (Maneja intervalos de tiempo de las thicks ************/
   componentDidMount() {
+    this.intervalOrientation = setInterval(() => this.tickDispositive(), 1000);
+    this.intervalPosXY = setInterval(() => this.setPositionXY(), 100000);
     this.interval = setInterval(() => this.tick(), 1000);
     this.intervalGusano = setInterval(() => this.tickGusano(), 200);
   }
-
   componentWillUnmount() {
+    clearInterval(this.intervalOrientation);
+    clearInterval(this.intervalPosXY);
     clearInterval(this.interval);
     clearInterval(this.intervalGusano);
   }
@@ -234,7 +312,7 @@ class App extends React.Component {
             </div>
             <div id='resultados'>
               <p>Hola <b>{this.state.nombre}</b>!</p>
-              <p className='instructions'>{dogname} debe recolectar<br></br> todas las frutas antes <br></br>que Gusanor se lo coma</p>
+              <p className='instructions'><b>{dogname}</b> debe recolectar<br></br> todas las frutas antes que<br></br>el malvado <b>Gusanor</b> se lo coma</p>
               <input type="text" id="nombre" onChange={this.campoNombre} value={this.state.nombre} placeholder="nombre" autoComplete='off'/>
               <table id="flechas">
                 <thead>
@@ -266,6 +344,7 @@ class App extends React.Component {
     );
   }
 
+  /********************* HELPERS (Métodos funcionales) *********************/
   getRandom() {
     let numero = (Math.random()*400) + 1;
     return numero
@@ -277,76 +356,86 @@ class App extends React.Component {
 
   botonStart(e){                                          //Función para iniciar el juego
     e.preventDefault();
-    this.state.estado = 'start';
+    this.setState(state => ({ estado: 'start' }));
     this.flechasTeclado();
   }                                                       //Funciones para sensar los botones                    
+  
   botonUp(e) {                                            // Límite inferior movimiento Doggy dentro del cuadrilátero
     e.preventDefault();
-    if(this.state.posicionVdog > -50){
+    if(this.state.posicionVdog > cuadrilateroLimitsV[0]){
       this.setState(state => ({ posicionVdog: this.state.posicionVdog - 10 }));
     }
   }
-  botonDown(e) {
+  botonDown(e) {                                          // Límite inferior movimiento Doggy dentro del cuadrilátero
     e.preventDefault();
-    if(this.state.posicionVdog < 590){                    // Límite inferior movimiento Doggy dentro del cuadrilátero
+    if(this.state.posicionVdog < cuadrilateroLimitsV[1]){                    
       this.setState(state => ({ posicionVdog: this.state.posicionVdog + 10 }));
     }
   }
   botonLeft(e) {                                          // Límite izquierda movimiento Doggy dentro del cuadrilátero
     e.preventDefault();
-    if(this.state.posicionHdog > -450){
+    if(this.state.posicionHdog > cuadrilateroLimitsH[0]){
       this.setState(state => ({ posicionHdog: this.state.posicionHdog - 10 }));
     }
   }
   botonRight(e) {                                         // Límite derecha movimiento Doggy dentro del cuadrilátero
     e.preventDefault();
-    if(this.state.posicionHdog < 370){
+    if(this.state.posicionHdog < cuadrilateroLimitsH[1]){
       this.setState(state => ({ posicionHdog: this.state.posicionHdog + 10 }));
     }
   }
 
   flechasTeclado(e) {                                     //Función para sensar las flechas del teclado
-    e.preventDefault();
-    if (e.keyCode === 38){ this.botonUp(e); }   
-    if (e.keyCode === 40){ this.botonDown(e); }
-    if (e.keyCode === 37){ this.botonLeft(e); }   
-    if (e.keyCode === 39){ this.botonRight(e); }
-    this.checkGanador();
-    this.checkObstaculo();
+    if (e){  
+      e.preventDefault(); 
+      if (e.keyCode === 38){ this.botonUp(e); }   
+      if (e.keyCode === 40){ this.botonDown(e); }
+      if (e.keyCode === 37){ this.botonLeft(e); }   
+      if (e.keyCode === 39){ this.botonRight(e); }
+      this.checkGanador();
+      this.checkObstaculo();
+    }
   }
 
-  checkGanador(posVFrutas) {
+  checkGanador() {
     const posH = 580;
-    const posV = posVFrutas;
-    console.log(posV);
+    console.log("posVFrutas: " + posVFrutas);
 
     if((this.state.posicionHmanzana - 40  < this.state.posicionHdog && this.state.posicionHdog < this.state.posicionHmanzana + 40) &&
        (this.state.posicionVmanzana - 40  < this.state.posicionVdog && this.state.posicionVdog < this.state.posicionVmanzana + 40)
     ){
-      this.state.frutas = this.state.frutas + 100; 
-      this.state.posicionHmanzana = posH;
-      this.state.posicionVmanzana = posV;
+      this.setState(state => ({
+          frutas: this.state.frutas + 100,
+          posicionHmanzana: posH,
+          posicionVmanzana: posVFrutas,
+      }));
     }
     if((this.state.posicionHbanano - 40  < this.state.posicionHdog && this.state.posicionHdog < this.state.posicionHbanano + 40) &&
        (this.state.posicionVbanano - 40  < this.state.posicionVdog && this.state.posicionVdog < this.state.posicionVbanano + 40)
     ){
-      this.state.frutas = this.state.frutas + 100; 
-      this.state.posicionHbanano = posH + 50;
-      this.state.posicionVbanano = posV;
+      this.setState(state => ({
+        frutas: this.state.frutas + 100,
+        posicionHbanano: posH + 50,
+        posicionVbanano: posVFrutas,
+      }));
     }
     if((this.state.posicionHmango - 40  < this.state.posicionHdog && this.state.posicionHdog < this.state.posicionHmango + 40) &&
        (this.state.posicionVmango - 40  < this.state.posicionVdog && this.state.posicionVdog < this.state.posicionVmango + 40)
     ){
-      this.state.frutas = this.state.frutas + 100;
-      this.state.posicionHmango = posH + 50;
-      this.state.posicionVmango = posV;
+      this.setState(state => ({
+        frutas: this.state.frutas + 100,
+        posicionHmango: posH + 100,
+        posicionVmango: posVFrutas,
+      }));
     }
     if((this.state.posicionHfresa - 40  < this.state.posicionHdog && this.state.posicionHdog < this.state.posicionHfresa + 40) &&
        (this.state.posicionVfresa - 40  < this.state.posicionVdog && this.state.posicionVdog < this.state.posicionVfresa + 40)
     ){
-      this.state.frutas = this.state.frutas + 100; 
-      this.state.posicionHfresa = posH + 50;
-      this.state.posicionVfresa = posV;
+      this.setState(state => ({
+        frutas: this.state.frutas + 100,
+        posicionHfresa: posH + 150,
+        posicionVfresa: posVFrutas,
+      }));
     }
 
     if(this.state.frutas === cantidadfrutas * 100){
@@ -382,22 +471,6 @@ class App extends React.Component {
   }
 
   vidas(){
-    this.state.vidas = this.state.vidas - 1;
-    this.state.segundos = tiempo;
-    this.state.posicionHdog = dogH;
-    this.state.posicionVdog = dogV;
-    this.state.posicionHgusano = gusanoH;
-    this.state.posicionVgusano = gusanoV;
-    this.state.posicionHmanzana = manzanaH;
-    this.state.posicionVmanzana = manzanaV; 
-    this.state.posicionHbanano = bananoH; 
-    this.state.posicionVbanano = bananoV; 
-    this.state.posicionHmango = mangoH; 
-    this.state.posicionVmango = mangoV; 
-    this.state.posicionHfresa = fresaH; 
-    this.state.posicionVfresa = fresaV;
-    this.state.frutas = 0;
-    this.state.estado = 'vidas';
     swalert(
       <div>
         <img src={logo} alt="logo" style={{'height':'10vmin'}} />
@@ -406,7 +479,22 @@ class App extends React.Component {
       </div>
     )
     this.setState(state => ({
-
+        vidas: vidas - 1,
+        segundos: tiempo,
+        posicionHdog: dogH,
+        posicionVdog: dogV,
+        posicionHgusano: gusanoH,
+        posicionVgusano: gusanoV,
+        posicionHmanzana: manzanaH,
+        posicionVmanzana: manzanaV, 
+        posicionHbanano: bananoH, 
+        posicionVbanano: bananoV, 
+        posicionHmango: mangoH, 
+        posicionVmango: mangoV, 
+        posicionHfresa: fresaH, 
+        posicionVfresa: fresaV,
+        frutas : 0,
+        estado : 'vidas',
     }));
   }
 
@@ -415,29 +503,28 @@ class App extends React.Component {
     this.reset();
   }
   reset(){
-    this.state.segundos = tiempo;
-    this.state.vidas = vidas;
-    this.state.posicionHdog = dogH;
-    this.state.posicionVdog = dogV;
-    this.state.posicionHgusano = gusanoH;
-    this.state.posicionVgusano = gusanoV;
-    this.state.posicionHmanzana = manzanaH;
-    this.state.posicionVmanzana = manzanaV; 
-    this.state.posicionHbanano = bananoH; 
-    this.state.posicionVbanano = bananoV; 
-    this.state.posicionHmango = mangoH; 
-    this.state.posicionVmango = mangoV; 
-    this.state.posicionHfresa = fresaH; 
-    this.state.posicionVfresa = fresaV;
-    this.state.frutas = 0;
-    this.state.estado = 'reset';
-    this.state.nombre = '';
-
     this.setState(state => ({
-
+        segundos : tiempo,
+        vidas : vidas,
+        posicionHdog : dogH,
+        posicionVdog : dogV,
+        posicionHgusano : gusanoH,
+        posicionVgusano : gusanoV,
+        posicionHmanzana : manzanaH,
+        posicionVmanzana : manzanaV, 
+        posicionHbanano : bananoH, 
+        posicionVbanano : bananoV, 
+        posicionHmango : mangoH, 
+        posicionVmango : mangoV, 
+        posicionHfresa : fresaH, 
+        posicionVfresa : fresaV,
+        frutas : 0,
+        estado : 'reset',
+        nombre : '',
     }));
   }
 }
+
 
 
 
