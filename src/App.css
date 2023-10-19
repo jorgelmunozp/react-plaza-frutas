@@ -1,5 +1,6 @@
 :root {
   --white-color: #fff;
+  --button-color: #ccc;
 }
 
 .App {
@@ -41,7 +42,7 @@
 .tiempo {
   top: -1.1vw;
 }
-#tablero {
+.tablaTablero {
   position: absolute;
   right: 5vw;
   top: 0vw;
@@ -59,7 +60,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: 3vmin;
+  font-size: 2vmin;
   color: var(--white-color);
   background: url("/public/fondo.jpg") no-repeat;
   background-size: cover;
@@ -169,14 +170,7 @@
 
 
 
-.App-cajamadera {
-  pointer-events: none;
-  /* position: absolute; */
-  width: 20vw;
-  height: 10vw;
-  /* margin-top: 320px;
-  margin-left: 500px; */
-}
+
 
 #cuadrilatero {
   position: absolute;
@@ -186,28 +180,32 @@
   position: absolute;
   top: 5vw;
   right: 0;
+  
 }
+.App-cajamadera {
+  pointer-events: none;
+  width: 20vw;
+  height: 10vw;
+}
+.tablaRsultados {                          /*Botones de flechas */
 
-#flechas {                          /*Botones de flechas */
-  /* position: absolute;
-  margin-top: 0px;
-  margin-left: 500px; */
 }
 .botonFlechas {
   padding: 1.25vw 2vw 1.25vw 2vw;
   font-size: 3vw;
   background-color: #500;
-  color:#ccc
+  color:var(--button-color);
+  cursor: pointer;
 }
 .botonStart {
   padding: 1.25vw 1.25vw 1.25vw 1.25vw;
   font-size: 3vw;
   background-color: #500;
-  color:#ccc
+  color:var(--button-color);
+  cursor: pointer;
 }
-
 .botonReset {
-  color: var(--white-color);
+  color:var(--button-color);
   background-color: #500;
   padding: 1.25vw 0 1.25vw 0;
   font-size: 3vmin;
@@ -222,8 +220,8 @@ input[type=text]{
   padding: 0.65vw 0 0.65vw 0;
   border-radius: 25px;
   text-align: center;
-  font-size: 3vmin;
-  width: 15vw;
+  font-size: inherit;
+  width: 10vw;
   filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 1));
 }
 input[type=text]::placeholder{
@@ -234,7 +232,6 @@ input[type=text]::placeholder{
   width: 6.25vw;
   height: 6.25vw;
   border: 1px solid var(--white-color);;
-  /* position: absolute; */
 }
 
 
