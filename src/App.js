@@ -83,11 +83,11 @@ if(sizeWindow <= 600){
   gusanoV = 0; 
   manzanaH = 310;
   manzanaV = 40;
-  bananoH = -360; 
+  bananoH = -380; 
   bananoV = 40;
   mangoH = 300; 
   mangoV = 570;
-  fresaH = -350; 
+  fresaH = -380; 
   fresaV = 570;
   obstaculo1H = 130; 
   obstaculo1V = 135;
@@ -289,23 +289,23 @@ class App extends React.Component {
   }
   botonDown(e) {
     e.preventDefault();
-    if(this.state.posicionVdog < 530){
+    if(this.state.posicionVdog < 590){                    // Límite inferior movimiento Doggy dentro del cuadrilátero
       this.setState(state => ({
         posicionVdog: this.state.posicionVdog + 10
       }));
     }
   }
-  botonLeft(e) {
+  botonLeft(e) {                                          // Límite izquierda movimiento Doggy dentro del cuadrilátero
     e.preventDefault();
-    if(this.state.posicionHdog > -420){
+    if(this.state.posicionHdog > -450){
       this.setState(state => ({
         posicionHdog: this.state.posicionHdog - 10
       }));
     }
   }
-  botonRight(e) {
+  botonRight(e) {                                          // Límite derecha movimiento Doggy dentro del cuadrilátero
     e.preventDefault();
-    if(this.state.posicionHdog < 350){
+    if(this.state.posicionHdog < 370){
       this.setState(state => ({
         posicionHdog: this.state.posicionHdog + 10
       }));
@@ -331,33 +331,37 @@ class App extends React.Component {
   }
 
   checkGanador(e) {
+    // const posV = document.getElementById("cajamadera");
+    const posH = 580;
+    const posV = 530;
+
     if((this.state.posicionHmanzana - 40  < this.state.posicionHdog && this.state.posicionHdog < this.state.posicionHmanzana + 40) &&
        (this.state.posicionVmanzana - 40  < this.state.posicionVdog && this.state.posicionVdog < this.state.posicionVmanzana + 40)
     ){
       this.state.frutas = this.state.frutas + 100; 
-      this.state.posicionHmanzana = 580;
-      this.state.posicionVmanzana = 340;
+      this.state.posicionHmanzana = posH;
+      this.state.posicionVmanzana = posV;
     }
     if((this.state.posicionHbanano - 40  < this.state.posicionHdog && this.state.posicionHdog < this.state.posicionHbanano + 40) &&
        (this.state.posicionVbanano - 40  < this.state.posicionVdog && this.state.posicionVdog < this.state.posicionVbanano + 40)
     ){
       this.state.frutas = this.state.frutas + 100; 
-      this.state.posicionHbanano = 630;
-      this.state.posicionVbanano = 340;
+      this.state.posicionHbanano = posH + 50;
+      this.state.posicionVbanano = posV;
     }
     if((this.state.posicionHmango - 40  < this.state.posicionHdog && this.state.posicionHdog < this.state.posicionHmango + 40) &&
        (this.state.posicionVmango - 40  < this.state.posicionVdog && this.state.posicionVdog < this.state.posicionVmango + 40)
     ){
       this.state.frutas = this.state.frutas + 100;
-      this.state.posicionHmango = 680;
-      this.state.posicionVmango = 340;
+      this.state.posicionHmango = posH + 50;
+      this.state.posicionVmango = posV;
     }
     if((this.state.posicionHfresa - 40  < this.state.posicionHdog && this.state.posicionHdog < this.state.posicionHfresa + 40) &&
        (this.state.posicionVfresa - 40  < this.state.posicionVdog && this.state.posicionVdog < this.state.posicionVfresa + 40)
     ){
       this.state.frutas = this.state.frutas + 100; 
-      this.state.posicionHfresa = 730;
-      this.state.posicionVfresa = 340;
+      this.state.posicionHfresa = posH + 50;
+      this.state.posicionVfresa = posV;
     }
 
     if(this.state.frutas === cantidadfrutas * 100){
