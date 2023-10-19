@@ -41,9 +41,9 @@ let dispositive;
 let dispositiveOrientation;
 const cellSize = [380,720];                                   // Dimensiones ancho por alto de los dispositivos
 const tabletSize = [720,1280];
+
 let windowWidth;       // Tamaño horizontal de pantalla
 let windowHeight;     // Tamaño vertical de pantalla
-
 // let windowWidth = document.documentElement.clientWidth;       // Tamaño horizontal de pantalla
 // let windowHeight = document.documentElement.clientHeight;     // Tamaño vertical de pantalla
 // if (windowWidth > windowHeight) {          
@@ -58,7 +58,7 @@ let windowHeight;     // Tamaño vertical de pantalla
 //     else if (windowHeight > tabletSize[1]) { dispositive = 'Laptop' }
 // }
 
-// if(dispositive == 'Cell' && dispositiveOrientation == 'Portrait') {
+// if(dispositive === 'Cell' && dispositiveOrientation === 'Portrait') {
 //     dogH = -10; dogV = 150;
 //     gusanoH = -7.5; gusanoV = 0;
 //     manzanaH = 90; manzanaV = 5;
@@ -67,7 +67,7 @@ let windowHeight;     // Tamaño vertical de pantalla
 //     fresaH = -100; fresaV = 150;
 //     obstaculo1H = 40; obstaculo1V = 40;
 //     obstaculo2H = obstaculo1H - 100; obstaculo2V = obstaculo1V + 55;
-// } else if(dispositive == 'Cell' && dispositiveOrientation == 'Landscape') {
+// } else if(dispositive === 'Cell' && dispositiveOrientation === 'Landscape') {
 //     cuadrilateroLimitsH = [-210,170];           // Límite horizontal bordes cuadrlátero
 //     cuadrilateroLimitsV = [-30,260];            // Límite vertical bordes cuadrlátero
 //     dogH = (cuadrilateroLimitsH[1] + cuadrilateroLimitsH[0])/2;
@@ -86,7 +86,7 @@ let windowHeight;     // Tamaño vertical de pantalla
 //     obstaculo1V = cuadrilateroLimitsV[0] + 100;
 //     obstaculo2H = cuadrilateroLimitsH[0] + 110; 
 //     obstaculo2V = cuadrilateroLimitsV[1] - 80;
-// } else if(dispositive == 'Tablet' && dispositiveOrientation == 'Landscape') {
+// } else if(dispositive === 'Tablet' && dispositiveOrientation === 'Landscape') {
 //     cuadrilateroLimitsH = [-380,310];           // Límite horizontal bordes cuadrlátero
 //     cuadrilateroLimitsV = [-60,490];            // Límite vertical bordes cuadrlátero
 //     dogH = (cuadrilateroLimitsH[1] + cuadrilateroLimitsH[0])/2;
@@ -106,14 +106,14 @@ let windowHeight;     // Tamaño vertical de pantalla
 //     obstaculo2H = cuadrilateroLimitsH[0] + 190; 
 //     obstaculo2V = cuadrilateroLimitsV[1] - 180;
 //  } 
-//   else if(dispositive == 'Laptop' && dispositiveOrientation == 'Landscape') {
-//     // cuadrilateroLimitsH
+//   else if(dispositive === 'Laptop' && dispositiveOrientation === 'Landscape') {
+//     cuadrilateroLimitsH
 //     console.log("Laptop")
 //     const limitLeft = document.getElementById('bloquesVleft1').getBoundingClientRect();
 //     const limitRight = document.getElementById('bloquesVright1').getBoundingClientRect();
 //     const limitUp = document.getElementById('bloquesHup1').getBoundingClientRect();
 //     const limitDown = document.getElementById('bloquesHdown1').getBoundingClientRect();
-//     // Math.round((posCajaMadera.top + posCajaMadera.bottom)/2);
+//     Math.round((posCajaMadera.top + posCajaMadera.bottom)/2);
 
 //     console.log("limitLeft: " + limitLeft.left + " limitRight: " + limitRight.right );
 //     console.log("limitUp: " + limitUp.top + " limitRight: " + limitDown.bottom );
@@ -137,7 +137,18 @@ let windowHeight;     // Tamaño vertical de pantalla
 //     obstaculo2H = obstaculo1H - 330; 
 //     obstaculo2V = obstaculo1V + 260;
 // }
-
+swalert(                                      // Alerta de bienvenida
+  <div>
+    <h1>Doggy</h1>
+    <img src={logo} alt="logo" style={{'height':'10vmin'}} />
+    <p>Bienvenido</p>
+    {/* <input type="text" id="nombre" onChange={this.campoNombre} value={this.state.nombre} placeholder="nombre" autoComplete='off'/> */}
+    <input type="text" id="nombre" onChange="{campoNombre}" value="{nombre}" placeholder="nombre" autoComplete='off'/>
+    <p className='instructions'><b>{dogname}</b> debe recolectar<br></br> todas las frutas antes que<br></br>el malvado <b>Gusanor</b> lo atrape</p>
+    <h1> {dogname} está listo! <FontAwesomeIcon icon={faSmile} /></h1>
+    {/* <p>Vamos {this.state.nombre}, juega de nuevo!</p> */}
+  </div>
+)
 
 // function App() {
 class App extends React.Component {
@@ -160,7 +171,7 @@ class App extends React.Component {
       windowHeight = document.documentElement.clientHeight;     // Tamaño vertical de pantalla
       if(windowWidth > windowHeight) { dispositiveOrientation ='Landscape';}      // Orientación del dispositivo horizontal         
       else if(windowHeight > windowWidth) { dispositiveOrientation ='Portrait';}  // Orientación vertical del dispositivo 
-      else if(windowHeight == windowWidth) { dispositiveOrientation ='Landscape';}// Orientación vertical del dispositivo 
+      else if(windowHeight === windowWidth) { dispositiveOrientation ='Landscape';}// Orientación vertical del dispositivo 
       console.log("dispositiveOrientation: " + dispositiveOrientation)
     }); 
   }
@@ -179,8 +190,16 @@ class App extends React.Component {
         else if (cellSize[1] < windowHeight && windowHeight <= tabletSize[1]) { dispositive = 'Tablet' }
         else if (windowHeight > tabletSize[1]) { dispositive = 'Laptop' }
     }
+
+    const limitLeft = document.getElementById('bloquesVleft1').getBoundingClientRect();         // Limites de movimiento dentro del cuadrilatero
+    const limitRight = document.getElementById('bloquesVright1').getBoundingClientRect();
+    const limitUp = document.getElementById('bloquesHup1').getBoundingClientRect();
+    const limitDown = document.getElementById('bloquesHdown1').getBoundingClientRect();   
+    console.log("limitLeft: " + Math.round(limitLeft.left) + " limitRight: " + Math.round(limitRight.right));
+    console.log("limitUp: " + Math.round(limitUp.top) + " limitRight: " + Math.round(limitDown.bottom));
+
     
-    if(dispositive == 'Cell' && dispositiveOrientation == 'Portrait') {
+    if(dispositive === 'Cell' && dispositiveOrientation === 'Portrait') {
         dogH = -10; dogV = 150;
         gusanoH = -7.5; gusanoV = 0;
         manzanaH = 90; manzanaV = 5;
@@ -189,7 +208,7 @@ class App extends React.Component {
         fresaH = -100; fresaV = 150;
         obstaculo1H = 40; obstaculo1V = 40;
         obstaculo2H = obstaculo1H - 100; obstaculo2V = obstaculo1V + 55;
-    } else if(dispositive == 'Cell' && dispositiveOrientation == 'Landscape') {
+    } else if(dispositive === 'Cell' && dispositiveOrientation === 'Landscape') {
         cuadrilateroLimitsH = [-210,170];           // Límite horizontal bordes cuadrlátero
         cuadrilateroLimitsV = [-30,260];            // Límite vertical bordes cuadrlátero
         dogH = (cuadrilateroLimitsH[1] + cuadrilateroLimitsH[0])/2;
@@ -208,9 +227,12 @@ class App extends React.Component {
         obstaculo1V = cuadrilateroLimitsV[0] + 100;
         obstaculo2H = cuadrilateroLimitsH[0] + 110; 
         obstaculo2V = cuadrilateroLimitsV[1] - 80;
-    } else if(dispositive == 'Tablet' && dispositiveOrientation == 'Landscape') {
+    } else if(dispositive === 'Tablet' && dispositiveOrientation === 'Landscape') {
         cuadrilateroLimitsH = [-380,310];           // Límite horizontal bordes cuadrlátero
         cuadrilateroLimitsV = [-60,490];            // Límite vertical bordes cuadrlátero
+        // cuadrilateroLimitsH = [limitLeft,limitRight];           // Límite horizontal bordes cuadrlátero
+        // cuadrilateroLimitsV = [limitUp,limitDown];            // Límite vertical bordes cuadrlátero
+
         dogH = (cuadrilateroLimitsH[1] + cuadrilateroLimitsH[0])/2;
         dogV = cuadrilateroLimitsV[1];
         gusanoH = (cuadrilateroLimitsH[1] + cuadrilateroLimitsH[0])/2;
@@ -228,17 +250,15 @@ class App extends React.Component {
         obstaculo2H = cuadrilateroLimitsH[0] + 190; 
         obstaculo2V = cuadrilateroLimitsV[1] - 180;
      } 
-      else if(dispositive == 'Laptop' && dispositiveOrientation == 'Landscape') {
+      else if(dispositive === 'Laptop' && dispositiveOrientation === 'Landscape') {
         // cuadrilateroLimitsH
         console.log("Laptop")
-        const limitLeft = document.getElementById('bloquesVleft1').getBoundingClientRect();
-        const limitRight = document.getElementById('bloquesVright1').getBoundingClientRect();
-        const limitUp = document.getElementById('bloquesHup1').getBoundingClientRect();
-        const limitDown = document.getElementById('bloquesHdown1').getBoundingClientRect();
-        // Math.round((posCajaMadera.top + posCajaMadera.bottom)/2);
-    
-        console.log("limitLeft: " + Math.round(limitLeft.left) + " limitRight: " + Math.round(limitRight.right));
-        console.log("limitUp: " + Math.round(limitUp.top9 + " limitRight: " + Math.round(limitDown.bottom));
+        // const limitLeft = document.getElementById('bloquesVleft1').getBoundingClientRect();
+        // const limitRight = document.getElementById('bloquesVright1').getBoundingClientRect();
+        // const limitUp = document.getElementById('bloquesHup1').getBoundingClientRect();
+        // const limitDown = document.getElementById('bloquesHdown1').getBoundingClientRect();   
+        // console.log("limitLeft: " + Math.round(limitLeft.left) + " limitRight: " + Math.round(limitRight.right));
+        // console.log("limitUp: " + Math.round(limitUp.top) + " limitRight: " + Math.round(limitDown.bottom));
     
         cuadrilateroLimitsH = [-450,370];           // Límite horizontal bordes cuadrlátero
         cuadrilateroLimitsV = [-70,590];            // Límite vertical bordes cuadrlátero
@@ -395,15 +415,11 @@ class App extends React.Component {
             </div>
             <div id='resultados'>
               <p>Hola <b>{this.state.nombre}</b>!</p>
-              <p className='instructions'><b>{dogname}</b> debe recolectar<br></br> todas las frutas antes que<br></br>el malvado <b>Gusanor</b> lo atrape</p>
               <table className="tablaRsultados">
                 <thead>
                   <tr>
                     <td colSpan={3}><img id='cajamadera' src={cajamadera} className="App-cajamadera" alt="📦" /></td>
                   </tr>                 
-                  <tr>
-                    <td colSpan={3}><input type="text" id="nombre" onChange={this.campoNombre} value={this.state.nombre} placeholder="nombre" autoComplete='off'/></td>
-                  </tr>
                   <tr>
                     <td colSpan={3}><button id="botonReset"  onMouseMove={this.botonReset} onClick={this.botonReset} className='botonReset'><FontAwesomeIcon icon={faRedoAlt} /></button></td>
                   </tr>
