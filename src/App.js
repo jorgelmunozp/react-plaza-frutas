@@ -13,6 +13,7 @@ import bloquesV from './bloquesV.png';
 import './App.css';
 
 import React from 'react';
+import { ListaRanking } from './components/ranking/ListaRanking';
 
 import { faCaretUp, faCaretDown, faCaretLeft, faCaretRight, faClock, faPlayCircle, faFrown, faRedoAlt, faSmile, faMeh, faLemon} from "@fortawesome/fontawesome-free-solid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";     //Importa iconos fontawesome
@@ -22,7 +23,8 @@ const dogname = "Doggy";
 const tiempo = 20;
 const vidas = 3;
 const cantidadfrutas = 4;
-const dogH = -50;
+// const dogH = -50;
+const dogH = -150;
 const dogV = 530; 
 const gusanoH = -50;
 const gusanoV = 0; 
@@ -37,6 +39,21 @@ const fresaV = 510;
 const obstaculoH = 100; 
 const obstaculoV = 100;
 
+
+function getPositionXY() {
+  const sizeWindow = window;
+  console.log("sizeWindow: " + sizeWindow)
+  const element = document.getElementById('dog');
+  const rect = element.getBoundingClientRect(); 
+  console.log("cord 1: " + rect.x,rect.y)
+  const x = rect.left + window.scrollX;
+  const y = rect.top + window.scrollY;
+  const d = document.getElementById('dog').style.top = dogH;
+  console.log("cord 2: " + x,y)
+  console.log("d: " + d)
+}
+
+// function App() {
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -52,6 +69,7 @@ class App extends React.Component {
   }
   
   tick() {
+    getPositionXY();  /* <------------- */
     if(this.state.estado === 'start'){
       this.setState(state => ({
         segundos: state.segundos - 1,
@@ -63,7 +81,7 @@ class App extends React.Component {
     } else if(this.state.vidas === 0){     //Calcula tiempo, cantidad de frutas y si tiene vidas el jugador
       swalert(
         <div>
-          <img src={logo} alt="logo" style={{'height':'20vmin'}} />
+          <img src={logo} alt="logo" style={{'height':'10vmin'}} />
           <h1> {dogname} está <FontAwesomeIcon icon={faFrown} /></h1>
           <p>Vamos {this.state.nombre}, juega de nuevo!</p>
         </div>
@@ -142,33 +160,28 @@ class App extends React.Component {
         </header>
         <body className="App-body">
           <div className="App-body-content">
-          <div id='registro'>
-              <p className='instructions'>{dogname} debe recolectar<br></br> todas las frutas antes <br></br>que Gusanor se lo coma</p>
-              <p>Hola <b>{this.state.nombre}</b>!</p>
-              <input type="text" id="nombre" onChange={this.campoNombre} value={this.state.nombre} placeholder="nombre" autoComplete='off'/>
-              <h3>Ranking</h3>
-              <ListaRanking items={this.state.items}/>
-            </div>
-
             <div id="cuadrilatero">
-              <img id='bloquesHup1' src={bloquesH} className="App-bloquesH" alt="bloquesH" style={{'marginTop': -50, 'marginLeft': 0}}/>
-              <img id='bloquesHup2' src={bloquesH} className="App-bloquesH" alt="bloquesH" style={{'marginTop': -50, 'marginLeft': -490}}/>
-              <img id='bloquesHdown1' src={bloquesH} className="App-bloquesH" alt="bloquesH" style={{'marginTop': 600, 'marginLeft': 0}}/>
-              <img id='bloquesHdown2' src={bloquesH} className="App-bloquesH" alt="bloquesH" style={{'marginTop': 600, 'marginLeft': -490}}/>
-              <img id='bloquesVleft1' src={bloquesV} className="App-bloquesV" alt="bloquesV" style={{'marginTop': -2, 'marginLeft': -488}}/>
-              <img id='bloquesVleft2' src={bloquesV} className="App-bloquesV" alt="bloquesV" style={{'marginTop': 298, 'marginLeft': 401}}/>
-              <img id='bloquesVright1' src={bloquesV} className="App-bloquesV" alt="bloquesV" style={{'marginTop': -2, 'marginLeft': 401}}/>
-              <img id='bloquesVright2' src={bloquesV} className="App-bloquesV" alt="bloquesV" style={{'marginTop': 298, 'marginLeft': -488}}/>
-              <img id='bloque1' src={bloque} className="App-bloque" alt="bloque" style={{'marginTop': this.state.posicionVobstaculo, 'marginLeft': this.state.posicionHobstaculo}}/>
-              <img id='dog' src={dog} className="App-dog" alt={dogname} style={{'marginTop': this.state.posicionVdog, 'marginLeft': this.state.posicionHdog}}/>
-              <img id='gusano' src={gusano} className="App-dog" alt="gusano" style={{'marginTop': this.state.posicionVgusano, 'marginLeft': this.state.posicionHgusano}}/>
-              <img id='manzana' src={manzana} className="App-fruta" alt="manzana" style={{'marginLeft': this.state.posicionHmanzana,'marginTop':this.state.posicionVmanzana}}/>
-              <img id='banano' src={banano} className="App-fruta" alt="banano" style={{'marginLeft': this.state.posicionHbanano,'marginTop':this.state.posicionVbanano}}/>
-              <img id='mango' src={mango} className="App-fruta" alt="mango" style={{'marginLeft': this.state.posicionHmango,'marginTop':this.state.posicionVmango}}/>
-              <img id='fresa' src={fresa} className="App-fruta" alt="fresa" style={{'marginLeft': this.state.posicionHfresa,'marginTop':this.state.posicionVfresa}}/>
-              <img id='bloque2' src={bloque} className="App-bloque" alt="bloque" style={{'marginTop': this.state.posicionVobstaculo + 200, 'marginLeft': this.state.posicionHobstaculo - 300}}/>
+              <img id='bloquesHup1' src={bloquesH} className="App-bloquesH" alt=" " />
+              <img id='bloquesHup2' src={bloquesH} className="App-bloquesH" alt=" " />
+              <img id='bloquesHdown1' src={bloquesH} className="App-bloquesH" alt=" " />
+              <img id='bloquesHdown2' src={bloquesH} className="App-bloquesH" alt=" " />
+              <img id='bloquesVleft1' src={bloquesV} className="App-bloquesV" alt=" " />
+              <img id='bloquesVleft2' src={bloquesV} className="App-bloquesV" alt=" " />
+              <img id='bloquesVright1' src={bloquesV} className="App-bloquesV" alt=" "/>
+              <img id='bloquesVright2' src={bloquesV} className="App-bloquesV" alt=" "/>
+              <img id='bloque1' src={bloque} className="App-bloque" alt=" " style={{'marginTop': this.state.posicionVobstaculo, 'marginLeft': this.state.posicionHobstaculo}}/>
+              <img id='dog' src={dog} className="App-dog" alt=" " style={{'marginTop': this.state.posicionVdog, 'marginLeft': this.state.posicionHdog}}/>
+              <img id='gusano' src={gusano} className="App-dog" alt=" " style={{'marginTop': this.state.posicionVgusano, 'marginLeft': this.state.posicionHgusano}}/>
+              <img id='manzana' src={manzana} className="App-fruta" alt=" " style={{'marginLeft': this.state.posicionHmanzana,'marginTop':this.state.posicionVmanzana}}/>
+              <img id='banano' src={banano} className="App-fruta" alt=" " style={{'marginLeft': this.state.posicionHbanano,'marginTop':this.state.posicionVbanano}}/>
+              <img id='mango' src={mango} className="App-fruta" alt=" " style={{'marginLeft': this.state.posicionHmango,'marginTop':this.state.posicionVmango}}/>
+              <img id='fresa' src={fresa} className="App-fruta" alt=" " style={{'marginLeft': this.state.posicionHfresa,'marginTop':this.state.posicionVfresa}}/>
+              <img id='bloque2' src={bloque} className="App-bloque" alt=" " style={{'marginTop': this.state.posicionVobstaculo + 200, 'marginLeft': this.state.posicionHobstaculo - 300}}/>
             </div>
             <div id='resultados'>
+              <p>Hola <b>{this.state.nombre}</b>!</p>
+              <p className='instructions'>{dogname} debe recolectar<br></br> todas las frutas antes <br></br>que Gusanor se lo coma</p>
+              <input type="text" id="nombre" onChange={this.campoNombre} value={this.state.nombre} placeholder="nombre" autoComplete='off'/>
               <table id="flechas">
                 <thead>
                   <tr>
@@ -190,9 +203,10 @@ class App extends React.Component {
                 </tbody>
               </table>
               <img id='cajamadera' src={cajamadera} className="App-cajamadera" alt="cajamadera" />
+              <h3>Ranking</h3>
+              <ListaRanking items={this.state.items} tiempo={tiempo}/>
             </div>
           </div>
-
         </body>
       </div>
     );
@@ -308,9 +322,13 @@ class App extends React.Component {
       }
       swalert(
         <div>
-          <img src={logo} alt="logo" style={{'height':'20vmin'}} />
+          <img src={logo} alt="logo" style={{'height':'10vmin'}} />
           <h1>{dogname} está <FontAwesomeIcon icon={faSmile} /></h1>
           <p>Ganáste {this.state.nombre}! buen juego</p>
+          <div >
+              <h3>Ranking</h3>
+              <ListaRanking items={this.state.items} tiempo={tiempo}/>
+            </div>
         </div>
       )
       this.reset();
@@ -380,19 +398,6 @@ class App extends React.Component {
     this.setState(state => ({
 
     }));
-  }
-}
-
-
-class ListaRanking extends React.Component {
-  render() {
-    return (
-      <ol>
-        {this.props.items.map(item => (
-          <li>{item.nombre} {tiempo-item.tiempo} seg {item.puntos} ptos</li>
-        ))}
-      </ol>
-    );
   }
 }
 

@@ -51,6 +51,7 @@
   height: 3vw;
 }
 
+/******************************* BODY *******************************/
 .App-body {
   background-color: #282c34;
   min-height: 60vw;
@@ -64,15 +65,14 @@
   background-size: cover;
 }
 .App-body-content {
-  display: flex;
-  width: 30%;
+  display: inline-flex;
+  width: 20%;
 }
 
 .App-link {
   color: #61dafb;
 }
 .instructions {
-  margin-top: -15vw;
 }
 
 #dog {
@@ -134,28 +134,58 @@
   position: absolute;
   height: 23.6vw;
 }
+#bloquesVright1 {
+  margin-top: -0.3vw;
+  margin-left: 31.5vw;
+}
+#bloquesVright2 {
+  margin-top: 23.25vw;
+  margin-left: 31.5vw;
+}
+#bloquesVleft1 {
+  margin-top: -0.3vw;
+  margin-left: -38vw;
+}
+#bloquesVleft2 {
+  margin-top: 23.25vw;
+  margin-left: -38vw;
+}
+#bloquesHup1 {
+  margin-top: -3.9vw;
+  margin-left: 0vw;
+}
+#bloquesHup2 {
+  margin-top: -3.9vw;
+  margin-left: -38vw;
+}
+#bloquesHdown1 {
+  margin-top: 46.8vw;
+  margin-left: 0vw;
+}
+#bloquesHdown2 {
+  margin-top: 46.8vw;
+  margin-left: -38vw;
+}
+
+
 
 .App-cajamadera {
   pointer-events: none;
   /* position: absolute; */
   width: 20vw;
+  height: 10vw;
   /* margin-top: 320px;
   margin-left: 500px; */
 }
 
-#registro {                       /*Tiempo, frutas restantes */
-  /* position: absolute; */
-  /* margin-top: -9vw;
-  margin-left: -1300px; */
-}
 #cuadrilatero {
-  /* position: absolute;
-  top: 10vw; */
+  position: absolute;
+  top: 10vw;
 }
 #resultados {                       /*Tiempo, frutas restantes */
-  /* position: absolute;
-  margin-top: -43vw;
-  margin-right: -4vw; */
+  position: absolute;
+  top: 5vw;
+  right: 0;
 }
 
 #flechas {                          /*Botones de flechas */
@@ -176,17 +206,6 @@
   color:#ccc
 }
 
-/* #button {
-  color: var(--white-color);
-  background-color: #666;
-  padding: 15px 0 15px 0;
-  border-radius: 30px;
-  letter-spacing: 3px;
-  font-size: medium;
-  width: 200px;
-  cursor: pointer;
-  filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 1));
-} */
 .botonReset {
   color: var(--white-color);
   background-color: #500;
@@ -200,11 +219,11 @@
 input[type=text]{
   color: #500;
   background-color: #ddd;
-  padding: 10px 0 10px 0;
+  padding: 0.65vw 0 0.65vw 0;
   border-radius: 25px;
   text-align: center;
-  font-size: medium;
-  width: 200px;
+  font-size: 3vmin;
+  width: 15vw;
   filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 1));
 }
 input[type=text]::placeholder{
@@ -215,7 +234,7 @@ input[type=text]::placeholder{
   width: 6.25vw;
   height: 6.25vw;
   border: 1px solid var(--white-color);;
-  position: absolute;
+  /* position: absolute; */
 }
 
 
@@ -246,5 +265,6 @@ input[type=text]::placeholder{
     min-height: 6vh;
   }
   /********************************* Body *********************************/
+
 }
 
