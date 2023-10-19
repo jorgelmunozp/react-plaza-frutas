@@ -50,11 +50,13 @@ if(sizeWindow <= 600){
   gusanoH = -7.5;
   gusanoV = 0;
   manzanaH = 90;
-  manzanaV = 10;
+  manzanaV = 5;
   bananoH = -100; 
-  bananoV = 10;
+  bananoV = 5;
   mangoH = 90; 
   mangoV = 150;
+  fresaH = -100; 
+  fresaV = 150;
 } else if(600 <= sizeWindow && sizeWindow <= 1200){
   dogH = -40;
   dogV = 490;
@@ -66,6 +68,8 @@ if(sizeWindow <= 600){
   bananoV = 30;
   mangoH = 300; 
   mangoV = 480;
+  fresaH = -340; 
+  fresaV = 480;
 } else if(sizeWindow >= 1200){
   dogH = -45;
   dogV = 530;
@@ -77,9 +81,9 @@ if(sizeWindow <= 600){
   bananoV = 40;
   mangoH = 300; 
   mangoV = 510;
-
   fresaH = -350; 
   fresaV = 510;
+
   obstaculoH = 100; 
   obstaculoV = 100;
 }
