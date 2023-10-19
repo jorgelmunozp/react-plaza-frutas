@@ -42,64 +42,67 @@ let obstaculo2H;
 let obstaculo2V;
 
 const sizeWindow = document.documentElement.clientWidth;
-if(sizeWindow <= 600){
-  dogH = -10;
-  dogV = 150;
-  gusanoH = -7.5;
-  gusanoV = 0;
-  manzanaH = 90;
-  manzanaV = 5;
-  bananoH = -100; 
-  bananoV = 5;
-  mangoH = 90; 
-  mangoV = 150;
-  fresaH = -100; 
-  fresaV = 150;
-  obstaculo1H = 40; 
-  obstaculo1V = 40;
-  obstaculo2H = obstaculo1H - 100; 
-  obstaculo2V = obstaculo1V + 55;
-} else if(600 <= sizeWindow && sizeWindow <= 1200){
-  dogH = -40;
-  dogV = 490;
-  gusanoH = -30;
-  gusanoV = 0;
-  manzanaH = 300;
-  manzanaV = 30;
-  bananoH = -330; 
-  bananoV = 30;
-  mangoH = 300; 
-  mangoV = 480;
-  fresaH = -330; 
-  fresaV = 480;
-  obstaculo1H = 120; 
-  obstaculo1V = 125;
-  obstaculo2H = obstaculo1H - 310; 
-  obstaculo2V = obstaculo1V + 210;
-} else if(sizeWindow >= 1200){
-  dogH = -45;
-  dogV = 590;
-  gusanoH = -30;
-  gusanoV = 0; 
-  manzanaH = 310;
-  manzanaV = 40;
-  bananoH = -380; 
-  bananoV = 40;
-  mangoH = 300; 
-  mangoV = 570;
-  fresaH = -380; 
-  fresaV = 570;
-  obstaculo1H = 130; 
-  obstaculo1V = 135;
-  obstaculo2H = obstaculo1H - 330; 
-  obstaculo2V = obstaculo1V + 260;
+if(sizeWindow <= 600) {
+    dogH = -10;
+    dogV = 150;
+    gusanoH = -7.5;
+    gusanoV = 0;
+    manzanaH = 90;
+    manzanaV = 5;
+    bananoH = -100; 
+    bananoV = 5;
+    mangoH = 90; 
+    mangoV = 150;
+    fresaH = -100; 
+    fresaV = 150;
+    obstaculo1H = 40; 
+    obstaculo1V = 40;
+    obstaculo2H = obstaculo1H - 100; 
+    obstaculo2V = obstaculo1V + 55;
+} else if(600 <= sizeWindow && sizeWindow <= 1200) {
+    dogH = -40;
+    dogV = 490;
+    gusanoH = -30;
+    gusanoV = 0;
+    manzanaH = 300;
+    manzanaV = 30;
+    bananoH = -330; 
+    bananoV = 30;
+    mangoH = 300; 
+    mangoV = 480;
+    fresaH = -330; 
+    fresaV = 480;
+    obstaculo1H = 120; 
+    obstaculo1V = 125;
+    obstaculo2H = obstaculo1H - 310; 
+    obstaculo2V = obstaculo1V + 210;
+} else if(sizeWindow >= 1200) {
+    dogH = -45;
+    dogV = 590;
+    gusanoH = -30;
+    gusanoV = 0; 
+    manzanaH = 310;
+    manzanaV = 40;
+    bananoH = -380; 
+    bananoV = 40;
+    mangoH = 300; 
+    mangoV = 570;
+    fresaH = -380; 
+    fresaV = 570;
+    obstaculo1H = 130; 
+    obstaculo1V = 135;
+    obstaculo2H = obstaculo1H - 330; 
+    obstaculo2V = obstaculo1V + 260;
 }
 
+function setPositionXY(dogH,dogV,gusanoH,gusanoV) {
+  const elemento = document.getElementById('cajamadera');
+  console.log("elemento" + elemento);
+  const posicion = elemento.getBoundingClientRect();
+  const posVFrutas = Math.round((posicion.top + posicion.bottom)/2);
+  console.log("posVFrutas" + posVFrutas);
 
-function getPositionXY(dogH,dogV) {
-  console.log("dog(x,y) 1: " + dogH,dogV);
-
-  return [dogH,dogV]
+  // return [dogH,dogV]
 }
 
 // function App() {
@@ -116,10 +119,10 @@ class App extends React.Component {
     this.botonRight = this.botonRight.bind(this);
     this.botonReset = this.botonReset.bind(this);
   }
-  
+
   tick() {
-    [dogH,dogV] = getPositionXY(dogH,dogV);
-    console.log("[dogH,dogV]: " + [dogH,dogV]);
+    // [dogH,dogV] = setPositionXY(dogH,dogV);
+    // console.log("[dogH,dogV]: " + [dogH,dogV]);
 
     if(this.state.estado === 'start'){
       this.setState(state => ({
@@ -262,78 +265,60 @@ class App extends React.Component {
       </div>
     );
   }
-  
+
   getRandom() {
     let numero = (Math.random()*400) + 1;
     return numero
   }
 
   campoNombre(e) {
-    this.setState({ 
-      nombre: e.target.value
-     });
+    this.setState({ nombre: e.target.value });
   }
 
-  botonStart(e){                                 //Función para iniciar el juego
+  botonStart(e){                                          //Función para iniciar el juego
     e.preventDefault();
     this.state.estado = 'start';
     this.flechasTeclado();
-  }
-  botonUp(e) {                                    //Funciones para sensar los botones
+  }                                                       //Funciones para sensar los botones                    
+  botonUp(e) {                                            // Límite inferior movimiento Doggy dentro del cuadrilátero
     e.preventDefault();
     if(this.state.posicionVdog > -50){
-      this.setState(state => ({
-        posicionVdog: this.state.posicionVdog - 10
-      }));
+      this.setState(state => ({ posicionVdog: this.state.posicionVdog - 10 }));
     }
   }
   botonDown(e) {
     e.preventDefault();
     if(this.state.posicionVdog < 590){                    // Límite inferior movimiento Doggy dentro del cuadrilátero
-      this.setState(state => ({
-        posicionVdog: this.state.posicionVdog + 10
-      }));
+      this.setState(state => ({ posicionVdog: this.state.posicionVdog + 10 }));
     }
   }
   botonLeft(e) {                                          // Límite izquierda movimiento Doggy dentro del cuadrilátero
     e.preventDefault();
     if(this.state.posicionHdog > -450){
-      this.setState(state => ({
-        posicionHdog: this.state.posicionHdog - 10
-      }));
+      this.setState(state => ({ posicionHdog: this.state.posicionHdog - 10 }));
     }
   }
-  botonRight(e) {                                          // Límite derecha movimiento Doggy dentro del cuadrilátero
+  botonRight(e) {                                         // Límite derecha movimiento Doggy dentro del cuadrilátero
     e.preventDefault();
     if(this.state.posicionHdog < 370){
-      this.setState(state => ({
-        posicionHdog: this.state.posicionHdog + 10
-      }));
+      this.setState(state => ({ posicionHdog: this.state.posicionHdog + 10 }));
     }
   }
 
-  flechasTeclado(e) {                                  //Función para sensar las flechas del teclado
+  flechasTeclado(e) {                                     //Función para sensar las flechas del teclado
     e.preventDefault();
-    if (e.keyCode === 38){
-      this.botonUp(e);
-    }   
-    if (e.keyCode === 40){
-      this.botonDown(e);
-    }
-    if (e.keyCode === 37){
-      this.botonLeft(e);
-    }   
-    if (e.keyCode === 39){
-      this.botonRight(e);
-    }
+    if (e.keyCode === 38){ this.botonUp(e); }   
+    if (e.keyCode === 40){ this.botonDown(e); }
+    if (e.keyCode === 37){ this.botonLeft(e); }   
+    if (e.keyCode === 39){ this.botonRight(e); }
     this.checkGanador();
     this.checkObstaculo();
   }
 
-  checkGanador(e) {
-    // const posV = document.getElementById("cajamadera");
+  checkGanador(posVFrutas) {
     const posH = 580;
-    const posV = 530;
+    const posV = posVFrutas;
+    console.log(posV);
 
     if((this.state.posicionHmanzana - 40  < this.state.posicionHdog && this.state.posicionHdog < this.state.posicionHmanzana + 40) &&
        (this.state.posicionVmanzana - 40  < this.state.posicionVdog && this.state.posicionVdog < this.state.posicionVmanzana + 40)
@@ -371,9 +356,7 @@ class App extends React.Component {
         puntos: this.state.frutas + 100
       };
       if(this.state.items.length < 10){
-        this.setState(state => ({
-          items: state.items.concat(newItem)
-        }));
+        this.setState(state => ({ items: state.items.concat(newItem) }));
       }
       swalert(
         <div>
