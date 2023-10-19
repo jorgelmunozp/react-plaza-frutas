@@ -24,33 +24,105 @@ const tiempo = 20;
 const vidas = 3;
 const cantidadfrutas = 4;
 // const dogH = -50;
-const dogH = -150;
-const dogV = 530; 
-const gusanoH = -50;
-const gusanoV = 0; 
-const manzanaH = 300;
-const manzanaV = 40; 
-const bananoH = -350; 
-const bananoV = 40; 
-const mangoH = 300; 
-const mangoV = 510; 
-const fresaH = -350; 
-const fresaV = 510;
-const obstaculoH = 100; 
-const obstaculoV = 100;
+// const dogV = 530; 
+//1px = (100vw / [document.documentElement.clientWidth] px)
+// const dogH = -5000/document.documentElement.clientWidth;
+// console.log("dogH: " + dogH);
+let dogH;
+let dogV;
+let gusanoH;
+let gusanoV;
+let manzanaH;
+let manzanaV = 40; 
+let bananoH = -350; 
+let bananoV = 40; 
+let mangoH = 300; 
+let mangoV = 510; 
+let fresaH = -350; 
+let fresaV = 510;
+let obstaculoH = 100; 
+let obstaculoV = 100;
+
+const sizeWindow = document.documentElement.clientWidth;
+if(sizeWindow <= 600){
+  dogH = -10;
+  dogV = 150;
+  gusanoH = -7.5;
+  gusanoV = 0;
+  manzanaH = 90;
+  manzanaV = 10;
+  bananoH = -100; 
+  bananoV = 10;
+  mangoH = 90; 
+  mangoV = 150;
+} else if(600 <= sizeWindow && sizeWindow <= 1200){
+  dogH = -40;
+  dogV = 490;
+  gusanoH = -30;
+  gusanoV = 0;
+  manzanaH = 300;
+  manzanaV = 30;
+  bananoH = -340; 
+  bananoV = 30;
+  mangoH = 300; 
+  mangoV = 480;
+} else if(sizeWindow >= 1200){
+  dogH = -45;
+  dogV = 530;
+  gusanoH = -30;
+  gusanoV = 0; 
+  manzanaH = 310;
+  manzanaV = 40;
+  bananoH = -360; 
+  bananoV = 40;
+  mangoH = 300; 
+  mangoV = 510;
+
+  fresaH = -350; 
+  fresaV = 510;
+  obstaculoH = 100; 
+  obstaculoV = 100;
+}
+
+// const gusanoH = -50;
+// const gusanoV = 0; 
+// const manzanaH = 300;
+// const manzanaV = 40; 
+// const bananoH = -350; 
+// const bananoV = 40; 
+// const mangoH = 300; 
+// const mangoV = 510; 
+// const fresaH = -350; 
+// const fresaV = 510;
+// const obstaculoH = 100; 
+// const obstaculoV = 100;
 
 
-function getPositionXY() {
-  const sizeWindow = window;
-  console.log("sizeWindow: " + sizeWindow)
-  const element = document.getElementById('dog');
-  const rect = element.getBoundingClientRect(); 
-  console.log("cord 1: " + rect.x,rect.y)
-  const x = rect.left + window.scrollX;
-  const y = rect.top + window.scrollY;
-  const d = document.getElementById('dog').style.top = dogH;
-  console.log("cord 2: " + x,y)
-  console.log("d: " + d)
+function getPositionXY(dogH,dogV) {
+  // const sizeWindow = document.documentElement.clientWidth;
+  // console.log("sizeWindow: " + sizeWindow)
+  // if(sizeWindow <= 600){
+  //   dogH = -50;
+  //   dogV = 530;
+  // } else if(600 <= sizeWindow <= 1200){
+  //   dogH = -150;
+  //   dogV = 530;
+  // } else if(sizeWindow >= 1201){
+  //   dogH = -50;
+  //   dogV = 530;
+  // }
+  console.log("dog(x,y) 1: " + dogH,dogV);
+
+  // const element = document.getElementById('dog');
+  // const rect = element.getBoundingClientRect(); 
+  // console.log("cord 1: " + rect.x,rect.y)
+  // const x = rect.left + window.scrollX;
+  // const y = rect.top + window.scrollY;
+  // const d = document.getElementById('dog').style.top;
+  // console.log("cord 2: " + x,y)
+  // console.log("d: " + d)
+
+  return [dogH,dogV]
 }
 
 // function App() {
@@ -69,7 +141,11 @@ class App extends React.Component {
   }
   
   tick() {
-    getPositionXY();  /* <------------- */
+    // const dogHxy = getPositionXY(dogH,dogV);
+    // console.log("dogHxy: " + dogHxy[0],dogHxy[1]);
+    [dogH,dogV] = getPositionXY(dogH,dogV);
+    console.log("[dogH,dogV]: " + [dogH,dogV]);
+
     if(this.state.estado === 'start'){
       this.setState(state => ({
         segundos: state.segundos - 1,
@@ -161,22 +237,22 @@ class App extends React.Component {
         <body className="App-body">
           <div className="App-body-content">
             <div id="cuadrilatero">
-              <img id='bloquesHup1' src={bloquesH} className="App-bloquesH" alt=" " />
-              <img id='bloquesHup2' src={bloquesH} className="App-bloquesH" alt=" " />
-              <img id='bloquesHdown1' src={bloquesH} className="App-bloquesH" alt=" " />
-              <img id='bloquesHdown2' src={bloquesH} className="App-bloquesH" alt=" " />
-              <img id='bloquesVleft1' src={bloquesV} className="App-bloquesV" alt=" " />
-              <img id='bloquesVleft2' src={bloquesV} className="App-bloquesV" alt=" " />
-              <img id='bloquesVright1' src={bloquesV} className="App-bloquesV" alt=" "/>
-              <img id='bloquesVright2' src={bloquesV} className="App-bloquesV" alt=" "/>
-              <img id='bloque1' src={bloque} className="App-bloque" alt=" " style={{'marginTop': this.state.posicionVobstaculo, 'marginLeft': this.state.posicionHobstaculo}}/>
-              <img id='dog' src={dog} className="App-dog" alt=" " style={{'marginTop': this.state.posicionVdog, 'marginLeft': this.state.posicionHdog}}/>
-              <img id='gusano' src={gusano} className="App-dog" alt=" " style={{'marginTop': this.state.posicionVgusano, 'marginLeft': this.state.posicionHgusano}}/>
-              <img id='manzana' src={manzana} className="App-fruta" alt=" " style={{'marginLeft': this.state.posicionHmanzana,'marginTop':this.state.posicionVmanzana}}/>
-              <img id='banano' src={banano} className="App-fruta" alt=" " style={{'marginLeft': this.state.posicionHbanano,'marginTop':this.state.posicionVbanano}}/>
-              <img id='mango' src={mango} className="App-fruta" alt=" " style={{'marginLeft': this.state.posicionHmango,'marginTop':this.state.posicionVmango}}/>
-              <img id='fresa' src={fresa} className="App-fruta" alt=" " style={{'marginLeft': this.state.posicionHfresa,'marginTop':this.state.posicionVfresa}}/>
-              <img id='bloque2' src={bloque} className="App-bloque" alt=" " style={{'marginTop': this.state.posicionVobstaculo + 200, 'marginLeft': this.state.posicionHobstaculo - 300}}/>
+              <img id='bloquesHup1' src={bloquesH} className="App-bloquesH" alt="🧱" />
+              <img id='bloquesHup2' src={bloquesH} className="App-bloquesH" alt="🧱" />
+              <img id='bloquesHdown1' src={bloquesH} className="App-bloquesH" alt="🧱" />
+              <img id='bloquesHdown2' src={bloquesH} className="App-bloquesH" alt="🧱" />
+              <img id='bloquesVleft1' src={bloquesV} className="App-bloquesV" alt="🧱" />
+              <img id='bloquesVleft2' src={bloquesV} className="App-bloquesV" alt="🧱" />
+              <img id='bloquesVright1' src={bloquesV} className="App-bloquesV" alt="🧱"/>
+              <img id='bloquesVright2' src={bloquesV} className="App-bloquesV" alt="🧱"/>
+              <img id='dog' src={dog} className="App-dog" alt="🐶" style={{'marginTop': this.state.posicionVdog, 'marginLeft': this.state.posicionHdog}}/>
+              <img id='gusano' src={gusano} className="App-dog" alt="🪱" style={{'marginTop': this.state.posicionVgusano, 'marginLeft': this.state.posicionHgusano}}/>
+              <img id='manzana' src={manzana} className="App-fruta" alt="🍎" style={{'marginLeft': this.state.posicionHmanzana,'marginTop':this.state.posicionVmanzana}}/>
+              <img id='banano' src={banano} className="App-fruta" alt="🍌" style={{'marginLeft': this.state.posicionHbanano,'marginTop':this.state.posicionVbanano}}/>
+              <img id='mango' src={mango} className="App-fruta" alt="🥭" style={{'marginLeft': this.state.posicionHmango,'marginTop':this.state.posicionVmango}}/>
+              <img id='fresa' src={fresa} className="App-fruta" alt="🍓" style={{'marginLeft': this.state.posicionHfresa,'marginTop':this.state.posicionVfresa}}/>
+              <img id='bloque1' src={bloque} className="App-bloque" alt="🧱" style={{'marginTop': this.state.posicionVobstaculo, 'marginLeft': this.state.posicionHobstaculo}}/>
+              <img id='bloque2' src={bloque} className="App-bloque" alt="🧱" style={{'marginTop': this.state.posicionVobstaculo + 200, 'marginLeft': this.state.posicionHobstaculo - 300}}/>
             </div>
             <div id='resultados'>
               <p>Hola <b>{this.state.nombre}</b>!</p>
