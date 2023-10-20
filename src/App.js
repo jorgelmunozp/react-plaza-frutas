@@ -42,31 +42,34 @@ let dispositiveOrientation;
 const cellSize = [380,720];                                   // Dimensiones ancho por alto de los dispositivos
 const tabletSize = [720,1280];
 
-let windowWidth;       // Tamaño horizontal de pantalla
-let windowHeight;     // Tamaño vertical de pantalla
-// let windowWidth = document.documentElement.clientWidth;       // Tamaño horizontal de pantalla
-// let windowHeight = document.documentElement.clientHeight;     // Tamaño vertical de pantalla
-// if (windowWidth > windowHeight) {          
-//     dispositiveOrientation = 'Landscape';                          // Orientación del dispositivo horizontal
-//     if (windowWidth <= cellSize[1]) { dispositive = 'Cell' }       // Tipo de dispositivo Pc, Tablet o Celular
-//     else if (cellSize[1] < windowWidth && windowWidth <= tabletSize[1]) { dispositive = 'Tablet' }
-//     else if (windowWidth > tabletSize[1]) { dispositive = 'Laptop' }
-// } else if ( windowHeight > windowWidth) { 
-//     dispositiveOrientation = 'Portrait';                           // Orientación del dispositivo vertical
-//     if (windowHeight <= cellSize[1]) { dispositive = 'Cell' }      // Tipo de dispositivo Pc, Tablet o Celular
-//     else if (cellSize[1] < windowHeight && windowHeight <= tabletSize[1]) { dispositive = 'Tablet' }
-//     else if (windowHeight > tabletSize[1]) { dispositive = 'Laptop' }
-// }
+// let windowWidth;       // Tamaño horizontal de pantalla
+// let windowHeight;     // Tamaño vertical de pantalla
+let windowWidth = document.documentElement.clientWidth;       // Tamaño horizontal de pantalla
+let windowHeight = document.documentElement.clientHeight;     // Tamaño vertical de pantalla
+console.log(windowWidth,windowHeight)
+if (windowWidth > windowHeight) {          
+    dispositiveOrientation = 'Landscape';                          // Orientación del dispositivo horizontal
+    if (windowWidth <= cellSize[1]) { dispositive = 'Cell' }       // Tipo de dispositivo Pc, Tablet o Celular
+    else if (cellSize[1] < windowWidth && windowWidth <= tabletSize[1]) { dispositive = 'Tablet' }
+    else if (windowWidth > tabletSize[1]) { dispositive = 'Laptop' }
+} else if ( windowHeight > windowWidth) { 
+    dispositiveOrientation = 'Portrait';                           // Orientación del dispositivo vertical
+    if (windowHeight <= cellSize[1]) { dispositive = 'Cell' }      // Tipo de dispositivo Pc, Tablet o Celular
+    else if (cellSize[1] < windowHeight && windowHeight <= tabletSize[1]) { dispositive = 'Tablet' }
+    else if (windowHeight > tabletSize[1]) { dispositive = 'Laptop' }
+}
+console.log(dispositive)
 
-// if(dispositive === 'Cell' && dispositiveOrientation === 'Portrait') {
-//     dogH = -10; dogV = 150;
-//     gusanoH = -7.5; gusanoV = 0;
-//     manzanaH = 90; manzanaV = 5;
-//     bananoH = -100; bananoV = 5;
-//     mangoH = 90; mangoV = 150;
-//     fresaH = -100; fresaV = 150;
-//     obstaculo1H = 40; obstaculo1V = 40;
-//     obstaculo2H = obstaculo1H - 100; obstaculo2V = obstaculo1V + 55;
+if(dispositive === 'Cell' && dispositiveOrientation === 'Portrait') {
+    dogH = -10; dogV = 150;
+    gusanoH = -7.5; gusanoV = 0;
+    manzanaH = 90; manzanaV = 5;
+    bananoH = -100; bananoV = 5;
+    mangoH = 90; mangoV = 150;
+    fresaH = -100; fresaV = 150;
+    obstaculo1H = 40; obstaculo1V = 40;
+    obstaculo2H = obstaculo1H - 100; obstaculo2V = obstaculo1V + 55;
+}
 // } else if(dispositive === 'Cell' && dispositiveOrientation === 'Landscape') {
 //     cuadrilateroLimitsH = [-210,170];           // Límite horizontal bordes cuadrlátero
 //     cuadrilateroLimitsV = [-30,260];            // Límite vertical bordes cuadrlátero
@@ -137,16 +140,16 @@ let windowHeight;     // Tamaño vertical de pantalla
 //     obstaculo2H = obstaculo1H - 330; 
 //     obstaculo2V = obstaculo1V + 260;
 // }
+
 swalert(                                      // Alerta de bienvenida
   <div>
     <h1>Doggy</h1>
     <img src={logo} alt="logo" style={{'height':'10vmin'}} />
     <p>Bienvenido</p>
     {/* <input type="text" id="nombre" onChange={this.campoNombre} value={this.state.nombre} placeholder="nombre" autoComplete='off'/> */}
-    <input type="text" id="nombre" onChange="{campoNombre}" value="{nombre}" placeholder="nombre" autoComplete='off'/>
     <p className='instructions'><b>{dogname}</b> debe recolectar<br></br> todas las frutas antes que<br></br>el malvado <b>Gusanor</b> lo atrape</p>
     <h1> {dogname} está listo! <FontAwesomeIcon icon={faSmile} /></h1>
-    {/* <p>Vamos {this.state.nombre}, juega de nuevo!</p> */}
+    {/* <p>Vamos {nombre}, juega con todo!</p> */}
   </div>
 )
 
@@ -155,7 +158,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = { segundos:tiempo, nombre:'', vidas:vidas, frutas:0, items: [], posicionHdog:dogH, posicionVdog:dogV, posicionHgusano:gusanoH, posicionVgusano:gusanoV, posicionHmanzana:manzanaH, posicionVmanzana:manzanaV, posicionHbanano:bananoH, posicionVbanano:bananoV, posicionHmango:mangoH, posicionVmango:mangoV, posicionHfresa:fresaH, posicionVfresa:fresaV, posicionHobstaculo1:obstaculo1H, posicionVobstaculo1:obstaculo1V, posicionHobstaculo2:obstaculo2H, posicionVobstaculo2:obstaculo2V, estado:''  };
-    this.campoNombre = this.campoNombre.bind(this);
+    this.campoNombre = this.campoNombre.bind(this);         // Funciones
     this.botonStart = this.botonStart.bind(this);
     this.flechasTeclado = this.flechasTeclado.bind(this);
     this.botonUp = this.botonUp.bind(this);
@@ -191,12 +194,22 @@ class App extends React.Component {
         else if (windowHeight > tabletSize[1]) { dispositive = 'Laptop' }
     }
 
-    const limitLeft = document.getElementById('bloquesVleft1').getBoundingClientRect();         // Limites de movimiento dentro del cuadrilatero
-    const limitRight = document.getElementById('bloquesVright1').getBoundingClientRect();
-    const limitUp = document.getElementById('bloquesHup1').getBoundingClientRect();
-    const limitDown = document.getElementById('bloquesHdown1').getBoundingClientRect();   
-    console.log("limitLeft: " + Math.round(limitLeft.left) + " limitRight: " + Math.round(limitRight.right));
-    console.log("limitUp: " + Math.round(limitUp.top) + " limitRight: " + Math.round(limitDown.bottom));
+    // const limitLeft1 = document.getElementById('bloquesVleft1').getBoundingClientRect();         // Limites de movimiento dentro del cuadrilatero
+    // const limitRight1 = document.getElementById('bloquesVright1').getBoundingClientRect();
+    // const limitUp1 = document.getElementById('bloquesHup1').getBoundingClientRect();
+    // const limitDown1 = document.getElementById('bloquesHdown1').getBoundingClientRect();   
+    const limitLeft = document.getElementById('bloquesVleft1').offsetLeft;         // Limites de movimiento dentro del cuadrilatero
+    const limitRight = document.getElementById('bloquesVright1').offsetLeft;
+    const limitUp = document.getElementById('bloquesHup1').offsetTop;
+    const limitDown = document.getElementById('bloquesHdown1').offsetTop;   
+    const limitWidth = document.getElementById('bloquesVleft1').offsetWidth;   
+    const limitHeigth = document.getElementById('bloquesVleft1').offsetWidth; 
+    // console.log("Left1: " + Math.round(limitLeft1.left) + " Right1: " + Math.round(limitRight1.right));
+    // console.log("Up1: " + Math.round(limitUp1.top) + " Down1: " + Math.round(limitDown1.bottom));
+    // console.log("Left x: " + Math.round(limitLeft.x) + " Right y: " + Math.round(limitRight.y));
+    console.log("Left: " + Math.round(limitLeft) + " Right: " + Math.round(limitRight));
+    console.log("Up: " + Math.round(limitUp) + " Down: " + Math.round(limitDown));
+    console.log("Width: " + Math.round(limitWidth) + " Heigth: " + Math.round(limitHeigth));
 
     
     if(dispositive === 'Cell' && dispositiveOrientation === 'Portrait') {
@@ -209,8 +222,10 @@ class App extends React.Component {
         obstaculo1H = 40; obstaculo1V = 40;
         obstaculo2H = obstaculo1H - 100; obstaculo2V = obstaculo1V + 55;
     } else if(dispositive === 'Cell' && dispositiveOrientation === 'Landscape') {
-        cuadrilateroLimitsH = [-210,170];           // Límite horizontal bordes cuadrlátero
-        cuadrilateroLimitsV = [-30,260];            // Límite vertical bordes cuadrlátero
+        // cuadrilateroLimitsH = [-210,170];           // Límite horizontal bordes cuadrlátero
+        // cuadrilateroLimitsV = [-30,260];            // Límite vertical bordes cuadrlátero
+        cuadrilateroLimitsH = [limitLeft + limitWidth, limitRight - limitWidth];           // Límite horizontal bordes cuadrlátero
+        cuadrilateroLimitsV = [limitUp, limitDown - limitWidth];            // Límite vertical bordes cuadrlátero
         dogH = (cuadrilateroLimitsH[1] + cuadrilateroLimitsH[0])/2;
         dogV = cuadrilateroLimitsV[1];
         gusanoH = (cuadrilateroLimitsH[1] + cuadrilateroLimitsH[0])/2;
@@ -228,10 +243,10 @@ class App extends React.Component {
         obstaculo2H = cuadrilateroLimitsH[0] + 110; 
         obstaculo2V = cuadrilateroLimitsV[1] - 80;
     } else if(dispositive === 'Tablet' && dispositiveOrientation === 'Landscape') {
-        cuadrilateroLimitsH = [-380,310];           // Límite horizontal bordes cuadrlátero
-        cuadrilateroLimitsV = [-60,490];            // Límite vertical bordes cuadrlátero
-        // cuadrilateroLimitsH = [limitLeft,limitRight];           // Límite horizontal bordes cuadrlátero
-        // cuadrilateroLimitsV = [limitUp,limitDown];            // Límite vertical bordes cuadrlátero
+        // cuadrilateroLimitsH = [-380,310];           // Límite horizontal bordes cuadrlátero
+        // cuadrilateroLimitsV = [-60,490];            // Límite vertical bordes cuadrlátero
+        cuadrilateroLimitsH = [limitLeft + limitWidth, limitRight - limitWidth];           // Límite horizontal bordes cuadrlátero
+        cuadrilateroLimitsV = [limitUp, limitDown - limitWidth];            // Límite vertical bordes cuadrlátero
 
         dogH = (cuadrilateroLimitsH[1] + cuadrilateroLimitsH[0])/2;
         dogV = cuadrilateroLimitsV[1];
@@ -251,8 +266,6 @@ class App extends React.Component {
         obstaculo2V = cuadrilateroLimitsV[1] - 180;
      } 
       else if(dispositive === 'Laptop' && dispositiveOrientation === 'Landscape') {
-        // cuadrilateroLimitsH
-        console.log("Laptop")
         // const limitLeft = document.getElementById('bloquesVleft1').getBoundingClientRect();
         // const limitRight = document.getElementById('bloquesVright1').getBoundingClientRect();
         // const limitUp = document.getElementById('bloquesHup1').getBoundingClientRect();
@@ -260,16 +273,19 @@ class App extends React.Component {
         // console.log("limitLeft: " + Math.round(limitLeft.left) + " limitRight: " + Math.round(limitRight.right));
         // console.log("limitUp: " + Math.round(limitUp.top) + " limitRight: " + Math.round(limitDown.bottom));
     
-        cuadrilateroLimitsH = [-450,370];           // Límite horizontal bordes cuadrlátero
-        cuadrilateroLimitsV = [-70,590];            // Límite vertical bordes cuadrlátero
-        dogH = -45;
-        dogV = 590;
-        gusanoH = -30;
+        // cuadrilateroLimitsH = [-450,370];           // Límite horizontal bordes cuadrlátero
+        // cuadrilateroLimitsV = [-70,590];            // Límite vertical bordes cuadrlátero
+        cuadrilateroLimitsH = [limitLeft + limitWidth, limitRight - limitWidth];           // Límite horizontal bordes cuadrlátero
+        cuadrilateroLimitsV = [limitUp, limitDown - limitWidth];            // Límite vertical bordes cuadrlátero
+
+        dogH = (cuadrilateroLimitsH[1] + cuadrilateroLimitsH[0])/2;
+        dogV = cuadrilateroLimitsV[1];
+        gusanoH = (cuadrilateroLimitsH[1] + cuadrilateroLimitsH[0])/2;
         gusanoV = 0; 
-        manzanaH = 340;
-        manzanaV = 40;
-        bananoH = -380; 
-        bananoV = 40;
+        manzanaH = cuadrilateroLimitsH[1];
+        manzanaV = cuadrilateroLimitsV[0] + 350;
+        bananoH = cuadrilateroLimitsH[0] + 180;
+        bananoV = cuadrilateroLimitsV[0] + 350;
         mangoH = 340; 
         mangoV = 570;
         fresaH = -380; 
