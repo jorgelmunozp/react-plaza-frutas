@@ -10,20 +10,20 @@
 
 /****************************** HEADER ******************************/
 .App-header {
-  background-color: #282c34;
-  min-height: 10vh;
+  position: absolute;
+  background: url("/public/banner.jpg") no-repeat;
+  background-size: cover;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: var(--white-color);
+  min-height: 8vh;
+  height: 8vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: 2.5vmin;
-  color: var(--white-color);
-  background: url("/public/banner.jpg") no-repeat;
-  background-size: cover;
-  background-color: rgba(0, 0, 0, 0.5);
-  position: absolute;
-  width: 100%;                 
+  font-size: 2.5vmin; 
   text-shadow: 2px 2px 2px rgba(0, 0, 0, 1);
+  width: 100%; 
 }
 .App-header-content {
 
@@ -31,21 +31,41 @@
 .App-slogan {
   position: absolute;
   left: 5vw;
-  top: -0.5vw;
+  top: -1.5vh;
 }
 .App-logo {
   height: 3vw;
+  user-select: none; 
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 }
 .App-tittle {
   margin-left: 1vw;
+  user-select: none; 
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 }
 .tiempo {
-  top: -1.1vw;
+  top: -1.5vh;
+  user-select: none; 
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 }
 .tablaTablero {
   position: absolute;
   right: 5vw;
-  top: 0vw;
+  top: -1.5vh;
+  user-select: none; 
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 }
 .vidas {
   width: 3.5vw;
@@ -55,7 +75,7 @@
 /******************************* BODY *******************************/
 .App-body {
   background-color: #282c34;
-  min-height: 60vw;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -66,14 +86,23 @@
   background-size: cover;
 }
 .App-body-content {
-  display: inline-flex;
-  width: 20%;
+  display: contents;
+  /* width: 20vw; */
 }
 
 .App-link {
-  color: #61dafb;
+  color: #500;
 }
 .instructions {
+  font-size: inherit;
+}
+
+/*********** Cuadrlatero ***********/
+#cuadrilatero {
+  position: absolute;
+  height: 80vh;
+  top: 6vh;
+  left: 0vw;
 }
 
 #dog {
@@ -100,7 +129,6 @@
   margin-left: auto;
   margin-right: auto;
 }
-
 .App-fruta {
   height: 3.5vw;
   pointer-events: none;
@@ -112,106 +140,167 @@
   -ms-user-select: none;
   z-index: 1;
 }
-@keyframes image-spin {
+/* @keyframes image-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
 @media (prefers-reduced-motion: no-preference) {
   .App-fruta { animation: image-spin infinite 20s linear; }
+} */
+
+.App-obstaculo {
+  pointer-events: none;
+  position: absolute;
+  width: 6.25vw;
+  height: 6.25vh;
+  user-select: none;                    /* Impide seleccionar la imagen con el mouse*/
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 }
+.App-cuadrilateroH {
+  pointer-events: none;
+  position: absolute;
+  display: block;
+  top: 0vh;
+  width: 90vw;
+  user-select: none;                    /* Impide seleccionar la imagen con el mouse*/
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+#bloquesHup {
+  position: absolute;
+  top: 0vh;
+  left: -2vw;
+
+
+}
+#bloquesHdown {
+  position: absolute;
+  top: 75.5vh;
+  left: -2vw;
+}
+.App-cuadrilateroV {
+  position: absolute;
+  display: block;
+  top: 0vh;
+  width: 10vw;
+  user-select: none;                    /* Impide seleccionar la imagen con el mouse*/
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+#bloquesVleft { left: 0vw; }
+#bloquesVright { left: 75vw; }
 
 .App-bloque {
   pointer-events: none;
-  position: absolute;
-  height: 6.25vw;
+  position: relative;
+  width:5vw;
+  user-select: none;                    /* Impide seleccionar la imagen con el mouse*/
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 }
 .App-bloquesH {
   pointer-events: none;
   position: absolute;
-  height: 3.8vw;
+  width: 38vw;
 }
 .App-bloquesV {
   pointer-events: none;
   position: absolute;
-  height: 23.6vw;
+  height: 43vh;
 }
-#bloquesVright1 {
-  margin-top: -0.3vw;
-  margin-left: 31.5vw;
+/* #bloquesVright1 {
+  margin-top: 0vh;
+  margin-left: 32vw;
 }
 #bloquesVright2 {
-  margin-top: 23.25vw;
-  margin-left: 31.5vw;
+  margin-top: 43vh;
+  margin-left: 32vw;
 }
 #bloquesVleft1 {
-  margin-top: -0.3vw;
-  margin-left: -38vw;
+  margin-top: 0vh;
+  margin-left: -39vw;
 }
 #bloquesVleft2 {
-  margin-top: 23.25vw;
-  margin-left: -38vw;
-}
-#bloquesHup1 {
-  margin-top: -3.9vw;
+  margin-top: 43vh;
+  margin-left: -39vw;
+} */
+/* #bloquesHup {
+  margin-top: 0vh;
+  margin-left: 0vw;
+  position: relative;
+    top: -2vh;
+} */
+/* #bloquesHup1 {
+  margin-top: 0vh;
   margin-left: 0vw;
 }
 #bloquesHup2 {
-  margin-top: -3.9vw;
-  margin-left: -38vw;
+  margin-top: 0vh;
+  margin-left: -37.75vw;
 }
 #bloquesHdown1 {
-  margin-top: 46.8vw;
+  margin-top: 79.5vh;
   margin-left: 0vw;
 }
 #bloquesHdown2 {
-  margin-top: 46.8vw;
-  margin-left: -38vw;
-}
+  margin-top: 79.5vh;
+  margin-left: -37.75vw;
+} */
 
 
-
-
-
-#cuadrilatero {
+/*********** Controles ***********/
+#controles {                       /*Tiempo, frutas restantes */
   position: absolute;
-  top: 10vw;
-}
-#resultados {                       /*Tiempo, frutas restantes */
-  position: absolute;
-  top: 5vw;
+  top: 20vh;
   right: 0;
   
 }
-.App-cajamadera {
-  pointer-events: none;
-  width: 20vw;
-  height: 10vw;
-}
-.tablaRsultados {                          /*Botones de flechas */
-
-}
-.botonFlechas {
-  padding: 1.25vw 2vw 1.25vw 2vw;
+.tablaFlechas {                          /*Botones de flechas */
+  position: absolute;
   font-size: 3vw;
-  background-color: #500;
-  color:var(--button-color);
-  cursor: pointer;
+  background-color: rgb(85, 0, 0, 0.2);
+  border: 1px solid rgb(255, 255, 255, 0.4);
+  box-shadow: 2px 2px 2px rgb(255, 255, 255, 0.2);
+  border-radius: 10vw;
+  left: -20vw;
+  top: 40vh;
+  z-index: 1;
 }
 .botonStart {
   padding: 1.25vw 1.25vw 1.25vw 1.25vw;
   font-size: 3vw;
-  background-color: #500;
+  background-color: rgb(85, 0, 0, 0.2);
+  color:var(--button-color);
+  cursor: pointer;
+  border-radius: 3vw;
+}
+.botonFlechas {
+  padding: 1vw 2vw 1vw 2vw;
+  font-size: 3vw;
+  /* background-color: rgb(85, 0, 0, 0.2); */
+  border: none;
+  background-color: transparent;
   color:var(--button-color);
   cursor: pointer;
 }
 .botonReset {
   color:var(--button-color);
-  background-color: #500;
+  background-color: rgb(85, 0, 0, 0.2);
   padding: 1.25vw 0 1.25vw 0;
   font-size: 3vmin;
   width: 6.25vw;
   cursor: pointer;
   filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 1));
+  border-radius: 3vw;
 }
 
 input[type=text]{
@@ -259,7 +348,7 @@ input[type=text]::placeholder{
 @media screen and (max-width: 640px) {
   /******************************** Header ********************************/
   .App-header {
-    min-height: 6vh;
+    height: 6vh;
   }
   /********************************* Body *********************************/
 
