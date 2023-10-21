@@ -78,17 +78,17 @@ if(dispositiveOrientation === 'Portrait') {
     gusanoH = windowWidth/2 - windowWidth*5/100;
     gusanoV = windowHeight*10/100;
     manzanaH = windowWidth/2 - windowWidth*10/100;
-    manzanaV = windowHeight*30/100;
+    manzanaV = windowHeight*25/100;
     bananoH = windowWidth/2 - windowWidth*8/100;
-    bananoV = windowHeight*30/100;
+    bananoV = windowHeight*25/100;
     mangoH = windowWidth/2;
-    mangoV = windowHeight*30/100;
+    mangoV = windowHeight*25/100;
     fresaH = windowWidth/2 + windowWidth*3/100;
-    fresaV = windowHeight*30/100;
+    fresaV = windowHeight*25/100;
     obstaculo1H = windowWidth/2 - windowWidth*12/100;
-    obstaculo1V = windowHeight*35/100;
+    obstaculo1V = windowHeight*25/100;
     obstaculo2H = windowWidth/2 - windowWidth*1/100;
-    obstaculo2V = windowHeight*35/100;
+    obstaculo2V = windowHeight*25/100;
 } else if(dispositiveOrientation === 'Landscape') {
     dogH = windowWidth/2 - windowWidth*5/100;
     dogV = windowHeight*50/100;
