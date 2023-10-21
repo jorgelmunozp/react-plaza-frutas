@@ -40,7 +40,6 @@ let dispositive;
 let dispositiveOrientation;
 let windowWidth = document.documentElement.clientWidth;         // Tamaño horizontal de pantalla
 let windowHeight = document.documentElement.clientHeight;       // Tamaño vertical de pantalla
-// let blockWidth = document.getElementById("bloque1").clientWidth;  //Ancho de los bloques del cuadrilatero
 let blockWidth = Math.round(6.25 * windowWidth/100);            // Ancho de los bloques del cuadrilatero, misma medida en el css de .App-obstaculo
 let blockHeight = Math.round(6.25 * windowWidth/100);           // Alto de los bloques del cuadrilatero, misma medida en el css de .App-obstaculo
 let cantidadBloquesH = [];
@@ -55,8 +54,8 @@ console.log("windowWidth: ", windowWidth)
 console.log("windowHeight: ", windowHeight)
 console.log("blockWidth: ", blockWidth)
 console.log("blockHeight: ", blockHeight)
-console.log("cantidadBloquesH: ", cantidadBloquesH)
-console.log("cantidadBloquesV: ", cantidadBloquesV)
+console.log("cantidadBloquesH: ", cantidadBloquesH.length)
+console.log("cantidadBloquesV: ", cantidadBloquesV.length)
 
 if (windowWidth > windowHeight) {          
     dispositiveOrientation = 'Landscape';                       // Orientación del dispositivo horizontal

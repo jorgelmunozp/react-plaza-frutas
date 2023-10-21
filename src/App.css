@@ -175,12 +175,10 @@
   position: absolute;
   top: 0vh;
   left: -2vw;
-
-
 }
 #bloquesHdown {
   position: absolute;
-  top: 75.5vh;
+  top: 75vh;
   left: -2vw;
 }
 .App-cuadrilateroV {
@@ -194,8 +192,8 @@
   -webkit-user-select: none;
   -ms-user-select: none;
 }
-#bloquesVleft { left: 0vw; }
-#bloquesVright { left: 75vw; }
+#bloquesVleft { left: -5vw; }
+#bloquesVright { left:80vw; }
 
 .App-bloque {
   pointer-events: none;
