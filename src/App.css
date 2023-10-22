@@ -110,7 +110,7 @@ ol {
 #cuadrilatero {
   position: absolute;
   height: 90vh;
-  width: 98.5vw;
+  width: 99vw;
   top: 9vh;
   left: 0vw;
   border: 1px solid #fff;
@@ -140,7 +140,7 @@ ol {
   position: absolute;
   display: block;
   top: 0vh;
-  width: 3vw;
+  width: 2vw;
   line-height: 0;
   user-select: none;                    /* Impide seleccionar la imagen con el mouse*/
   -moz-user-select: none;
@@ -155,7 +155,7 @@ ol {
 }
 #cuadrilateroRight {
   /* top: 0vh; */
-  left:95.5vw; 
+  left:97vw; 
 }
 .cuadrilateroBloque {
   pointer-events: none;

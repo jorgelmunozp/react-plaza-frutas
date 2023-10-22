@@ -46,7 +46,7 @@ let cantidadBloquesV = [];
 for(let i=1; i<Math.floor(windowWidth/blockWidth); i++){       // Cantidad de bloques por pared horizontal del cuadrilatero
   cantidadBloquesH[i] = i;
 }
-for(let i=1; i<Math.floor(windowHeight/blockWidth) - 1; i++){      // Cantidad de bloques por pared vertical del cuadrilatero
+for(let i=1; i<Math.floor(windowHeight/blockWidth); i++){      // Cantidad de bloques por pared vertical del cuadrilatero
   cantidadBloquesV[i] = i;
 }
 console.log("windowWidth: ", windowWidth)
@@ -400,7 +400,7 @@ class App extends React.Component {
     for(let i=1; i<Math.floor(windowWidth/blockWidth); i++){   // Cantidad de bloques por pared horizontal del cuadrilatero
       cantidadBloquesH[i] = i;
     }
-    for(let i=1; i<Math.floor(windowHeight/blockWidth) - 1; i++){  // Cantidad de bloques por pared vertical del cuadrilatero
+    for(let i=1; i<Math.floor(windowHeight/blockWidth); i++){  // Cantidad de bloques por pared vertical del cuadrilatero
       cantidadBloquesV[i] = i;
     }
     console.log("windowWidth: ", windowWidth)
