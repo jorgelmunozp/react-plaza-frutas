@@ -22,37 +22,28 @@ const vidas = 3;
 const cantidadfrutas = 4;
 
 // Orientación y tipo de dispositivo: Laptop | Tablet | Celular
-const cellphoneSize = [380,720];                                     // Dimensiones ancho por alto de los dispositivos
+const cellphoneSize = [380,720];                              // Dimensiones ancho por alto de los dispositivos
 const tabletSize = [720,1280];
 let device;
 let deviceOrientation = window.screen.orientation.type;       // Orientaciób del dispositivo Landscape o Portrait
 let deviceWidth = document.documentElement.clientWidth;       // Tamaño horizontal de pantalla
 let deviceHeight = document.documentElement.clientHeight;     // Tamaño vertical de pantalla
-console.log("Device orientation: ", deviceOrientation)
-console.log("deviceWidth: ", deviceWidth)
-console.log("deviceHeight: ", deviceHeight)
-// if(deviceOrientation === null) {
-//   if (deviceWidth >= deviceHeight) {          
-//     deviceOrientation = 'Landscape';                       // Orientación del dispositivo horizontal
-//   } else if (deviceHeight > deviceWidth) { 
-//     deviceOrientation = 'Portrait';                        // Orientación del dispositivo vertical
-//   }
-// }
-
 if (deviceWidth >= deviceHeight) {          
-  if (deviceWidth <= cellphoneSize[1]) { device = 'cellphone' }   // Tipo de dispositivo Pc, Tablet o Celular
+  if (deviceWidth <= cellphoneSize[1]) { device = 'cellphone' } // Tipo de dispositivo Pc, Tablet o Celular
   else if (cellphoneSize[1] < deviceWidth && deviceWidth <= tabletSize[1]) { device = 'tablet' }
   else if (deviceWidth > tabletSize[1]) { device = 'laptop' }
 } else if ( deviceHeight > deviceWidth) { 
-  if (deviceHeight <= cellphoneSize[1]) { device = 'cellphone' }  // Tipo de dispositivo Pc, Tablet o Celular
+  if (deviceHeight <= cellphoneSize[1]) { device = 'cellphone' } // Tipo de dispositivo Pc, Tablet o Celular
   else if (cellphoneSize[1] < deviceHeight && deviceHeight <= tabletSize[1]) { device = 'tablet' }
   else if (deviceHeight > tabletSize[1]) { device = 'laptop' }
 }
-console.log(device,deviceOrientation)
+console.log("Device type: ",device)
+console.log("Device orientation: ", deviceOrientation)
+console.log("Device Width:", deviceWidth, " Height:", deviceHeight)
 
-let dogH = deviceWidth*1/100;
-let dogV = deviceHeight*70/100;
-let gusanoH = deviceWidth*1/100;
+let dogH = 0;                                 // Figuras con posicionamiento inicial
+let dogV = deviceHeight*80/100;
+let gusanoH = 0;
 let gusanoV = deviceHeight*5/100;
 let manzanaH = deviceWidth*15/100;
 let manzanaV = dogV/2;
@@ -68,7 +59,6 @@ let obstaculo2H = deviceWidth*20/100;
 let obstaculo2V = deviceHeight*50/100;
 let cuadrilateroLimitsH;
 let cuadrilateroLimitsV;
-
 
 // Alerta de bienvenida
 // swalert(                                      
@@ -117,7 +107,7 @@ class App extends React.Component {
       displayMango:'block',
       displayFresa:'block'  
     };
-    this.campoNombre = this.campoNombre.bind(this);         // Funciones
+    this.campoNombre = this.campoNombre.bind(this);         // Mapeo de botones con sus funciones
     this.botonStart = this.botonStart.bind(this);
     this.flechasTeclado = this.flechasTeclado.bind(this);
     this.botonUp = this.botonUp.bind(this);
@@ -219,7 +209,7 @@ class App extends React.Component {
               <tbody>
                 <tr>
                   <td><img id='logo' src={logo} className="App-logo" alt="logo" /></td>
-                  <td><h2 className="App-title">Plaza de Frutas {this.state.anchoVentana}</h2></td>
+                  <td><h2 className="App-title">Plaza de Frutas</h2></td>
                 </tr>
               </tbody>
             </table>

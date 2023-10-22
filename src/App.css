@@ -1,6 +1,6 @@
 :root {
   --white-color: #fff;
-  --button-color: #ccc;
+  --button-color: #ccc6;
 }
 
 .App {
@@ -231,28 +231,27 @@ ol {
   position: absolute;
   top: 60vh;
   /* right: 0; */
-  left: 60vw;
+  left: 10vw;
 }
 .tablaFlechas {                          /*Botones de flechas */
   position: absolute;
-  font-size: 5vh;
+  font-size: 5vmax;
   background-color: rgb(85, 0, 0, 0.2);
   border: 1px solid rgb(255, 255, 255, 0.4);
   box-shadow: 2px 2px 2px rgb(255, 255, 255, 0.2);
-  border-radius: 30vw;
-  /* left: -20vw; */
+  border-radius: 30vmax;
   z-index: 1;
 }
 .botonStart {
-  padding: 1.25vh 1.25vh 1.25vh 1.25vh;
+  padding: 3vmax;
   font-size: inherit;
   background-color: rgb(85, 0, 0, 0.2);
   color:var(--button-color);
   cursor: pointer;
-  border-radius: 10vh;
+  border-radius: 10vmax;
 }
 .botonFlechas {
-  padding: 1vh 2.5vh 1vh 2.5vh;
+  padding: 2vmax 4vmax 2vh 4vmax;
   font-size: inherit;
   border: none;
   background-color: transparent;
@@ -262,12 +261,12 @@ ol {
 .botonReset {
   color:var(--button-color);
   background-color: rgb(85, 0, 0, 0.2);
-  padding: 1.25vh 0 1.25vh 0;
-  font-size: 5vh;
+  padding: 1.25vmax 0 1.25vmax 0;
+  font-size: 5vmax;
   width: 6.25vw;
   cursor: pointer;
   filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 1));
-  border-radius: 3vh;
+  border-radius: 10vmax;
 }
 
 input[type=text]{
