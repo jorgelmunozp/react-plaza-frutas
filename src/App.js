@@ -39,14 +39,14 @@ let dispositiveOrientation;
 let windowWidth = document.documentElement.clientWidth;         // Tamaño horizontal de pantalla
 let windowHeight = document.documentElement.clientHeight;       // Tamaño vertical de pantalla
 const widthBlock =5;
-let blockWidth = Math.floor(widthBlock * windowWidth/100);             // Ancho de los bloques del cuadrilatero, misma medida en el css de .obstaculo
-let blockHeight = Math.floor(widthBlock *windowHeight/100);            // Ancho de los bloques del cuadrilatero, misma medida en el css de .obstaculo
+let blockHeight = Math.floor(widthBlock * windowWidth/100);             // Ancho de los bloques del cuadrilatero, misma medida en el css de .obstaculo
+let blockWidth = Math.floor(widthBlock *windowHeight/100);            // Ancho de los bloques del cuadrilatero, misma medida en el css de .obstaculo
 let cantidadBloquesH = [];
 let cantidadBloquesV = [];
 for(let i=1; i<Math.floor(windowWidth/blockWidth); i++){       // Cantidad de bloques por pared horizontal del cuadrilatero
   cantidadBloquesH[i] = i;
 }
-for(let i=1; i<Math.floor(windowHeight/blockWidth); i++){      // Cantidad de bloques por pared vertical del cuadrilatero
+for(let i=1; i<Math.floor(windowHeight/blockWidth) - 1; i++){      // Cantidad de bloques por pared vertical del cuadrilatero
   cantidadBloquesV[i] = i;
 }
 console.log("windowWidth: ", windowWidth)
@@ -395,12 +395,12 @@ class App extends React.Component {
     console.log("dispositive,dispositiveOrientation: ",dispositive,dispositiveOrientation );
 
     // blockWidth = Math.floor(widthBlockCss * windowWidth/100);        // Ancho de los bloques del cuadrilatero, misma medida en el css de .obstaculo
-    blockWidth = Math.floor(widthBlock * windowWidth/100);            // Ancho de los bloques del cuadrilatero, misma medida en el css de .obstaculo
-    blockHeight = Math.floor(widthBlock * windowHeight/100);          // Ancho de los bloques del cuadrilatero, misma medida en el css de .obstaculo
+    blockHeight = Math.floor(widthBlock * windowWidth/100);            // Ancho de los bloques del cuadrilatero, misma medida en el css de .obstaculo
+    blockWidth = Math.floor(widthBlock * windowHeight/100);          // Ancho de los bloques del cuadrilatero, misma medida en el css de .obstaculo
     for(let i=1; i<Math.floor(windowWidth/blockWidth); i++){   // Cantidad de bloques por pared horizontal del cuadrilatero
       cantidadBloquesH[i] = i;
     }
-    for(let i=1; i<Math.floor(windowHeight/blockWidth); i++){  // Cantidad de bloques por pared vertical del cuadrilatero
+    for(let i=1; i<Math.floor(windowHeight/blockWidth) - 1; i++){  // Cantidad de bloques por pared vertical del cuadrilatero
       cantidadBloquesV[i] = i;
     }
     console.log("windowWidth: ", windowWidth)
