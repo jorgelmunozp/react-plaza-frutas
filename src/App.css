@@ -5,10 +5,10 @@
 
 .App {
   text-align: center;
-  font-family: "Comic Sans MS", "Comic Sans", cursive;     /*** Letra ***/
+  font-family: "LDF Comic Sans MS", "Comic Sans", cursive;     /*** Letra ***/
 }
 @font-face {
-  font-family: "Comic Sans MS";
+  font-family: "LDF Comic Sans MS";
   font-style: normal;
   font-weight: normal;
   src: url("./assets/fonts/LDF-ComicSans/LDFComicSans.ttf") format("truetype");
@@ -97,35 +97,31 @@ ol {
 }
 /*********** Figuras ***********/
 #dog {
+  position: absolute;
   height: 7vh;
   pointer-events: none;
-  position: absolute;
   user-select: none;                    /* Impide seleccionar la imagen con el mouse*/
   -moz-user-select: none;
   -webkit-user-drag: none;
   -webkit-user-select: none;
   -ms-user-select: none;
-  margin-left: auto;
-  margin-right: auto;
   z-index: 1;
 }
 #gusano {
+  position: absolute;
   height: 7vh;
   pointer-events: none;
-  position: absolute;
   user-select: none;                    /* Impide seleccionar la imagen con el mouse*/
   -moz-user-select: none;
   -webkit-user-drag: none;
   -webkit-user-select: none;
   -ms-user-select: none;
-  margin-left: auto;
-  margin-right: auto;
   z-index: 1;
 }
 .fruta {
+  position: absolute;
   height: 5vh;
   pointer-events: none;
-  position: absolute;
   user-select: none;                    /* Impide seleccionar la imagen con el mouse*/
   -moz-user-select: none;
   -webkit-user-drag: none;
@@ -141,10 +137,10 @@ ol {
   .fruta { animation: image-spin infinite 20s linear; }
 }
 .obstaculo {
-  pointer-events: none;
   position: absolute;
   width: 6vh;
   /* height: 6vh; */
+  pointer-events: none;
   user-select: none;                    /* Impide seleccionar la imagen con el mouse*/
   -moz-user-select: none;
   -webkit-user-drag: none;
