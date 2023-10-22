@@ -6,11 +6,8 @@ import banano from './assets/banano.svg';
 import mango from './assets/mango.svg';
 import fresa from './assets/fresa.svg';
 import bloque from './assets/bloque.svg';
-// import bloquesH from './assets/bloquesH.png';
-// import bloquesV from './assets/bloquesV.png';
 
 import './App.css';
-import { setPositionXY } from './helpers/setPositionXY'
 
 import React from 'react';
 import { Cuadrilatero } from './components/cuadrilatero/Cuadrilatero';
@@ -41,24 +38,24 @@ let dispositive;
 let dispositiveOrientation;
 let windowWidth = document.documentElement.clientWidth;         // Tamaño horizontal de pantalla
 let windowHeight = document.documentElement.clientHeight;       // Tamaño vertical de pantalla
-let blockWidth = Math.round(6.25 * windowWidth/100);            // Ancho de los bloques del cuadrilatero, misma medida en el css de .App-obstaculo
-let blockHeight = Math.round(6.25 * windowWidth/100);           // Alto de los bloques del cuadrilatero, misma medida en el css de .App-obstaculo
+const widthBlock =5;
+let blockWidth = Math.floor(widthBlock * windowWidth/100);             // Ancho de los bloques del cuadrilatero, misma medida en el css de .obstaculo
+let blockHeight = Math.floor(widthBlock *windowHeight/100);            // Ancho de los bloques del cuadrilatero, misma medida en el css de .obstaculo
 let cantidadBloquesH = [];
 let cantidadBloquesV = [];
-for(let i=1; i<=Math.round(windowWidth/blockWidth); i++){       // Cantidad de bloques por pared horizontal del cuadrilatero
+for(let i=1; i<Math.floor(windowWidth/blockWidth); i++){       // Cantidad de bloques por pared horizontal del cuadrilatero
   cantidadBloquesH[i] = i;
 }
-for(let i=1; i<=Math.round(windowHeight/blockHeight); i++){       // Cantidad de bloques por pared vertical del cuadrilatero
+for(let i=1; i<Math.floor(windowHeight/blockWidth); i++){      // Cantidad de bloques por pared vertical del cuadrilatero
   cantidadBloquesV[i] = i;
 }
 console.log("windowWidth: ", windowWidth)
 console.log("windowHeight: ", windowHeight)
 console.log("blockWidth: ", blockWidth)
-console.log("blockHeight: ", blockHeight)
 console.log("cantidadBloquesH: ", cantidadBloquesH.length)
 console.log("cantidadBloquesV: ", cantidadBloquesV.length)
 
-if (windowWidth > windowHeight) {          
+if (windowWidth >= windowHeight) {          
     dispositiveOrientation = 'Landscape';                       // Orientación del dispositivo horizontal
     if (windowWidth <= cellphoneSize[1]) { dispositive = 'Cell' }    // Tipo de dispositivo Pc, Tablet o Celular
     else if (cellphoneSize[1] < windowWidth && windowWidth <= tabletSize[1]) { dispositive = 'Tablet' }
@@ -73,9 +70,9 @@ console.log(dispositive,dispositiveOrientation)
 
 // Posicionamiento inicial de imagenes en el cuadrilatero
 if(dispositiveOrientation === 'Portrait') {
-    dogH = windowWidth/2 - windowWidth*5/100;
-    dogV = windowHeight*50/100;
-    gusanoH = windowWidth/2 - windowWidth*5/100;
+    dogH = windowWidth/2 - windowWidth*50/100;
+    dogV = windowHeight*70/100;
+    gusanoH = windowWidth/2 - windowWidth*50/100;
     gusanoV = windowHeight*10/100;
     manzanaH = windowWidth/2 - windowWidth*10/100;
     manzanaV = windowHeight*25/100;
@@ -90,21 +87,21 @@ if(dispositiveOrientation === 'Portrait') {
     obstaculo2H = windowWidth/2 - windowWidth*1/100;
     obstaculo2V = windowHeight*25/100;
 } else if(dispositiveOrientation === 'Landscape') {
-    dogH = windowWidth/2 - windowWidth*5/100;
-    dogV = windowHeight*50/100;
-    gusanoH = windowWidth/2 - windowWidth*5/100;
+    dogH = windowWidth/2 - windowWidth*50/100;
+    dogV = windowHeight*70/100;
+    gusanoH = windowWidth/2 - windowWidth*50/100;
     gusanoV = windowHeight*10/100;
     manzanaH = windowWidth/2 - windowWidth*10/100;
     manzanaV = windowHeight*30/100;
-    bananoH = windowWidth/2 - windowWidth*8/100;
+    bananoH = windowWidth/2 - windowWidth*7/100;
     bananoV = windowHeight*30/100;
-    mangoH = windowWidth/2;
+    mangoH = windowWidth/2 + windowWidth*10/100;
     mangoV = windowHeight*30/100;
-    fresaH = windowWidth/2 + windowWidth*3/100;
+    fresaH = windowWidth/2 + windowWidth*13/100;
     fresaV = windowHeight*30/100;
-    obstaculo1H = windowWidth/2 - windowWidth*12/100;
+    obstaculo1H = windowWidth/2 - windowWidth*60/100;
     obstaculo1V = windowHeight*35/100;
-    obstaculo2H = windowWidth/2 - windowWidth*1/100;
+    obstaculo2H = windowWidth/2 - windowWidth*40/100;
     obstaculo2V = windowHeight*35/100;
 } 
 
@@ -125,7 +122,7 @@ if(dispositiveOrientation === 'Portrait') {
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { segundos:tiempo, nombre:'', vidas:vidas, frutas:0, items: [], posicionHdog:dogH, posicionVdog:dogV, posicionHgusano:gusanoH, posicionVgusano:gusanoV, posicionHmanzana:manzanaH, posicionVmanzana:manzanaV, posicionHbanano:bananoH, posicionVbanano:bananoV, posicionHmango:mangoH, posicionVmango:mangoV, posicionHfresa:fresaH, posicionVfresa:fresaV, posicionHobstaculo1:obstaculo1H, posicionVobstaculo1:obstaculo1V, posicionHobstaculo2:obstaculo2H, posicionVobstaculo2:obstaculo2V, estado:'', displayManzana:'block', displayBanano:'block', displayMango:'block', displayFresa:'block'  };
+    this.state = { segundos:tiempo, nombre:'', vidas:vidas, frutas:0, items: [], anchoVentana:windowWidth, posicionHdog:dogH, posicionVdog:dogV, posicionHgusano:gusanoH, posicionVgusano:gusanoV, posicionHmanzana:manzanaH, posicionVmanzana:manzanaV, posicionHbanano:bananoH, posicionVbanano:bananoV, posicionHmango:mangoH, posicionVmango:mangoV, posicionHfresa:fresaH, posicionVfresa:fresaV, posicionHobstaculo1:obstaculo1H, posicionVobstaculo1:obstaculo1V, posicionHobstaculo2:obstaculo2H, posicionVobstaculo2:obstaculo2V, estado:'', displayManzana:'block', displayBanano:'block', displayMango:'block', displayFresa:'block'  };
     this.campoNombre = this.campoNombre.bind(this);         // Funciones
     this.botonStart = this.botonStart.bind(this);
     this.flechasTeclado = this.flechasTeclado.bind(this);
@@ -137,19 +134,19 @@ class App extends React.Component {
   }
 
   /********************* THICKS (Métodos repetitivos) *********************/
-  tickGetDispositive() {
-    window.addEventListener("orientationchange" | "click", ()=> {
-      windowWidth = document.documentElement.clientWidth;       // Tamaño horizontal de pantalla
-      windowHeight = document.documentElement.clientHeight;     // Tamaño vertical de pantalla
-      if(windowWidth > windowHeight) { dispositiveOrientation ='Landscape';}      // Orientación del dispositivo horizontal         
-      else if(windowHeight > windowWidth) { dispositiveOrientation ='Portrait';}  // Orientación vertical del dispositivo 
-      else if(windowHeight === windowWidth) { dispositiveOrientation ='Landscape';}// Orientación vertical del dispositivo 
-      console.log("dispositiveOrientation: " + dispositiveOrientation)
-      this.setPositionXY(dispositiveOrientation,dispositive,cellphoneSize,tabletSize,cuadrilateroLimitsH,cuadrilateroLimitsV,dogH,dogV,gusanoH,gusanoV,manzanaH,manzanaV,bananoH,bananoV,mangoH,mangoV,fresaH,fresaV,obstaculo1H,obstaculo1V,obstaculo2H,obstaculo2V);
-    }); 
-  }
+  // tickGetDispositive() {
+  //   window.addEventListener("orientationchange", ()=> {
+  //     this.setCuadrilatero();
+  //     this.setPositionXY();
+  //   }); 
+  // }
 
   tick() {
+    window.addEventListener("orientationchange", ()=> {   // Detecta si hay cambio de orientacion
+      this.setCuadrilatero();
+      this.setPositionXY();
+    }); 
+
     if(this.state.estado === 'start'){     // Se activa cuando se presiona el boton start
       this.setState(state => ({
         segundos: state.segundos - 1,
@@ -217,14 +214,15 @@ class App extends React.Component {
 
   /*********** THICKS CONTROL (Maneja intervalos de tiempo de las thicks ************/
   componentDidMount() {
-    this.intervalOrientation = setInterval(() => this.tickGetDispositive(), 1000);
-    // this.intervalPosXY = setInterval(() => this.setPositionXY(), 10000);
+    // this.intervalOrientation = setInterval(() => this.tickGetDispositive(), 1000);
+    // this.intervalPosXY = setInterval(() => this.setPositionXY(), 1000);
+    // this.intervalCuadrilatero = setInterval(() => this.setCuadrilatero(), 1000);
     this.interval = setInterval(() => this.tick(), 1000);
     this.intervalGusano = setInterval(() => this.tickGusano(), 200);
   }
   componentWillUnmount() {
-    clearInterval(this.intervalOrientation);
-    clearInterval(this.intervalPosXY);
+    // clearInterval(this.intervalOrientation);
+    // clearInterval(this.intervalPosXY);
     clearInterval(this.interval);
     clearInterval(this.intervalGusano);
   }
@@ -259,26 +257,18 @@ class App extends React.Component {
         <body className="App-body">
           <div className="App-body-content">
             <div id="cuadrilatero">
-              {/* <img id='bloquesHup' src={bloque} className="App-bloques" alt="🧱" />
-              <img id='bloquesHup2' src={bloquesH} className="App-bloquesH" alt="🧱" />
-              <img id='bloquesHdown1' src={bloquesH} className="App-bloquesH" alt="🧱" />
-              <img id='bloquesHdown2' src={bloquesH} className="App-bloquesH" alt="🧱" />
-              <img id='bloquesVleft1' src={bloquesV} className="App-bloquesV" alt="🧱" />
-              <img id='bloquesVleft2' src={bloquesV} className="App-bloquesV" alt="🧱" />
-              <img id='bloquesVright1' src={bloquesV} className="App-bloquesV" alt="🧱"/>
-              <img id='bloquesVright2' src={bloquesV} className="App-bloquesV" alt="🧱"/> */}
-              <img id='dog' src={dog} className="App-dog" alt="🐶" style={{'marginTop': this.state.posicionVdog, 'marginLeft': this.state.posicionHdog}}/>
-              <img id='gusano' src={gusano} className="App-dog" alt="🪱" style={{'marginTop': this.state.posicionVgusano, 'marginLeft': this.state.posicionHgusano}}/>
-              <img id='manzana' src={manzana} className="App-fruta" alt="🍎" style={{'marginLeft': this.state.posicionHmanzana,'marginTop':this.state.posicionVmanzana,'display':this.state.displayManzana}}/>
-              <img id='banano' src={banano} className="App-fruta" alt="🍌" style={{'marginLeft': this.state.posicionHbanano,'marginTop':this.state.posicionVbanano,'display':this.state.displayBanano}}/>
-              <img id='mango' src={mango} className="App-fruta" alt="🥭" style={{'marginLeft': this.state.posicionHmango,'marginTop':this.state.posicionVmango,'display':this.state.displayMango}}/>
-              <img id='fresa' src={fresa} className="App-fruta" alt="🍓" style={{'marginLeft': this.state.posicionHfresa,'marginTop':this.state.posicionVfresa,'display':this.state.displayFresa}}/>
-              <img id='obstaculo1' src={bloque} className="App-obstaculo" alt="🧱" style={{'marginTop': this.state.posicionVobstaculo1, 'marginLeft': this.state.posicionHobstaculo1}}/>
-              <img id='obstaculo2' src={bloque} className="App-obstaculo" alt="🧱" style={{'marginTop': this.state.posicionVobstaculo2, 'marginLeft': this.state.posicionHobstaculo2}}/>
-              <Cuadrilatero id={"bloquesHup"} orientation={"horizontal"} cantidadBloquesH={cantidadBloquesH} cantidadBloquesV={cantidadBloquesV} />
-              <Cuadrilatero id={"bloquesVleft"} orientation={"vertical"} cantidadBloquesH={cantidadBloquesH} cantidadBloquesV={cantidadBloquesV} />
-              <Cuadrilatero id={"bloquesVright"} orientation={"vertical"} cantidadBloquesH={cantidadBloquesH} cantidadBloquesV={cantidadBloquesV} />
-              <Cuadrilatero id={"bloquesHdown"} orientation={"horizontal"} cantidadBloquesH={cantidadBloquesH} cantidadBloquesV={cantidadBloquesV} />
+              <Cuadrilatero id={"cuadrilateroUp"} orientation={"horizontal"} cantidadBloquesH={cantidadBloquesH} cantidadBloquesV={cantidadBloquesV} blockWidth={blockWidth}/>
+              <Cuadrilatero id={"cuadrilateroLeft"} orientation={"vertical"} cantidadBloquesH={cantidadBloquesH} cantidadBloquesV={cantidadBloquesV} blockWidth={blockWidth}/>
+              <Cuadrilatero id={"cuadrilateroRight"} orientation={"vertical"} cantidadBloquesH={cantidadBloquesH} cantidadBloquesV={cantidadBloquesV} blockWidth={blockWidth} />
+              <Cuadrilatero id={"cuadrilateroDown"} orientation={"horizontal"} cantidadBloquesH={cantidadBloquesH} cantidadBloquesV={cantidadBloquesV} blockWidth={blockWidth} />
+              <img id='dog' src={dog} className="dog" alt="🐶" style={{'marginTop': this.state.posicionVdog, 'marginLeft': this.state.posicionHdog}}/>
+              <img id='gusano' src={gusano} className="gusano" alt="🪱" style={{'marginTop': this.state.posicionVgusano, 'marginLeft': this.state.posicionHgusano}}/>
+              <img id='manzana' src={manzana} className="fruta" alt="🍎" style={{'marginLeft': this.state.posicionHmanzana,'marginTop':this.state.posicionVmanzana,'display':this.state.displayManzana}}/>
+              <img id='banano' src={banano} className="fruta" alt="🍌" style={{'marginLeft': this.state.posicionHbanano,'marginTop':this.state.posicionVbanano,'display':this.state.displayBanano}}/>
+              <img id='mango' src={mango} className="fruta" alt="🥭" style={{'marginLeft': this.state.posicionHmango,'marginTop':this.state.posicionVmango,'display':this.state.displayMango}}/>
+              <img id='fresa' src={fresa} className="fruta" alt="🍓" style={{'marginLeft': this.state.posicionHfresa,'marginTop':this.state.posicionVfresa,'display':this.state.displayFresa}}/>
+              <img id='obstaculo1' src={bloque} className="obstaculo" alt="🧱" style={{'marginTop': this.state.posicionVobstaculo1, 'marginLeft': this.state.posicionHobstaculo1}}/>
+              <img id='obstaculo2' src={bloque} className="obstaculo" alt="🧱" style={{'marginTop': this.state.posicionVobstaculo2, 'marginLeft': this.state.posicionHobstaculo2}}/>    
             </div>
             <div id='controles'>
               <table className="tablaFlechas">
@@ -325,7 +315,24 @@ class App extends React.Component {
     e.preventDefault();
     this.setState(state => ({ estado: 'start' }));
     this.flechasTeclado();
-    this.setPositionXY(dispositiveOrientation,dispositive,cellphoneSize,tabletSize,cuadrilateroLimitsH,cuadrilateroLimitsV,dogH,dogV,gusanoH,gusanoV,manzanaH,manzanaV,bananoH,bananoV,mangoH,mangoV,fresaH,fresaV,obstaculo1H,obstaculo1V,obstaculo2H,obstaculo2V);
+    console.log("cellphoneSize: ",cellphoneSize)
+    this.setCuadrilatero();
+    this.setPositionXY();
+    this.setState(state => ({
+      posicionHdog: dogH,
+      posicionVdog: dogV,
+      posicionHgusano: gusanoH,
+      posicionVgusano: gusanoV,
+      posicionHmanzana: manzanaH,
+      posicionVmanzana: manzanaV, 
+      posicionHbanano: bananoH, 
+      posicionVbanano: bananoV, 
+      posicionHmango: mangoH, 
+      posicionVmango: mangoV, 
+      posicionHfresa: fresaH, 
+      posicionVfresa: fresaV,
+  }));
+
     const offset = this.getRandom();
     console.log("offset: ",offset);
   }                                                       //Funciones para sensar los botones                    
@@ -367,6 +374,203 @@ class App extends React.Component {
     }
   }
 
+  setCuadrilatero() {
+    console.log("setCuadrilatero INICIO" );
+    console.log("cellphoneSize: ", cellphoneSize );
+    windowWidth = document.documentElement.clientWidth;       // Tamaño horizontal de pantalla
+    windowHeight = document.documentElement.clientHeight;     // Tamaño vertical de pantalla
+    console.log("windowWidth setCuadrilatero(): ", windowWidth );
+    console.log("windowHeight setCuadrilatero(): ", windowHeight );
+    if (windowWidth > windowHeight) {          
+        dispositiveOrientation = 'Landscape';                          // Orientación del dispositivo horizontal
+        if (windowWidth <= cellphoneSize[1]) { dispositive = 'Cell' }  // Tipo de dispositivo Pc, Tablet o Celular
+        else if (cellphoneSize[1] < windowWidth && windowWidth <= tabletSize[1]) { dispositive = 'Tablet' }
+        else if (windowWidth > tabletSize[1]) { dispositive = 'Laptop' }
+    } else if ( windowHeight > windowWidth) { 
+        dispositiveOrientation = 'Portrait';                           // Orientación del dispositivo vertical
+        if (windowHeight <= cellphoneSize[1]) { dispositive = 'Cell' } // Tipo de dispositivo Pc, Tablet o Celular
+        else if (cellphoneSize[1] < windowHeight && windowHeight <= tabletSize[1]) { dispositive = 'Tablet' }
+        else if (windowHeight > tabletSize[1]) { dispositive = 'Laptop' }
+    }
+    console.log("dispositive,dispositiveOrientation: ",dispositive,dispositiveOrientation );
+
+    // blockWidth = Math.floor(widthBlockCss * windowWidth/100);        // Ancho de los bloques del cuadrilatero, misma medida en el css de .obstaculo
+    blockWidth = Math.floor(widthBlock * windowWidth/100);            // Ancho de los bloques del cuadrilatero, misma medida en el css de .obstaculo
+    blockHeight = Math.floor(widthBlock * windowHeight/100);          // Ancho de los bloques del cuadrilatero, misma medida en el css de .obstaculo
+    for(let i=1; i<Math.floor(windowWidth/blockWidth); i++){   // Cantidad de bloques por pared horizontal del cuadrilatero
+      cantidadBloquesH[i] = i;
+    }
+    for(let i=1; i<Math.floor(windowHeight/blockWidth); i++){  // Cantidad de bloques por pared vertical del cuadrilatero
+      cantidadBloquesV[i] = i;
+    }
+    console.log("windowWidth: ", windowWidth)
+    console.log("windowHeight: ", windowHeight)
+    console.log("blockWidth: ", blockWidth)
+    console.log("cantidadBloquesH: ", cantidadBloquesH.length)
+    console.log("cantidadBloquesV: ", cantidadBloquesV.length)
+    console.log("setCuadrilatero FIN" );
+  }
+
+  setPositionXY() {
+    console.log("setPositionXY INICIO" );
+    const limitLeft = document.getElementById('cuadrilatero').offsetLeft;  // Limites de movimiento dentro del cuadrilatero
+    const limitRight = document.getElementById('cuadrilatero').offsetWidth;
+    const limitUp = document.getElementById('cuadrilatero').offsetTop;
+    const limitDown = document.getElementById('cuadrilatero').offsetHeight;   
+    const limitWidth = document.getElementById('cuadrilatero').offsetWidth;   
+    const limitHeigth = document.getElementById('cuadrilatero').offsetHeight; 
+    const offsetH = document.getElementById('cuadrilateroLeft').offsetWidth;
+    const offsetV = document.getElementById('cuadrilateroDown').offsetHeight;
+
+    console.log("limitLeft setPositionXY(): ",limitLeft)
+    console.log("limitRight setPositionXY(): ",limitRight)
+    console.log("limitUp setPositionXY(): ",limitUp)
+    console.log("limitDown setPositionXY(): ",limitDown)
+    console.log("limitWidth setPositionXY(): ",limitWidth)
+    console.log("limitHeigth setPositionXY(): ",limitHeigth)
+    console.log("offsetH setPositionXY(): ",offsetH)
+    console.log("offsetV setPositionXY(): ",offsetV)
+
+    // Orientación Portrait para Celular | Tablet | Laptop
+    if(dispositive === 'Cell' && dispositiveOrientation === 'Portrait') {
+        // cuadrilateroLimitsH = [limitLeft + limitWidth, limitRight - limitWidth]; // Límite horizontal bordes cuadrilatero
+        cuadrilateroLimitsH = [limitLeft, limitRight - limitWidth]; // Límite horizontal bordes cuadrilatero
+        cuadrilateroLimitsV = [limitUp, limitDown - limitWidth];            // Límite vertical bordes cuadrilatero
+        dogH = (cuadrilateroLimitsH[1] + cuadrilateroLimitsH[0])/2;
+        dogH = (cuadrilateroLimitsH[1] + cuadrilateroLimitsH[0])/2;
+        dogV = cuadrilateroLimitsV[1];
+        gusanoH = (cuadrilateroLimitsH[1] + cuadrilateroLimitsH[0])/2;
+        gusanoV = 0;
+        manzanaH = cuadrilateroLimitsH[1] - 10;
+        manzanaV = cuadrilateroLimitsV[0] + 20;
+        bananoH = cuadrilateroLimitsH[0] + 20; 
+        bananoV = cuadrilateroLimitsV[0] + 20;
+        mangoH = cuadrilateroLimitsH[1] - 10;
+        mangoV = cuadrilateroLimitsV[1];
+        fresaH = cuadrilateroLimitsH[0] + 20; 
+        fresaV = cuadrilateroLimitsV[1];
+        obstaculo1H = cuadrilateroLimitsH[1] - 110;
+        obstaculo1V = cuadrilateroLimitsV[0] + 100;
+        obstaculo2H = cuadrilateroLimitsH[0] + 60; 
+        obstaculo2V = cuadrilateroLimitsV[1] - 80;
+    } else if(dispositive === 'Tablet' && dispositiveOrientation === 'Portrait') {
+        cuadrilateroLimitsH = [limitLeft + limitWidth, limitRight - limitWidth];   // Límite horizontal bordes cuadrilatero
+        cuadrilateroLimitsV = [limitUp, limitDown - limitWidth];            // Límite vertical bordes cuadrilatero
+        dogH = (cuadrilateroLimitsH[1] + cuadrilateroLimitsH[0])/2;
+        dogV = cuadrilateroLimitsV[1];
+        gusanoH = (cuadrilateroLimitsH[1] + cuadrilateroLimitsH[0])/2;
+        gusanoV = 0;
+        manzanaH = cuadrilateroLimitsH[1];
+        manzanaV = cuadrilateroLimitsV[0] + 40;
+        bananoH = cuadrilateroLimitsH[0] + 30; 
+        bananoV = cuadrilateroLimitsV[0] + 40;
+        mangoH = cuadrilateroLimitsH[1];
+        mangoV = cuadrilateroLimitsV[1];
+        fresaH = cuadrilateroLimitsH[0] + 30; 
+        fresaV = cuadrilateroLimitsV[1];
+        obstaculo1H = cuadrilateroLimitsH[1] - 110;
+        obstaculo1V = cuadrilateroLimitsV[0] + 100;
+        obstaculo2H = cuadrilateroLimitsH[0] + 60; 
+        obstaculo2V = cuadrilateroLimitsV[1] - 80;
+    } else if(dispositive === 'Laptop' && dispositiveOrientation === 'Portrait') {
+        cuadrilateroLimitsH = [limitLeft + limitWidth, limitRight - limitWidth];   // Límite horizontal bordes cuadrilatero
+        cuadrilateroLimitsV = [limitUp, limitDown - limitWidth];            // Límite vertical bordes cuadrilatero
+        dogH = (cuadrilateroLimitsH[1] + cuadrilateroLimitsH[0])/2;
+        dogV = cuadrilateroLimitsV[1];
+        gusanoH = (cuadrilateroLimitsH[1] + cuadrilateroLimitsH[0])/2;
+        gusanoV = 0;
+        manzanaH = cuadrilateroLimitsH[1] + 10;
+        manzanaV = cuadrilateroLimitsV[0] + 50;
+        bananoH = cuadrilateroLimitsH[0] + 30; 
+        bananoV = cuadrilateroLimitsV[0] + 50;
+        mangoH = cuadrilateroLimitsH[1] + 10;
+        mangoV = cuadrilateroLimitsV[1] + 10;
+        fresaH = cuadrilateroLimitsH[0] + 30; 
+        fresaV = cuadrilateroLimitsV[1] + 10;
+        obstaculo1H = cuadrilateroLimitsH[1] - 110;
+        obstaculo1V = cuadrilateroLimitsV[0] + 100;
+        obstaculo2H = cuadrilateroLimitsH[0] + 60; 
+        obstaculo2V = cuadrilateroLimitsV[1] - 80;
+
+    // Orientación Landscape para Celular | Tablet | Laptop
+    } else if(dispositive === 'Cell' && dispositiveOrientation === 'Landscape') {
+        cuadrilateroLimitsH = [-limitRight/2 + offsetH/2, limitRight/2 - offsetH];   // Límite horizontal bordes cuadrilatero
+        cuadrilateroLimitsV = [limitUp - offsetV/2, limitDown - 3/2*offsetV];            // Límite vertical bordes cuadrilatero
+        // const offset = this.getRandom();
+        // console.log("offset: ", offset)
+        
+        dogH = (cuadrilateroLimitsH[1] + cuadrilateroLimitsH[0])/2;
+        dogV = cuadrilateroLimitsV[1];
+        gusanoH = (cuadrilateroLimitsH[1] + cuadrilateroLimitsH[0])/2;
+        gusanoV = 0;
+        manzanaH = limitRight - offsetH;
+        manzanaV = limitUp + offsetV/2;
+        bananoH = limitRight - (limitRight - offsetH);
+        bananoV = limitUp + offsetV/2;
+        mangoH = limitRight - offsetH; 
+        mangoV = limitHeigth - 3/2 * offsetV;
+        fresaH = limitRight - (limitRight - offsetH); 
+        fresaV = limitHeigth - 3/2 * offsetV;
+        obstaculo1H = cuadrilateroLimitsH[1] - 110;
+        obstaculo1V = cuadrilateroLimitsV[0] + 100;
+        obstaculo2H = cuadrilateroLimitsH[0] + 60; 
+        obstaculo2V = cuadrilateroLimitsV[1] - 80;
+    } else if(dispositive === 'Tablet' && dispositiveOrientation === 'Landscape') {
+        cuadrilateroLimitsH = [-limitRight/2 + offsetH/2, limitRight/2 - offsetH];   // Límite horizontal bordes cuadrilatero
+        cuadrilateroLimitsV = [limitUp, limitDown - offsetH];            // Límite vertical bordes cuadrilatero        dogH = (cuadrilateroLimitsH[1] + cuadrilateroLimitsH[0])/2;
+        dogV = cuadrilateroLimitsV[1];
+        gusanoH = (cuadrilateroLimitsH[1] + cuadrilateroLimitsH[0])/2;
+        gusanoV = 0;
+        manzanaH = limitRight - offsetH; 
+        manzanaV = limitUp + offsetV/2;
+        bananoH = limitRight - (limitRight - offsetH);
+        bananoV = limitUp + offsetV/2;
+        mangoH = limitRight - offsetH; 
+        mangoV = limitHeigth - 3/2 * offsetV;
+        fresaH = limitRight - (limitRight - offsetH); 
+        fresaV = limitHeigth - 3/2 * offsetV;
+        obstaculo1H = cuadrilateroLimitsH[1] - 160;
+        obstaculo1V = cuadrilateroLimitsV[0] + 170;
+        obstaculo2H = cuadrilateroLimitsH[0] + 190; 
+        obstaculo2V = cuadrilateroLimitsV[1] - 180;
+     } 
+      else if(dispositive === 'Laptop' && dispositiveOrientation === 'Landscape') {
+        cuadrilateroLimitsH = [-limitRight/2 + offsetH/2, limitRight/2 - offsetH];   // Límite horizontal bordes cuadrilatero
+        cuadrilateroLimitsV = [limitUp, limitDown - offsetH];            // Límite vertical bordes cuadrilatero        dogH = (cuadrilateroLimitsH[1] + cuadrilateroLimitsH[0])/2;
+        dogV = cuadrilateroLimitsV[1];
+        gusanoH = (cuadrilateroLimitsH[1] + cuadrilateroLimitsH[0])/2;
+        gusanoV = 0; 
+        manzanaH = limitRight - offsetH; 
+        manzanaV = limitUp + offsetV/2;
+        bananoH = limitRight - (limitRight - offsetH);
+        bananoV = limitUp + offsetV/2;
+        mangoH = limitRight - offsetH; 
+        mangoV = limitHeigth - 3/2 * offsetV;
+        fresaH = limitRight - (limitRight - offsetH); 
+        fresaV = limitHeigth - 3/2 * offsetV;
+        obstaculo1H = 130; 
+        obstaculo1V = 135;
+        obstaculo2H = obstaculo1H - 330; 
+        obstaculo2V = obstaculo1V + 260;
+    }
+    this.setState(state => ({
+        anchoVentana:windowWidth,
+        posicionHdog: dogH,
+        posicionVdog: dogV,
+        posicionHgusano: gusanoH,
+        posicionVgusano: gusanoV,
+        posicionHmanzana: manzanaH,
+        posicionVmanzana: manzanaV, 
+        posicionHbanano: bananoH, 
+        posicionVbanano: bananoV, 
+        posicionHmango: mangoH, 
+        posicionVmango: mangoV, 
+        posicionHfresa: fresaH, 
+        posicionVfresa: fresaV,
+    }));
+    console.log("setPositionXY FIN" );
+  }
+
   checkGanador() {                                       // Funcon para revision del estado del juego
     if((this.state.posicionHmanzana - 40  < this.state.posicionHdog && this.state.posicionHdog < this.state.posicionHmanzana + 40) &&
        (this.state.posicionVmanzana - 40  < this.state.posicionVdog && this.state.posicionVdog < this.state.posicionVmanzana + 40)
@@ -374,8 +578,8 @@ class App extends React.Component {
       this.setState(state => ({
           frutas: this.state.frutas + 100,
           displayManzana:'none',
-          posicionHmanzana: document.getElementById('bloquesHup').offsetLeft,
-          posicionVmanzana: document.getElementById('bloquesHup').offsetTop,
+          posicionHmanzana: document.getElementById('cuadrilateroUp').offsetLeft,
+          posicionVmanzana: document.getElementById('cuadrilateroUp').offsetTop,
       }));
     }
     if((this.state.posicionHbanano - 40  < this.state.posicionHdog && this.state.posicionHdog < this.state.posicionHbanano + 40) &&
@@ -384,8 +588,8 @@ class App extends React.Component {
       this.setState(state => ({
         frutas: this.state.frutas + 100,
         displayBanano:'none',
-        posicionHbanano: document.getElementById('bloquesHup').offsetLeft,
-        posicionVbanano: document.getElementById('bloquesHup').offsetTop,
+        posicionHbanano: document.getElementById('cuadrilateroUp').offsetLeft,
+        posicionVbanano: document.getElementById('cuadrilateroUp').offsetTop,
       }));
     }
     if((this.state.posicionHmango - 40  < this.state.posicionHdog && this.state.posicionHdog < this.state.posicionHmango + 40) &&
@@ -394,8 +598,8 @@ class App extends React.Component {
       this.setState(state => ({
         frutas: this.state.frutas + 100,
         displayMango:'none',
-        posicionHmango: document.getElementById('bloquesHup').offsetLeft,
-        posicionVmango: document.getElementById('bloquesHup').offsetTop,
+        posicionHmango: document.getElementById('cuadrilateroUp').offsetLeft,
+        posicionVmango: document.getElementById('cuadrilateroUp').offsetTop,
       }));
     }
     if((this.state.posicionHfresa - 40  < this.state.posicionHdog && this.state.posicionHdog < this.state.posicionHfresa + 40) &&
@@ -404,8 +608,8 @@ class App extends React.Component {
       this.setState(state => ({
         frutas: this.state.frutas + 100,
         displayFresa:'none',
-        posicionHfresa: document.getElementById('bloquesHup').offsetLeft,
-        posicionVfresa: document.getElementById('bloquesHup').offsetTop,
+        posicionHfresa: document.getElementById('cuadrilateroUp').offsetLeft,
+        posicionVfresa: document.getElementById('cuadrilateroUp').offsetTop,
       }));
     }
 
@@ -504,7 +708,6 @@ class App extends React.Component {
     }));
   }
 }
-
 
 
 export default App;

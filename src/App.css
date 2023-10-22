@@ -86,27 +86,92 @@
   background-size: cover;
 }
 .App-body-content {
-  display: contents;
-  /* width: 20vw; */
+  display: flex;
+  width: 100vw;
 }
 
 .App-link {
   color: #500;
 }
-.instructions {
+.instructions {                        /* Instrucciones de la alerta de bienvenida*/
   font-size: inherit;
 }
 
-/*********** Cuadrlatero ***********/
+/*********** Cuadrilatero ***********/
+ol {
+  /* display: block;
+  list-style-type: decimal; */
+  margin-block-start: 0px;
+  margin-block-end: 0px;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 0px;
+}
 #cuadrilatero {
   position: absolute;
-  height: 80vh;
-  top: 6vh;
+  height: 90vh;
+  width: 98.5vw;
+  top: 9vh;
   left: 0vw;
+  border: 1px solid #fff;
+  padding: 0;
+}
+.cuadrilateroHorizontales {             /* Aplica a Cuadrilatero Up y Down*/
+  pointer-events: none;
+  position: absolute;
+  display: flex;
+  top: 0vh;
+  /* width: 100vw; */
+  user-select: none;                    /* Impide seleccionar la imagen con el mouse*/
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+#cuadrilateroUp {                       /* Aplica al borde superior del cuadrilatero */
+  /* top: 0vh;
+  left: 0vw; */
+}
+#cuadrilateroDown {                     /* Aplica al borde inferior del cuadrilatero */
+  top: 80vh;
+  /* left: 0vw; */
+}
+.cuadrilateroVerticales {               /* Aplica a Cuadrilatero Left y Rigth*/                  
+  position: absolute;
+  display: block;
+  top: 0vh;
+  width: 5vw;
+  line-height: 0;
+  user-select: none;                    /* Impide seleccionar la imagen con el mouse*/
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  z-index: 1;
+}
+#cuadrilateroLeft {
+  /* top: 0vh;
+  left:0vw; */
+}
+#cuadrilateroRight {
+  /* top: 0vh; */
+  left:93.5vw; 
+}
+.cuadrilateroBloque {
+  pointer-events: none;
+  position: relative;
+  width:5vw;
+  /* height: 5vw; */
+  user-select: none;                    /* Impide seleccionar la imagen con el mouse*/
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 }
 
+/*********** Figuras ***********/
 #dog {
-  height: 6.25vw;
+  height: 6.2vw;
   pointer-events: none;
   position: absolute;
   user-select: none;                    /* Impide seleccionar la imagen con el mouse*/
@@ -131,7 +196,7 @@
   margin-right: auto;
   z-index: 1;
 }
-.App-fruta {
+.fruta {
   height: 3.5vw;
   pointer-events: none;
   position: absolute;
@@ -147,118 +212,23 @@
   to { transform: rotate(360deg); }
 }
 @media (prefers-reduced-motion: no-preference) {
-  .App-fruta { animation: image-spin infinite 20s linear; }
+  .fruta { animation: image-spin infinite 20s linear; }
 } */
-
-.App-obstaculo {
+.obstaculo {
   pointer-events: none;
   position: absolute;
-  width: 8.25vw;
-  height: 8.25vh;
+  width: 6vw;
+  /* height: 6vh; */
   user-select: none;                    /* Impide seleccionar la imagen con el mouse*/
   -moz-user-select: none;
   -webkit-user-drag: none;
   -webkit-user-select: none;
   -ms-user-select: none;
 }
-.App-cuadrilateroH {
-  pointer-events: none;
-  position: absolute;
-  display: block;
-  top: 0vh;
-  width: 90vw;
-  user-select: none;                    /* Impide seleccionar la imagen con el mouse*/
-  -moz-user-select: none;
-  -webkit-user-drag: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-}
-#bloquesHup {
-  position: absolute;
-  top: 0vh;
-  left: -2vw;
-}
-#bloquesHdown {
-  position: absolute;
-  top: 75vh;
-  left: -2vw;
-}
-.App-cuadrilateroV {
-  position: absolute;
-  display: block;
-  top: 0vh;
-  width: 10vw;
-  user-select: none;                    /* Impide seleccionar la imagen con el mouse*/
-  -moz-user-select: none;
-  -webkit-user-drag: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-}
-#bloquesVleft { left: -5vw; }
-#bloquesVright { left:80vw; }
-
-.App-bloque {
-  pointer-events: none;
-  position: relative;
-  width:5vw;
-  user-select: none;                    /* Impide seleccionar la imagen con el mouse*/
-  -moz-user-select: none;
-  -webkit-user-drag: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-}
-.App-bloquesH {
-  pointer-events: none;
-  position: absolute;
-  width: 38vw;
-}
-.App-bloquesV {
-  pointer-events: none;
-  position: absolute;
-  height: 43vh;
-}
-/* #bloquesVright1 {
-  margin-top: 0vh;
-  margin-left: 32vw;
-}
-#bloquesVright2 {
-  margin-top: 43vh;
-  margin-left: 32vw;
-}
-#bloquesVleft1 {
-  margin-top: 0vh;
-  margin-left: -39vw;
-}
-#bloquesVleft2 {
-  margin-top: 43vh;
-  margin-left: -39vw;
-} */
-/* #bloquesHup {
-  margin-top: 0vh;
-  margin-left: 0vw;
-  position: relative;
-    top: -2vh;
-} */
-/* #bloquesHup1 {
-  margin-top: 0vh;
-  margin-left: 0vw;
-}
-#bloquesHup2 {
-  margin-top: 0vh;
-  margin-left: -37.75vw;
-}
-#bloquesHdown1 {
-  margin-top: 79.5vh;
-  margin-left: 0vw;
-}
-#bloquesHdown2 {
-  margin-top: 79.5vh;
-  margin-left: -37.75vw;
-} */
 
 
 /*********** Controles ***********/
-#controles {                       /*Tiempo, frutas restantes */
+#controles {                            /*Tiempo, frutas restantes */
   position: absolute;
   top: 20vh;
   right: 0;
