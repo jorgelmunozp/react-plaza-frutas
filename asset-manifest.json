@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/react-plaza-frutas/static/css/main.b695ff8b.css",
-    "main.js": "/react-plaza-frutas/static/js/main.f9e1f96e.js",
+    "main.css": "/react-plaza-frutas/static/css/main.82d5b93b.css",
+    "main.js": "/react-plaza-frutas/static/js/main.98a10b68.js",
     "static/js/787.884cd976.chunk.js": "/react-plaza-frutas/static/js/787.884cd976.chunk.js",
     "static/media/bloque.svg": "/react-plaza-frutas/static/media/bloque.d0a744bf7c41ba5be3ee8069c535024d.svg",
     "static/media/dog.png": "/react-plaza-frutas/static/media/dog.b016b8c036e234297ec6.png",
@@ -15,12 +15,12 @@
     "static/media/LDFComicSans.ttf": "/react-plaza-frutas/static/media/LDFComicSans.acf4b7e829f1fcdc78d4.ttf",
     "static/media/banano.svg": "/react-plaza-frutas/static/media/banano.b6bfcd472bfe18e7ee90692ad3c8f148.svg",
     "index.html": "/react-plaza-frutas/index.html",
-    "main.b695ff8b.css.map": "/react-plaza-frutas/static/css/main.b695ff8b.css.map",
-    "main.f9e1f96e.js.map": "/react-plaza-frutas/static/js/main.f9e1f96e.js.map",
+    "main.82d5b93b.css.map": "/react-plaza-frutas/static/css/main.82d5b93b.css.map",
+    "main.98a10b68.js.map": "/react-plaza-frutas/static/js/main.98a10b68.js.map",
     "787.884cd976.chunk.js.map": "/react-plaza-frutas/static/js/787.884cd976.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b695ff8b.css",
-    "static/js/main.f9e1f96e.js"
+    "static/css/main.82d5b93b.css",
+    "static/js/main.98a10b68.js"
   ]
 }
