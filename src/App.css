@@ -5,7 +5,7 @@
 
 .App {
   text-align: center;
-  font: 'Century Gothic', sans-serif;                        /*** Letra ***/
+  font-family: "Comic Sans MS", "Comic Sans", cursive;     /*** Letra ***/
 }
 
 /****************************** HEADER ******************************/
@@ -20,52 +20,34 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: 2.5vmin; 
+  font-size: 2.5vmin;
   text-shadow: 2px 2px 2px rgba(0, 0, 0, 1);
-  width: 100%; 
+  width: 100%;
+  user-select: none;                            /* No permite seleccionar contenido */
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 }
 .App-slogan {
   position: absolute;
   left: 5vw;
-  top: -1.5vh;
+  top: 0;
 }
 .App-logo {
-  height: 3vh;
-  user-select: none; 
-  -moz-user-select: none;
-  -webkit-user-drag: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
+  height: 3vmin;
 }
 .App-title {
-  margin-left: 1vw;
-  user-select: none; 
-  -moz-user-select: none;
-  -webkit-user-drag: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
+
 }
-.tiempo {
-  position: absolute;
-  top: -1.5vh;
-  user-select: none; 
-  -moz-user-select: none;
-  -webkit-user-drag: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-}
+
 .tablaTablero {
   position: absolute;
   right: 5vw;
-  top: -1.5vh;
-  user-select: none; 
-  -moz-user-select: none;
-  -webkit-user-drag: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
+  top: 0vh;
 }
 .vidas {
-  height: 3vh;
+  height: 3vmin;
 }
 
 /******************************* BODY *******************************/
@@ -146,13 +128,13 @@ ol {
   -ms-user-select: none;
   z-index: 1;
 }
-/* @keyframes image-spin {
+@keyframes image-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
 @media (prefers-reduced-motion: no-preference) {
   .fruta { animation: image-spin infinite 20s linear; }
-} */
+}
 .obstaculo {
   pointer-events: none;
   position: absolute;
@@ -168,18 +150,23 @@ ol {
 /*********** Controles ***********/
 #controles {                            /*Tiempo, frutas restantes */
   position: absolute;
-  top: 60vh;
-  /* right: 0; */
-  left: 10vw;
+  display: flex;
+  /* top: 60vh; */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
 }
 .tablaFlechas {                          /*Botones de flechas */
-  position: absolute;
   font-size: 5vmax;
   background-color: rgb(85, 0, 0, 0.2);
   border: 1px solid rgb(255, 255, 255, 0.4);
   box-shadow: 2px 2px 2px rgb(255, 255, 255, 0.2);
   border-radius: 30vmax;
-  z-index: 1;
 }
 .botonStart {
   padding: 3vmax;
@@ -197,6 +184,7 @@ ol {
   color:var(--button-color);
   cursor: pointer;
 }
+
 .botonReset {
   color:var(--button-color);
   background-color: rgb(85, 0, 0, 0.2);

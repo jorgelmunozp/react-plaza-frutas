@@ -208,20 +208,31 @@ class App extends React.Component {
             <table className='App-slogan'>
               <tbody>
                 <tr>
-                  <td><img id='logo' src={logo} className="App-logo" alt="logo" /></td>
-                  <td><h2 className="App-title">Plaza de Frutas</h2></td>
+                  <td><img id='logo' src={logo} className="App-logo" alt="logo" />&nbsp;</td>
+                  <td><p className="App-title">Plaza de Frutas</p></td>
                 </tr>
               </tbody>
             </table>
-            <h2 className='tiempo'><FontAwesomeIcon icon={faClock} /> {this.state.segundos}</h2>
+            {/* <table className='tablaTiempo'>
+              <tbody>
+                <tr>
+                  <td><FontAwesomeIcon icon={faClock} />&nbsp;</td>
+                  <td><p className='tiempo'> {this.state.segundos}</p></td>
+                </tr>
+              </tbody>
+            </table>              */}
+            
             <table className='tablaTablero'>
               <tbody>
                 <tr>
                   <td><img className='vidas' src={logo} alt="🐶" />&nbsp;</td>
-                  <td><h2>{this.state.vidas}</h2></td>
-                  <td>&nbsp;&nbsp;&nbsp;</td>
-                  <td><h2><FontAwesomeIcon icon={faLemon} />&nbsp;</h2></td>
-                  <td><h2>{this.state.frutas}</h2></td>
+                  <td>{this.state.vidas}</td>
+                  <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                  <td><FontAwesomeIcon icon={faLemon} />&nbsp;</td>
+                  <td>{this.state.frutas}</td>
+                  <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                  <td><FontAwesomeIcon icon={faClock} />&nbsp;</td>
+                  <td><p> {this.state.segundos}</p></td>
                 </tr>
               </tbody>
             </table> 
@@ -332,7 +343,7 @@ class App extends React.Component {
 
     deviceWidth = document.documentElement.clientWidth;       // Tamaño horizontal de pantalla
     deviceHeight = document.documentElement.clientHeight;     // Tamaño vertical de pantalla
-    deviceOrientation = window.screen.orientation.type;;     // Tamaño vertical de pantalla
+    deviceOrientation = window.screen.orientation.type;       // Tamaño vertical de pantalla
     this.setState(state => ({
       anchoVentana:deviceWidth,
       altoVentana:deviceHeight
@@ -341,12 +352,6 @@ class App extends React.Component {
     console.log("deviceWidth getOrientation(): ", deviceWidth );
     console.log("deviceHeight getOrientation(): ", deviceHeight );
     console.log("deviceOrientation getOrientation(): ", deviceOrientation );
-    if (deviceWidth > deviceHeight) {          
-        deviceOrientation = 'Landscape';                          // Orientación del dispositivo horizontal
-    } else if ( deviceHeight > deviceWidth) { 
-        deviceOrientation = 'Portrait';                           // Orientación del dispositivo vertical
-    }
-    console.log("deviceOrientation: ",deviceOrientation );
   }
 
   setPositionXY() {
