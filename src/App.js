@@ -228,7 +228,6 @@ class App extends React.Component {
           </div>
         </header>
         <body className="App-body">
-          <div className="App-body-content">
             <div id="cuadrilatero">
               <img id='dog' src={dog} className="dog" alt="🐶" style={{'marginTop': this.state.posicionVdog, 'marginLeft': this.state.posicionHdog}}/>
               <img id='gusano' src={gusano} className="gusano" alt="🪱" style={{'marginTop': this.state.posicionVgusano, 'marginLeft': this.state.posicionHgusano}}/>
@@ -262,7 +261,6 @@ class App extends React.Component {
               </table>
               {/* <h3>Ranking</h3>
               <ListaRanking items={this.state.items} tiempo={tiempo}/> */}
-            </div>
           </div>
         </body>
       </div>
