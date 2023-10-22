@@ -10,7 +10,6 @@ import bloque from './assets/bloque.svg';
 import './App.css';
 
 import React from 'react';
-import { Cuadrilatero } from './components/cuadrilatero/Cuadrilatero';
 import { ListaRanking } from './components/ranking/ListaRanking';
 
 import { faCaretUp, faCaretDown, faCaretLeft, faCaretRight, faClock, faPlayCircle, faFrown, faRedoAlt, faSmile, faMeh, faLemon} from "@fortawesome/fontawesome-free-solid";
@@ -21,89 +20,55 @@ const dogname = "Doggy";
 const tiempo = 20;
 const vidas = 3;
 const cantidadfrutas = 4;
-let cuadrilateroLimitsH,cuadrilateroLimitsV;                               
-let dogH,dogV;
-let gusanoH,gusanoV;
-let manzanaH,manzanaV; 
-let bananoH,bananoV; 
-let mangoH,mangoV; 
-let fresaH,fresaV;
-let obstaculo1H,obstaculo1V;
-let obstaculo2H,obstaculo2V;
 
 // Orientación y tipo de dispositivo: Laptop | Tablet | Celular
 const cellphoneSize = [380,720];                                     // Dimensiones ancho por alto de los dispositivos
 const tabletSize = [720,1280];
-let dispositive;
-let dispositiveOrientation;
-let windowWidth = document.documentElement.clientWidth;         // Tamaño horizontal de pantalla
-let windowHeight = document.documentElement.clientHeight;       // Tamaño vertical de pantalla
-const widthBlock =5;
-let blockHeight = Math.floor(widthBlock * windowWidth/100);             // Ancho de los bloques del cuadrilatero, misma medida en el css de .obstaculo
-let blockWidth = Math.floor(widthBlock *windowHeight/100);            // Ancho de los bloques del cuadrilatero, misma medida en el css de .obstaculo
-let cantidadBloquesH = [];
-let cantidadBloquesV = [];
-for(let i=1; i<Math.floor(windowWidth/blockWidth); i++){       // Cantidad de bloques por pared horizontal del cuadrilatero
-  cantidadBloquesH[i] = i;
-}
-for(let i=1; i<Math.floor(windowHeight/blockWidth); i++){      // Cantidad de bloques por pared vertical del cuadrilatero
-  cantidadBloquesV[i] = i;
-}
-console.log("windowWidth: ", windowWidth)
-console.log("windowHeight: ", windowHeight)
-console.log("blockWidth: ", blockWidth)
-console.log("cantidadBloquesH: ", cantidadBloquesH.length)
-console.log("cantidadBloquesV: ", cantidadBloquesV.length)
+let device;
+let deviceOrientation = window.screen.orientation.type;       // Orientaciób del dispositivo Landscape o Portrait
+let deviceWidth = document.documentElement.clientWidth;       // Tamaño horizontal de pantalla
+let deviceHeight = document.documentElement.clientHeight;     // Tamaño vertical de pantalla
+console.log("Device orientation: ", deviceOrientation)
+console.log("deviceWidth: ", deviceWidth)
+console.log("deviceHeight: ", deviceHeight)
+// if(deviceOrientation === null) {
+//   if (deviceWidth >= deviceHeight) {          
+//     deviceOrientation = 'Landscape';                       // Orientación del dispositivo horizontal
+//   } else if (deviceHeight > deviceWidth) { 
+//     deviceOrientation = 'Portrait';                        // Orientación del dispositivo vertical
+//   }
+// }
 
-if (windowWidth >= windowHeight) {          
-    dispositiveOrientation = 'Landscape';                       // Orientación del dispositivo horizontal
-    if (windowWidth <= cellphoneSize[1]) { dispositive = 'Cell' }    // Tipo de dispositivo Pc, Tablet o Celular
-    else if (cellphoneSize[1] < windowWidth && windowWidth <= tabletSize[1]) { dispositive = 'Tablet' }
-    else if (windowWidth > tabletSize[1]) { dispositive = 'Laptop' }
-} else if ( windowHeight > windowWidth) { 
-    dispositiveOrientation = 'Portrait';                        // Orientación del dispositivo vertical
-    if (windowHeight <= cellphoneSize[1]) { dispositive = 'Cell' }   // Tipo de dispositivo Pc, Tablet o Celular
-    else if (cellphoneSize[1] < windowHeight && windowHeight <= tabletSize[1]) { dispositive = 'Tablet' }
-    else if (windowHeight > tabletSize[1]) { dispositive = 'Laptop' }
+if (deviceWidth >= deviceHeight) {          
+  if (deviceWidth <= cellphoneSize[1]) { device = 'cellphone' }   // Tipo de dispositivo Pc, Tablet o Celular
+  else if (cellphoneSize[1] < deviceWidth && deviceWidth <= tabletSize[1]) { device = 'tablet' }
+  else if (deviceWidth > tabletSize[1]) { device = 'laptop' }
+} else if ( deviceHeight > deviceWidth) { 
+  if (deviceHeight <= cellphoneSize[1]) { device = 'cellphone' }  // Tipo de dispositivo Pc, Tablet o Celular
+  else if (cellphoneSize[1] < deviceHeight && deviceHeight <= tabletSize[1]) { device = 'tablet' }
+  else if (deviceHeight > tabletSize[1]) { device = 'laptop' }
 }
-console.log(dispositive,dispositiveOrientation)
+console.log(device,deviceOrientation)
 
-// Posicionamiento inicial de imagenes en el cuadrilatero
-if(dispositiveOrientation === 'Portrait') {
-    dogH = windowWidth/2 - windowWidth*50/100;
-    dogV = windowHeight*70/100;
-    gusanoH = windowWidth/2 - windowWidth*50/100;
-    gusanoV = windowHeight*10/100;
-    manzanaH = windowWidth/2 - windowWidth*11/100;
-    manzanaV = windowHeight*38/100;
-    bananoH = windowWidth/2 - windowWidth*8/100;
-    bananoV = windowHeight*38/100;
-    mangoH = windowWidth/2 + windowWidth*9/100;
-    mangoV = windowHeight*38/100;
-    fresaH = windowWidth/2 + windowWidth*13/100;
-    fresaV = windowHeight*38/100;
-    obstaculo1H = windowWidth/2 - windowWidth*40/100;
-    obstaculo1V = windowHeight*40/100;
-    obstaculo2H = windowWidth/2 - windowWidth*60/100;
-    obstaculo2V = windowHeight*40/100;
-} else if(dispositiveOrientation === 'Landscape') {
-    dogH = windowWidth/2 - windowWidth*50/100;
-    dogV = windowHeight*70/100;
-    gusanoH = windowWidth/2 - windowWidth*50/100;
-    gusanoV = windowHeight*10/100;
-    manzanaH = windowWidth/2 - windowWidth*10/100;
-    manzanaV = windowHeight*35/100;
-    bananoH = windowWidth/2 - windowWidth*7/100;
-    bananoV = windowHeight*35/100;
-    mangoH = windowWidth/2 + windowWidth*10/100;
-    mangoV = windowHeight*35/100;
-    fresaH = windowWidth/2 + windowWidth*13/100;
-    fresaV = windowHeight*35/100;
-    obstaculo1H = windowWidth/2 - windowWidth*60/100;
-    obstaculo1V = windowHeight*40/100;
-    obstaculo2H = windowWidth/2 - windowWidth*40/100;
-    obstaculo2V = windowHeight*40/100;
-} 
+let dogH = deviceWidth*1/100;
+let dogV = deviceHeight*70/100;
+let gusanoH = deviceWidth*1/100;
+let gusanoV = deviceHeight*5/100;
+let manzanaH = deviceWidth*15/100;
+let manzanaV = dogV/2;
+let bananoH = deviceWidth*35/100;
+let bananoV = dogV/2;
+let mangoH = deviceWidth*55/100;
+let mangoV = dogV/2;
+let fresaH = deviceWidth*75/100;
+let fresaV = dogV/2;
+let obstaculo1H = deviceWidth*-20/100;
+let obstaculo1V = deviceHeight*50/100;
+let obstaculo2H = deviceWidth*20/100;
+let obstaculo2V = deviceHeight*50/100;
+let cuadrilateroLimitsH;
+let cuadrilateroLimitsV;
+
 
 // Alerta de bienvenida
 // swalert(                                      
@@ -122,7 +87,36 @@ if(dispositiveOrientation === 'Portrait') {
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { segundos:tiempo, nombre:'', vidas:vidas, frutas:0, items: [], anchoVentana:windowWidth, posicionHdog:dogH, posicionVdog:dogV, posicionHgusano:gusanoH, posicionVgusano:gusanoV, posicionHmanzana:manzanaH, posicionVmanzana:manzanaV, posicionHbanano:bananoH, posicionVbanano:bananoV, posicionHmango:mangoH, posicionVmango:mangoV, posicionHfresa:fresaH, posicionVfresa:fresaV, posicionHobstaculo1:obstaculo1H, posicionVobstaculo1:obstaculo1V, posicionHobstaculo2:obstaculo2H, posicionVobstaculo2:obstaculo2V, estado:'', displayManzana:'block', displayBanano:'block', displayMango:'block', displayFresa:'block'  };
+    this.state = { 
+      segundos:tiempo,
+      nombre:'',
+      vidas:vidas,
+      frutas:0,
+      items: [],
+      anchoVentana:deviceWidth,
+      altoVentana:deviceHeight,
+      posicionHdog:dogH,
+      posicionVdog:dogV,
+      posicionHgusano:gusanoH,
+      posicionVgusano:gusanoV,
+      posicionHmanzana:manzanaH,
+      posicionVmanzana:manzanaV,
+      posicionHbanano:bananoH, 
+      posicionVbanano:bananoV, 
+      posicionHmango:mangoH, 
+      posicionVmango:mangoV, 
+      posicionHfresa:fresaH, 
+      posicionVfresa:fresaV, 
+      posicionHobstaculo1:obstaculo1H, 
+      posicionVobstaculo1:obstaculo1V, 
+      posicionHobstaculo2:obstaculo2H, 
+      posicionVobstaculo2:obstaculo2V, 
+      estado:'', 
+      displayManzana:'block', 
+      displayBanano:'block', 
+      displayMango:'block',
+      displayFresa:'block'  
+    };
     this.campoNombre = this.campoNombre.bind(this);         // Funciones
     this.botonStart = this.botonStart.bind(this);
     this.flechasTeclado = this.flechasTeclado.bind(this);
@@ -132,25 +126,17 @@ class App extends React.Component {
     this.botonRight = this.botonRight.bind(this);
     this.botonReset = this.botonReset.bind(this);
   }
-
+  
   /********************* THICKS (Métodos repetitivos) *********************/
-  // tickGetDispositive() {
-  //   window.addEventListener("orientationchange", ()=> {
-  //     this.setCuadrilatero();
-  //     this.setPositionXY();
-  //   }); 
+  // tickGetDevice() {
+
   // }
 
   tick() {
-    window.addEventListener("orientationchange", ()=> {   // Detecta si hay cambio de orientacion
-      this.setCuadrilatero();
-      this.setPositionXY();
-    }); 
-
     if(this.state.estado === 'start'){     // Se activa cuando se presiona el boton start
       this.setState(state => ({
         segundos: state.segundos - 1,
-        nombre: this.state.nombre,
+        nombre: this.state.nombre
       }));
     }
     if(this.state.segundos === 0 && this.state.frutas < cantidadfrutas * 100 && this.state.vidas > 0){     //Calcula tiempo, cantidad de frutas y si tiene vidas el jugador
@@ -172,38 +158,38 @@ class App extends React.Component {
       if(this.state.posicionHdog > this.state.posicionHgusano && this.state.posicionVdog > this.state.posicionVgusano){           //Hace que el Gusano persiga a dog
         this.setState(state => ({
           posicionHgusano: this.state.posicionHgusano + 10,
-          posicionVgusano: this.state.posicionVgusano + 10,
+          posicionVgusano: this.state.posicionVgusano + 10
         }));
       } else if(this.state.posicionHdog > this.state.posicionHgusano && this.state.posicionVdog < this.state.posicionVgusano){           
         this.setState(state => ({
           posicionHgusano: this.state.posicionHgusano + 10,
-          posicionVgusano: this.state.posicionVgusano - 10,
+          posicionVgusano: this.state.posicionVgusano - 10
         }));
       } else if(this.state.posicionHdog === this.state.posicionHgusano && this.state.posicionVdog > this.state.posicionVgusano){     
         this.setState(state => ({  
-          posicionVgusano: this.state.posicionVgusano + 10,
+          posicionVgusano: this.state.posicionVgusano + 10
         }));
       } else if(this.state.posicionHdog === this.state.posicionHgusano && this.state.posicionVdog < this.state.posicionVgusano){  
         this.setState(state => ({
-          posicionVgusano: this.state.posicionVgusano - 10,
+          posicionVgusano: this.state.posicionVgusano - 10
         }));
       } else if(this.state.posicionHdog < this.state.posicionHgusano && this.state.posicionVdog > this.state.posicionVgusano){
         this.setState(state => ({
           posicionHgusano: this.state.posicionHgusano - 10,
-          posicionVgusano: this.state.posicionVgusano + 10,
+          posicionVgusano: this.state.posicionVgusano + 10
         }));
       } else if(this.state.posicionHdog < this.state.posicionHgusano && this.state.posicionVdog < this.state.posicionVgusano){
         this.setState(state => ({
           posicionHgusano: this.state.posicionHgusano - 10,
-          posicionVgusano: this.state.posicionVgusano - 10,
+          posicionVgusano: this.state.posicionVgusano - 10
         }));
       } else if(this.state.posicionHdog > this.state.posicionHgusano && this.state.posicionVdog === this.state.posicionVgusano){           //Hace que el Gusano persiga a dog
         this.setState(state => ({
-          posicionHgusano: this.state.posicionHgusano + 10,
+          posicionHgusano: this.state.posicionHgusano + 10
         }));
       } else if(this.state.posicionHdog < this.state.posicionHgusano && this.state.posicionVdog === this.state.posicionVgusano){           //Hace que el Gusano persiga a dog
         this.setState(state => ({
-          posicionHgusano: this.state.posicionHgusano - 10,
+          posicionHgusano: this.state.posicionHgusano - 10
         }));
       } else if(this.state.posicionHdog === this.state.posicionHgusano && this.state.posicionVdog === this.state.posicionVgusano){
           this.vidas();
@@ -214,15 +200,12 @@ class App extends React.Component {
 
   /*********** THICKS CONTROL (Maneja intervalos de tiempo de las thicks ************/
   componentDidMount() {
-    // this.intervalOrientation = setInterval(() => this.tickGetDispositive(), 1000);
-    // this.intervalPosXY = setInterval(() => this.setPositionXY(), 1000);
-    // this.intervalCuadrilatero = setInterval(() => this.setCuadrilatero(), 1000);
+    // this.intervalOrientation = setInterval(() => this.tickGetDevice(), 500);
     this.interval = setInterval(() => this.tick(), 1000);
     this.intervalGusano = setInterval(() => this.tickGusano(), 200);
   }
   componentWillUnmount() {
     // clearInterval(this.intervalOrientation);
-    // clearInterval(this.intervalPosXY);
     clearInterval(this.interval);
     clearInterval(this.intervalGusano);
   }
@@ -236,7 +219,7 @@ class App extends React.Component {
               <tbody>
                 <tr>
                   <td><img id='logo' src={logo} className="App-logo" alt="logo" /></td>
-                  <td><h2 className="App-tittle">Plaza de Frutas</h2></td>
+                  <td><h2 className="App-title">Plaza de Frutas {this.state.anchoVentana}</h2></td>
                 </tr>
               </tbody>
             </table>
@@ -257,10 +240,6 @@ class App extends React.Component {
         <body className="App-body">
           <div className="App-body-content">
             <div id="cuadrilatero">
-              <Cuadrilatero id={"cuadrilateroUp"} orientation={"horizontal"} cantidadBloquesH={cantidadBloquesH} cantidadBloquesV={cantidadBloquesV} blockWidth={blockWidth}/>
-              <Cuadrilatero id={"cuadrilateroLeft"} orientation={"vertical"} cantidadBloquesH={cantidadBloquesH} cantidadBloquesV={cantidadBloquesV} blockWidth={blockWidth}/>
-              <Cuadrilatero id={"cuadrilateroRight"} orientation={"vertical"} cantidadBloquesH={cantidadBloquesH} cantidadBloquesV={cantidadBloquesV} blockWidth={blockWidth} />
-              <Cuadrilatero id={"cuadrilateroDown"} orientation={"horizontal"} cantidadBloquesH={cantidadBloquesH} cantidadBloquesV={cantidadBloquesV} blockWidth={blockWidth} />
               <img id='dog' src={dog} className="dog" alt="🐶" style={{'marginTop': this.state.posicionVdog, 'marginLeft': this.state.posicionHdog}}/>
               <img id='gusano' src={gusano} className="gusano" alt="🪱" style={{'marginTop': this.state.posicionVgusano, 'marginLeft': this.state.posicionHgusano}}/>
               <img id='manzana' src={manzana} className="fruta" alt="🍎" style={{'marginLeft': this.state.posicionHmanzana,'marginTop':this.state.posicionVmanzana,'display':this.state.displayManzana}}/>
@@ -315,24 +294,9 @@ class App extends React.Component {
     e.preventDefault();
     this.setState(state => ({ estado: 'start' }));
     this.flechasTeclado();
-    console.log("cellphoneSize: ",cellphoneSize)
-    this.setCuadrilatero();
+    console.log("Cellphone dimensions: ",cellphoneSize)
+    this.getOrientation();
     this.setPositionXY();
-    this.setState(state => ({
-      posicionHdog: dogH,
-      posicionVdog: dogV,
-      posicionHgusano: gusanoH,
-      posicionVgusano: gusanoV,
-      posicionHmanzana: manzanaH,
-      posicionVmanzana: manzanaV, 
-      posicionHbanano: bananoH, 
-      posicionVbanano: bananoV, 
-      posicionHmango: mangoH, 
-      posicionVmango: mangoV, 
-      posicionHfresa: fresaH, 
-      posicionVfresa: fresaV,
-  }));
-
     const offset = this.getRandom();
     console.log("offset: ",offset);
   }                                                       //Funciones para sensar los botones                    
@@ -374,41 +338,27 @@ class App extends React.Component {
     }
   }
 
-  setCuadrilatero() {
-    console.log("setCuadrilatero INICIO" );
+  getOrientation() {
+    console.log("getOrientation INICIO" );
     console.log("cellphoneSize: ", cellphoneSize );
-    windowWidth = document.documentElement.clientWidth;       // Tamaño horizontal de pantalla
-    windowHeight = document.documentElement.clientHeight;     // Tamaño vertical de pantalla
-    console.log("windowWidth setCuadrilatero(): ", windowWidth );
-    console.log("windowHeight setCuadrilatero(): ", windowHeight );
-    if (windowWidth > windowHeight) {          
-        dispositiveOrientation = 'Landscape';                          // Orientación del dispositivo horizontal
-        if (windowWidth <= cellphoneSize[1]) { dispositive = 'Cell' }  // Tipo de dispositivo Pc, Tablet o Celular
-        else if (cellphoneSize[1] < windowWidth && windowWidth <= tabletSize[1]) { dispositive = 'Tablet' }
-        else if (windowWidth > tabletSize[1]) { dispositive = 'Laptop' }
-    } else if ( windowHeight > windowWidth) { 
-        dispositiveOrientation = 'Portrait';                           // Orientación del dispositivo vertical
-        if (windowHeight <= cellphoneSize[1]) { dispositive = 'Cell' } // Tipo de dispositivo Pc, Tablet o Celular
-        else if (cellphoneSize[1] < windowHeight && windowHeight <= tabletSize[1]) { dispositive = 'Tablet' }
-        else if (windowHeight > tabletSize[1]) { dispositive = 'Laptop' }
-    }
-    console.log("dispositive,dispositiveOrientation: ",dispositive,dispositiveOrientation );
 
-    // blockWidth = Math.floor(widthBlockCss * windowWidth/100);        // Ancho de los bloques del cuadrilatero, misma medida en el css de .obstaculo
-    blockHeight = Math.floor(widthBlock * windowWidth/100);            // Ancho de los bloques del cuadrilatero, misma medida en el css de .obstaculo
-    blockWidth = Math.floor(widthBlock * windowHeight/100);          // Ancho de los bloques del cuadrilatero, misma medida en el css de .obstaculo
-    for(let i=1; i<Math.floor(windowWidth/blockWidth); i++){   // Cantidad de bloques por pared horizontal del cuadrilatero
-      cantidadBloquesH[i] = i;
+    deviceWidth = document.documentElement.clientWidth;       // Tamaño horizontal de pantalla
+    deviceHeight = document.documentElement.clientHeight;     // Tamaño vertical de pantalla
+    deviceOrientation = window.screen.orientation.type;;     // Tamaño vertical de pantalla
+    this.setState(state => ({
+      anchoVentana:deviceWidth,
+      altoVentana:deviceHeight
+    }));
+    console.log("this.state.anchoVentana getOrientation(): ", this.state.anchoVentana );
+    console.log("deviceWidth getOrientation(): ", deviceWidth );
+    console.log("deviceHeight getOrientation(): ", deviceHeight );
+    console.log("deviceOrientation getOrientation(): ", deviceOrientation );
+    if (deviceWidth > deviceHeight) {          
+        deviceOrientation = 'Landscape';                          // Orientación del dispositivo horizontal
+    } else if ( deviceHeight > deviceWidth) { 
+        deviceOrientation = 'Portrait';                           // Orientación del dispositivo vertical
     }
-    for(let i=1; i<Math.floor(windowHeight/blockWidth); i++){  // Cantidad de bloques por pared vertical del cuadrilatero
-      cantidadBloquesV[i] = i;
-    }
-    console.log("windowWidth: ", windowWidth)
-    console.log("windowHeight: ", windowHeight)
-    console.log("blockWidth: ", blockWidth)
-    console.log("cantidadBloquesH: ", cantidadBloquesH.length)
-    console.log("cantidadBloquesV: ", cantidadBloquesV.length)
-    console.log("setCuadrilatero FIN" );
+    console.log("deviceOrientation: ",deviceOrientation );
   }
 
   setPositionXY() {
@@ -419,8 +369,8 @@ class App extends React.Component {
     const limitDown = document.getElementById('cuadrilatero').offsetHeight;   
     const limitWidth = document.getElementById('cuadrilatero').offsetWidth;   
     const limitHeigth = document.getElementById('cuadrilatero').offsetHeight; 
-    const offsetH = document.getElementById('cuadrilateroLeft').offsetWidth;
-    const offsetV = document.getElementById('cuadrilateroDown').offsetHeight;
+    const offsetH = document.getElementById('cuadrilatero').offsetWidth;
+    const offsetV = document.getElementById('cuadrilatero').offsetHeight;
 
     console.log("limitLeft setPositionXY(): ",limitLeft)
     console.log("limitRight setPositionXY(): ",limitRight)
@@ -432,8 +382,8 @@ class App extends React.Component {
     console.log("offsetV setPositionXY(): ",offsetV)
 
     // Orientación Portrait para Celular | Tablet | Laptop
-    if(dispositive === 'Cell' && dispositiveOrientation === 'Portrait') {
-        // cuadrilateroLimitsH = [limitLeft + limitWidth, limitRight - limitWidth]; // Límite horizontal bordes cuadrilatero
+    if(deviceOrientation === 'portrait-primary') {
+      if(device === 'cellphone') {
         cuadrilateroLimitsH = [limitLeft, limitRight - limitWidth]; // Límite horizontal bordes cuadrilatero
         cuadrilateroLimitsV = [limitUp, limitDown - limitWidth];            // Límite vertical bordes cuadrilatero
         dogH = (cuadrilateroLimitsH[1] + cuadrilateroLimitsH[0])/2;
@@ -453,7 +403,7 @@ class App extends React.Component {
         obstaculo1V = cuadrilateroLimitsV[0] + 100;
         obstaculo2H = cuadrilateroLimitsH[0] + 60; 
         obstaculo2V = cuadrilateroLimitsV[1] - 80;
-    } else if(dispositive === 'Tablet' && dispositiveOrientation === 'Portrait') {
+      } else if(device === 'tablet') {
         cuadrilateroLimitsH = [limitLeft + limitWidth, limitRight - limitWidth];   // Límite horizontal bordes cuadrilatero
         cuadrilateroLimitsV = [limitUp, limitDown - limitWidth];            // Límite vertical bordes cuadrilatero
         dogH = (cuadrilateroLimitsH[1] + cuadrilateroLimitsH[0])/2;
@@ -472,7 +422,7 @@ class App extends React.Component {
         obstaculo1V = cuadrilateroLimitsV[0] + 100;
         obstaculo2H = cuadrilateroLimitsH[0] + 60; 
         obstaculo2V = cuadrilateroLimitsV[1] - 80;
-    } else if(dispositive === 'Laptop' && dispositiveOrientation === 'Portrait') {
+      } else if(device === 'laptop') {
         cuadrilateroLimitsH = [limitLeft + limitWidth, limitRight - limitWidth];   // Límite horizontal bordes cuadrilatero
         cuadrilateroLimitsV = [limitUp, limitDown - limitWidth];            // Límite vertical bordes cuadrilatero
         dogH = (cuadrilateroLimitsH[1] + cuadrilateroLimitsH[0])/2;
@@ -491,9 +441,10 @@ class App extends React.Component {
         obstaculo1V = cuadrilateroLimitsV[0] + 100;
         obstaculo2H = cuadrilateroLimitsH[0] + 60; 
         obstaculo2V = cuadrilateroLimitsV[1] - 80;
-
+      }
     // Orientación Landscape para Celular | Tablet | Laptop
-    } else if(dispositive === 'Cell' && dispositiveOrientation === 'Landscape') {
+    } else if(deviceOrientation === 'landscape-primary') {
+      if(device === 'cellphone') {
         cuadrilateroLimitsH = [-limitRight/2 + offsetH/2, limitRight/2 - offsetH];   // Límite horizontal bordes cuadrilatero
         cuadrilateroLimitsV = [limitUp - offsetV/2, limitDown - 3/2*offsetV];            // Límite vertical bordes cuadrilatero
         // const offset = this.getRandom();
@@ -515,7 +466,7 @@ class App extends React.Component {
         obstaculo1V = cuadrilateroLimitsV[0] + 100;
         obstaculo2H = cuadrilateroLimitsH[0] + 60; 
         obstaculo2V = cuadrilateroLimitsV[1] - 80;
-    } else if(dispositive === 'Tablet' && dispositiveOrientation === 'Landscape') {
+      } else if(device === 'tablet') {
         cuadrilateroLimitsH = [-limitRight/2 + offsetH/2, limitRight/2 - offsetH];   // Límite horizontal bordes cuadrilatero
         cuadrilateroLimitsV = [limitUp, limitDown - offsetH];            // Límite vertical bordes cuadrilatero        dogH = (cuadrilateroLimitsH[1] + cuadrilateroLimitsH[0])/2;
         dogV = cuadrilateroLimitsV[1];
@@ -533,8 +484,7 @@ class App extends React.Component {
         obstaculo1V = cuadrilateroLimitsV[0] + 170;
         obstaculo2H = cuadrilateroLimitsH[0] + 190; 
         obstaculo2V = cuadrilateroLimitsV[1] - 180;
-     } 
-      else if(dispositive === 'Laptop' && dispositiveOrientation === 'Landscape') {
+     } else if(device === 'laptop') {
         cuadrilateroLimitsH = [-limitRight/2 + offsetH/2, limitRight/2 - offsetH];   // Límite horizontal bordes cuadrilatero
         cuadrilateroLimitsV = [limitUp, limitDown - offsetH];            // Límite vertical bordes cuadrilatero        dogH = (cuadrilateroLimitsH[1] + cuadrilateroLimitsH[0])/2;
         dogV = cuadrilateroLimitsV[1];
@@ -552,9 +502,11 @@ class App extends React.Component {
         obstaculo1V = 135;
         obstaculo2H = obstaculo1H - 330; 
         obstaculo2V = obstaculo1V + 260;
+      }
     }
     this.setState(state => ({
-        anchoVentana:windowWidth,
+        anchoVentana:deviceWidth,
+        altoVentana:deviceHeight,
         posicionHdog: dogH,
         posicionVdog: dogV,
         posicionHgusano: gusanoH,
@@ -567,9 +519,12 @@ class App extends React.Component {
         posicionVmango: mangoV, 
         posicionHfresa: fresaH, 
         posicionVfresa: fresaV,
+        posicionHobstaculo1: obstaculo1H,
+        posicionVobstaculo1: obstaculo1V
     }));
     console.log("setPositionXY FIN" );
   }
+  
 
   checkGanador() {                                       // Funcon para revision del estado del juego
     if((this.state.posicionHmanzana - 40  < this.state.posicionHdog && this.state.posicionHdog < this.state.posicionHmanzana + 40) &&
@@ -579,7 +534,7 @@ class App extends React.Component {
           frutas: this.state.frutas + 100,
           displayManzana:'none',
           posicionHmanzana: document.getElementById('cuadrilateroUp').offsetLeft,
-          posicionVmanzana: document.getElementById('cuadrilateroUp').offsetTop,
+          posicionVmanzana: document.getElementById('cuadrilateroUp').offsetTop
       }));
     }
     if((this.state.posicionHbanano - 40  < this.state.posicionHdog && this.state.posicionHdog < this.state.posicionHbanano + 40) &&
@@ -589,7 +544,7 @@ class App extends React.Component {
         frutas: this.state.frutas + 100,
         displayBanano:'none',
         posicionHbanano: document.getElementById('cuadrilateroUp').offsetLeft,
-        posicionVbanano: document.getElementById('cuadrilateroUp').offsetTop,
+        posicionVbanano: document.getElementById('cuadrilateroUp').offsetTop
       }));
     }
     if((this.state.posicionHmango - 40  < this.state.posicionHdog && this.state.posicionHdog < this.state.posicionHmango + 40) &&
@@ -599,7 +554,7 @@ class App extends React.Component {
         frutas: this.state.frutas + 100,
         displayMango:'none',
         posicionHmango: document.getElementById('cuadrilateroUp').offsetLeft,
-        posicionVmango: document.getElementById('cuadrilateroUp').offsetTop,
+        posicionVmango: document.getElementById('cuadrilateroUp').offsetTop
       }));
     }
     if((this.state.posicionHfresa - 40  < this.state.posicionHdog && this.state.posicionHdog < this.state.posicionHfresa + 40) &&
@@ -609,7 +564,7 @@ class App extends React.Component {
         frutas: this.state.frutas + 100,
         displayFresa:'none',
         posicionHfresa: document.getElementById('cuadrilateroUp').offsetLeft,
-        posicionVfresa: document.getElementById('cuadrilateroUp').offsetTop,
+        posicionVfresa: document.getElementById('cuadrilateroUp').offsetTop
       }));
     }
 
@@ -655,7 +610,7 @@ class App extends React.Component {
       </div>
     )
     this.setState(state => ({
-        vidas: vidas - 1,
+        vidas: state.vidas - 1,
         segundos: tiempo,
         posicionHdog: dogH,
         posicionVdog: dogV,
@@ -674,7 +629,7 @@ class App extends React.Component {
         displayManzana:'block',
         displayBanano:'block', 
         displayMango:'block', 
-        displayFresa:'block',
+        displayFresa:'block'
     }));
   }
 
@@ -704,7 +659,7 @@ class App extends React.Component {
         displayBanano:'block', 
         displayMango:'block', 
         displayFresa:'block',
-        nombre: '',
+        nombre: ''
     }));
   }
 }
