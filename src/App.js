@@ -523,8 +523,8 @@ class App extends React.Component {
       this.setState(state => ({
           frutas: this.state.frutas + 100,
           displayManzana:'none',
-          posicionHmanzana: document.getElementById('cuadrilateroUp').offsetLeft,
-          posicionVmanzana: document.getElementById('cuadrilateroUp').offsetTop
+          posicionHmanzana: document.getElementById('cuadrilatero').offsetLeft,
+          posicionVmanzana: document.getElementById('cuadrilatero').offsetTop
       }));
     }
     if((this.state.posicionHbanano - 40  < this.state.posicionHdog && this.state.posicionHdog < this.state.posicionHbanano + 40) &&
@@ -533,8 +533,8 @@ class App extends React.Component {
       this.setState(state => ({
         frutas: this.state.frutas + 100,
         displayBanano:'none',
-        posicionHbanano: document.getElementById('cuadrilateroUp').offsetLeft,
-        posicionVbanano: document.getElementById('cuadrilateroUp').offsetTop
+        posicionHbanano: document.getElementById('cuadrilatero').offsetLeft,
+        posicionVbanano: document.getElementById('cuadrilatero').offsetTop
       }));
     }
     if((this.state.posicionHmango - 40  < this.state.posicionHdog && this.state.posicionHdog < this.state.posicionHmango + 40) &&
@@ -543,8 +543,8 @@ class App extends React.Component {
       this.setState(state => ({
         frutas: this.state.frutas + 100,
         displayMango:'none',
-        posicionHmango: document.getElementById('cuadrilateroUp').offsetLeft,
-        posicionVmango: document.getElementById('cuadrilateroUp').offsetTop
+        posicionHmango: document.getElementById('cuadrilatero').offsetLeft,
+        posicionVmango: document.getElementById('cuadrilatero').offsetTop
       }));
     }
     if((this.state.posicionHfresa - 40  < this.state.posicionHdog && this.state.posicionHdog < this.state.posicionHfresa + 40) &&
@@ -553,8 +553,8 @@ class App extends React.Component {
       this.setState(state => ({
         frutas: this.state.frutas + 100,
         displayFresa:'none',
-        posicionHfresa: document.getElementById('cuadrilateroUp').offsetLeft,
-        posicionVfresa: document.getElementById('cuadrilateroUp').offsetTop
+        posicionHfresa: document.getElementById('cuadrilatero').offsetLeft,
+        posicionVfresa: document.getElementById('cuadrilatero').offsetTop
       }));
     }
 

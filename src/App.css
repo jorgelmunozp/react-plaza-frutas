@@ -15,8 +15,7 @@
   background-size: cover;
   background-color: rgba(0, 0, 0, 0.5);
   color: var(--white-color);
-  min-height: 8vh;
-  height: 8vh;
+  height: 8vw;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -25,16 +24,13 @@
   text-shadow: 2px 2px 2px rgba(0, 0, 0, 1);
   width: 100%; 
 }
-.App-header-content {
-
-}
 .App-slogan {
   position: absolute;
   left: 5vw;
   top: -1.5vh;
 }
 .App-logo {
-  height: 3vw;
+  height: 3vh;
   user-select: none; 
   -moz-user-select: none;
   -webkit-user-drag: none;
@@ -50,6 +46,7 @@
   -ms-user-select: none;
 }
 .tiempo {
+  position: absolute;
   top: -1.5vh;
   user-select: none; 
   -moz-user-select: none;
@@ -68,14 +65,13 @@
   -ms-user-select: none;
 }
 .vidas {
-  width: 3.5vw;
-  height: 3vw;
+  height: 3vh;
 }
 
 /******************************* BODY *******************************/
 .App-body {
   background-color: #282c34;
-  height: 100vh;
+  height: 92vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -93,6 +89,7 @@
 .App-link {
   color: #500;
 }
+/*********** Alertas ***********/
 .instructions {                        /* Instrucciones de la alerta de bienvenida*/
   font-size: inherit;
 }
@@ -110,64 +107,11 @@ ol {
   height: 80vh;
   width: 90vw;
   top: 8vh;
-  left: 0vw;
-  border: 5vw solid transparent;
+  left: 0;
+  border: 5vmin solid transparent;
   border-image: url("/src/assets/bloque2.jpeg") 70 round;
   padding: 0;
 }
-.cuadrilateroHorizontales {             /* Aplica a Cuadrilatero Up y Down*/
-  pointer-events: none;
-  position: absolute;
-  display: flex;
-  top: 0vh;
-  /* width: 100vw; */
-  user-select: none;                    /* Impide seleccionar la imagen con el mouse*/
-  -moz-user-select: none;
-  -webkit-user-drag: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-}
-#cuadrilateroUp {                       /* Aplica al borde superior del cuadrilatero */
-  /* top: 0vh;
-  left: 0vw; */
-}
-#cuadrilateroDown {                     /* Aplica al borde inferior del cuadrilatero */
-  top: 85vh;
-  /* left: 0vw; */
-}
-.cuadrilateroVerticales {               /* Aplica a Cuadrilatero Left y Rigth*/                  
-  position: absolute;
-  display: block;
-  top: 0vh;
-  width: 2vw;
-  line-height: 0;
-  user-select: none;                    /* Impide seleccionar la imagen con el mouse*/
-  -moz-user-select: none;
-  -webkit-user-drag: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-  z-index: 1;
-}
-#cuadrilateroLeft {
-  /* top: 0vh; */
-  left:0vw;
-}
-#cuadrilateroRight {
-  /* top: 0vh; */
-  left:96vw; 
-}
-.cuadrilateroBloque {
-  pointer-events: none;
-  position: relative;
-  /* width:5vw; */                      /* Se configura en el componente Cuadrilatero */
-  /* height: 5vw; */
-  user-select: none;                    /* Impide seleccionar la imagen con el mouse*/
-  -moz-user-select: none;
-  -webkit-user-drag: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-}
-
 /*********** Figuras ***********/
 #dog {
   height: 7vh;
@@ -224,7 +168,6 @@ ol {
   -webkit-user-select: none;
   -ms-user-select: none;
 }
-
 
 /*********** Controles ***********/
 #controles {                            /*Tiempo, frutas restantes */
@@ -309,7 +252,7 @@ input[type=text]::placeholder{
 @media screen and (max-width: 640px) {
   /******************************** Header ********************************/
   .App-header {
-    height: 6vh;
+    /* height: 6vh; */
   }
   /********************************* Body *********************************/
 
