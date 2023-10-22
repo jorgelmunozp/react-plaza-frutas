@@ -7,7 +7,12 @@
   text-align: center;
   font-family: "Comic Sans MS", "Comic Sans", cursive;     /*** Letra ***/
 }
-
+@font-face {
+  font-family: "Comic Sans MS";
+  font-style: normal;
+  font-weight: normal;
+  src: url("./assets/fonts/LDF-ComicSans/LDFComicSans.ttf") format("truetype");
+}
 /****************************** HEADER ******************************/
 .App-header {
   position: absolute;
@@ -210,35 +215,4 @@ input[type=text]::placeholder{
   color: #999;
 }
 
-
-
-
-
-
-
-
-
-
-/*****************************************************************************************/
-/***************************************** MOVIL *****************************************/
-@media (orientation: landscape) {
-
-}
-@media (orientation: portrait) {
-
-}
-/******************************** TABLETS ********************************/
-@media screen and (max-width: 1200px) {
-
-}
-
-/******************************** CELL PHONES  ********************************/
-@media screen and (max-width: 640px) {
-  /******************************** Header ********************************/
-  .App-header {
-    /* height: 6vh; */
-  }
-  /********************************* Body *********************************/
-
-}
 
