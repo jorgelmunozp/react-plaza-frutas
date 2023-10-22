@@ -74,35 +74,35 @@ if(dispositiveOrientation === 'Portrait') {
     dogV = windowHeight*70/100;
     gusanoH = windowWidth/2 - windowWidth*50/100;
     gusanoV = windowHeight*10/100;
-    manzanaH = windowWidth/2 - windowWidth*10/100;
-    manzanaV = windowHeight*25/100;
+    manzanaH = windowWidth/2 - windowWidth*11/100;
+    manzanaV = windowHeight*38/100;
     bananoH = windowWidth/2 - windowWidth*8/100;
-    bananoV = windowHeight*25/100;
-    mangoH = windowWidth/2;
-    mangoV = windowHeight*25/100;
-    fresaH = windowWidth/2 + windowWidth*3/100;
-    fresaV = windowHeight*25/100;
-    obstaculo1H = windowWidth/2 - windowWidth*12/100;
-    obstaculo1V = windowHeight*25/100;
-    obstaculo2H = windowWidth/2 - windowWidth*1/100;
-    obstaculo2V = windowHeight*25/100;
+    bananoV = windowHeight*38/100;
+    mangoH = windowWidth/2 + windowWidth*9/100;
+    mangoV = windowHeight*38/100;
+    fresaH = windowWidth/2 + windowWidth*13/100;
+    fresaV = windowHeight*38/100;
+    obstaculo1H = windowWidth/2 - windowWidth*40/100;
+    obstaculo1V = windowHeight*40/100;
+    obstaculo2H = windowWidth/2 - windowWidth*60/100;
+    obstaculo2V = windowHeight*40/100;
 } else if(dispositiveOrientation === 'Landscape') {
     dogH = windowWidth/2 - windowWidth*50/100;
     dogV = windowHeight*70/100;
     gusanoH = windowWidth/2 - windowWidth*50/100;
     gusanoV = windowHeight*10/100;
     manzanaH = windowWidth/2 - windowWidth*10/100;
-    manzanaV = windowHeight*30/100;
+    manzanaV = windowHeight*35/100;
     bananoH = windowWidth/2 - windowWidth*7/100;
-    bananoV = windowHeight*30/100;
+    bananoV = windowHeight*35/100;
     mangoH = windowWidth/2 + windowWidth*10/100;
-    mangoV = windowHeight*30/100;
+    mangoV = windowHeight*35/100;
     fresaH = windowWidth/2 + windowWidth*13/100;
-    fresaV = windowHeight*30/100;
+    fresaV = windowHeight*35/100;
     obstaculo1H = windowWidth/2 - windowWidth*60/100;
-    obstaculo1V = windowHeight*35/100;
+    obstaculo1V = windowHeight*40/100;
     obstaculo2H = windowWidth/2 - windowWidth*40/100;
-    obstaculo2V = windowHeight*35/100;
+    obstaculo2V = windowHeight*40/100;
 } 
 
 // Alerta de bienvenida
