@@ -377,8 +377,8 @@ class App extends React.Component {
     // Orientación Portrait para Celular | Tablet | Laptop
     if(deviceOrientation === 'portrait-primary') {
       if(device === 'cellphone') {
-        cuadrilateroLimitsH = [limitLeft, limitRight - limitWidth]; // Límite horizontal bordes cuadrilatero
-        cuadrilateroLimitsV = [limitUp, limitDown - limitWidth];            // Límite vertical bordes cuadrilatero
+        cuadrilateroLimitsH = [-limitWidth/2, limitWidth/2]; // Límite horizontal bordes cuadrilatero
+        cuadrilateroLimitsV = [0, limitHeigth];            // Límite vertical bordes cuadrilatero
         dogH = 0;
         dogH = (cuadrilateroLimitsH[1] + cuadrilateroLimitsH[0])/2;
         dogV = cuadrilateroLimitsV[1];
@@ -397,8 +397,8 @@ class App extends React.Component {
         obstaculo2H = cuadrilateroLimitsH[0] + 60; 
         obstaculo2V = cuadrilateroLimitsV[1] - 80;
       } else if(device === 'tablet') {
-        cuadrilateroLimitsH = [limitLeft + limitWidth, limitRight - limitWidth];   // Límite horizontal bordes cuadrilatero
-        cuadrilateroLimitsV = [limitUp, limitDown - limitWidth];            // Límite vertical bordes cuadrilatero
+        cuadrilateroLimitsH = [-limitWidth/2, limitWidth/2];   // Límite horizontal bordes cuadrilatero
+        cuadrilateroLimitsV = [0, limitHeigth];            // Límite vertical bordes cuadrilatero
         dogH = 0;
         dogV = cuadrilateroLimitsV[1];
         gusanoH = 0;
@@ -416,8 +416,8 @@ class App extends React.Component {
         obstaculo2H = cuadrilateroLimitsH[0] + 60; 
         obstaculo2V = cuadrilateroLimitsV[1] - 80;
       } else if(device === 'laptop') {
-        cuadrilateroLimitsH = [limitLeft + limitWidth, limitRight - limitWidth];   // Límite horizontal bordes cuadrilatero
-        cuadrilateroLimitsV = [limitUp, limitDown - limitWidth];            // Límite vertical bordes cuadrilatero
+        cuadrilateroLimitsH = [-limitWidth/2, limitWidth/2];   // Límite horizontal bordes cuadrilatero
+        cuadrilateroLimitsV = [0, limitHeigth];            // Límite vertical bordes cuadrilatero
         dogH = 0;
         dogV = cuadrilateroLimitsV[1];
         gusanoH = 0;
