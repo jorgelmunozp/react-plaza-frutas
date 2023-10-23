@@ -47,11 +47,11 @@ let gusanoH = 0;
 let gusanoV = deviceHeight*5/100;
 let manzanaH = deviceWidth*15/100;
 let manzanaV = dogV/2;
-let bananoH = deviceWidth*35/100;
+let bananoH = -deviceWidth*35/100;
 let bananoV = dogV/2;
-let mangoH = deviceWidth*55/100;
+let mangoH = deviceWidth*35/100;
 let mangoV = dogV/2;
-let fresaH = deviceWidth*75/100;
+let fresaH = -deviceWidth*15/100;
 let fresaV = dogV/2;
 let obstaculo1H = deviceWidth*-20/100;
 let obstaculo1V = deviceHeight*50/100;
@@ -102,10 +102,10 @@ class App extends React.Component {
       posicionHobstaculo2:obstaculo2H, 
       posicionVobstaculo2:obstaculo2V, 
       estado:'', 
-      displayManzana:'block', 
-      displayBanano:'block', 
-      displayMango:'block',
-      displayFresa:'block'  
+      displayManzana:'inline', 
+      displayBanano:'inline', 
+      displayMango:'inline',
+      displayFresa:'inline'  
     };
     this.campoNombre = this.campoNombre.bind(this);         // Mapeo de botones con sus funciones
     this.botonStart = this.botonStart.bind(this);
@@ -204,7 +204,6 @@ class App extends React.Component {
     return (
       <div className="App">
         <header className="App-header">
-          <div className="App-header-content">
             <table className='App-slogan'>
               <tbody>
                 <tr>
@@ -227,10 +226,9 @@ class App extends React.Component {
                 </tr>
               </tbody>
             </table> 
-          </div>
         </header>
         <body className="App-body">
-            <div id="cuadrilatero">
+            <div id="cuadrilatero" className="cuadrilatero">
               <img id='dog' src={dog} className="dog" alt="🐶" style={{'marginTop': this.state.posicionVdog, 'marginLeft': this.state.posicionHdog}}/>
               <img id='gusano' src={gusano} className="gusano" alt="🪱" style={{'marginTop': this.state.posicionVgusano, 'marginLeft': this.state.posicionHgusano}}/>
               <img id='manzana' src={manzana} className="fruta" alt="🍎" style={{'marginLeft': this.state.posicionHmanzana,'marginTop':this.state.posicionVmanzana,'display':this.state.displayManzana}}/>
@@ -240,7 +238,7 @@ class App extends React.Component {
               <img id='obstaculo1' src={bloque} className="obstaculo" alt="🧱" style={{'marginTop': this.state.posicionVobstaculo1, 'marginLeft': this.state.posicionHobstaculo1}}/>
               <img id='obstaculo2' src={bloque} className="obstaculo" alt="🧱" style={{'marginTop': this.state.posicionVobstaculo2, 'marginLeft': this.state.posicionHobstaculo2}}/>    
             </div>
-            <div id='controles'>
+            <div id='controles' className="controles">
               <table className="tablaFlechas">
                 {/* <thead>                
                   <tr>
@@ -325,7 +323,17 @@ class App extends React.Component {
       if (e.keyCode === 39){ this.botonRight(e); }
       this.checkGanador();
       this.checkObstaculo();
+      console.log("posicionHdog,posicionVdog: ",this.state.posicionHdog,this.state.posicionVdog)
+      console.log("posicionHgusano,posicionVgusano: ",this.state.posicionHgusano,this.state.posicionVgusano)
+      console.log("posicionHmanzana,posicionVmanzana: ",this.state.posicionHmanzana,this.state.posicionVmanzana)
+      console.log("posicionHbanano,posicionVbanano: ",this.state.posicionHbanano,this.state.posicionVbanano)
+      console.log("posicionHmango,posicionVmango: ",this.state.posicionHmango,this.state.posicionVmango)
+      console.log("posicionHfresa,posicionVfresa: ",this.state.posicionHfresa,this.state.posicionVfresa)
+
+      console.log("posicionHdog,posicionHmanzana !!!!: ",this.state.posicionHdog,this.state.posicionHmanzana)
+
     }
+
   }
 
   getOrientation() {
@@ -502,10 +510,10 @@ class App extends React.Component {
         posicionVfresa: fresaV,
         frutas : 0,
         estado : 'vidas',
-        displayManzana:'block',
-        displayBanano:'block', 
-        displayMango:'block', 
-        displayFresa:'block'
+        displayManzana:'inline',
+        displayBanano:'inline', 
+        displayMango:'inline', 
+        displayFresa:'inline'
     }));
   }
 
@@ -531,10 +539,10 @@ class App extends React.Component {
         posicionVfresa: fresaV,
         frutas: 0,
         estado: 'reset',
-        displayManzana:'block',
-        displayBanano:'block', 
-        displayMango:'block', 
-        displayFresa:'block',
+        displayManzana:'inline',
+        displayBanano:'inline', 
+        displayMango:'inline', 
+        displayFresa:'inline',
         nombre: ''
     }));
   }
