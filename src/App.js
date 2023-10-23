@@ -7,7 +7,17 @@ import mango from './assets/images/mango.svg';
 import fresa from './assets/images/fresa.svg';
 import bloque from './assets/images/bloque.svg';
 
-import coin from './assets/sounds/coin.mp3'
+import coinMp3 from './assets/sounds/coin.mp3';
+import roundOneMp3 from './assets/sounds/roundOne.mp3';
+import roundTwoMp3 from './assets/sounds/roundTwo.mp3';
+import roundThreeMp3 from './assets/sounds/roundThree.mp3';
+import youWinMp3 from './assets/sounds/youWin.mp3';
+import countdown from './assets/sounds/countdown.mp3';
+import gameOverMp3 from './assets/sounds/gameOver.mp3';
+
+import fineMp3 from './assets/sounds/fine.mp3';
+import wonderfulMp3 from './assets/sounds/wonderful.mp3';
+import mammaMiaMp3 from './assets/sounds/mammaMia.mp3';
 
 import './App.css';
 
@@ -22,10 +32,24 @@ const dogname = "Doggy";
 const tiempo = 20;
 const vidas = 3;
 const cantidadfrutas = 4;
-const audioCoin = new Audio(coin);
-const soundCoin = () => {
-  audioCoin.play();
-};
+const audioCoin = new Audio(coinMp3);
+const audioRoundOne = new Audio(roundOneMp3);
+const audioRoundTwo = new Audio(roundTwoMp3);
+const audioRoundThree = new Audio(roundThreeMp3);
+const audioYouWin = new Audio(youWinMp3);
+const audioFine = new Audio(fineMp3);
+const audioWonderful = new Audio(wonderfulMp3);
+const audioMammaMia = new Audio(mammaMiaMp3);
+const audioGameOver = new Audio(gameOverMp3);
+const soundCoin = () => { audioCoin.play(); };
+const soundRoundOne = () => { audioRoundOne.play(); };
+const soundRoundTwo = () => { audioRoundTwo.play(); };
+const soundRoundThree = () => { audioRoundThree.play(); };
+const soundYouWin = () => { audioYouWin.play(); };
+const soundFine= () => { audioFine.play(); };
+const soundWonderful = () => { audioWonderful.play(); };
+const soundMammaMia = () => { audioMammaMia.play(); };
+const soundGameOver= () => { audioGameOver.play(); };
 
 // Orientación y tipo de dispositivo: Laptop | Tablet | Celular
 const cellphoneSize = [380,720];                              // Dimensiones ancho por alto de los dispositivos
@@ -34,11 +58,11 @@ let device;
 let deviceOrientation = window.screen.orientation.type;       // Orientaciób del dispositivo Landscape o Portrait
 let deviceWidth = document.documentElement.clientWidth;       // Tamaño horizontal de pantalla
 let deviceHeight = document.documentElement.clientHeight;     // Tamaño vertical de pantalla
-if (deviceWidth >= deviceHeight) {          
+if (deviceWidth >= deviceHeight) {
   if (deviceWidth <= cellphoneSize[1]) { device = 'cellphone' } // Tipo de dispositivo Pc, Tablet o Celular
   else if (cellphoneSize[1] < deviceWidth && deviceWidth <= tabletSize[1]) { device = 'tablet' }
   else if (deviceWidth > tabletSize[1]) { device = 'laptop' }
-} else if ( deviceHeight > deviceWidth) { 
+} else if ( deviceHeight > deviceWidth) {
   if (deviceHeight <= cellphoneSize[1]) { device = 'cellphone' } // Tipo de dispositivo Pc, Tablet o Celular
   else if (cellphoneSize[1] < deviceHeight && deviceHeight <= tabletSize[1]) { device = 'tablet' }
   else if (deviceHeight > tabletSize[1]) { device = 'laptop' }
@@ -67,7 +91,7 @@ let cuadrilateroLimitsH;
 let cuadrilateroLimitsV;
 console.log("dogV inicial: ",dogV)
 // Alerta de bienvenida
-// swalert(                                      
+// swalert(
 //   <div>
 //     <h1>{dogname}</h1>
 //     <img src={logo} alt="logo" style={{'height':'10vh'}} />
@@ -83,7 +107,7 @@ console.log("dogV inicial: ",dogV)
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { 
+    this.state = {
       segundos:tiempo,
       nombre:dogname,
       vidas:vidas,
@@ -97,21 +121,21 @@ class App extends React.Component {
       posicionVgusano:gusanoV,
       posicionHmanzana:manzanaH,
       posicionVmanzana:manzanaV,
-      posicionHbanano:bananoH, 
-      posicionVbanano:bananoV, 
-      posicionHmango:mangoH, 
-      posicionVmango:mangoV, 
-      posicionHfresa:fresaH, 
-      posicionVfresa:fresaV, 
-      posicionHobstaculo1:obstaculo1H, 
-      posicionVobstaculo1:obstaculo1V, 
-      posicionHobstaculo2:obstaculo2H, 
-      posicionVobstaculo2:obstaculo2V, 
-      estado:'', 
-      displayManzana:'inline', 
-      displayBanano:'inline', 
+      posicionHbanano:bananoH,
+      posicionVbanano:bananoV,
+      posicionHmango:mangoH,
+      posicionVmango:mangoV,
+      posicionHfresa:fresaH,
+      posicionVfresa:fresaV,
+      posicionHobstaculo1:obstaculo1H,
+      posicionVobstaculo1:obstaculo1V,
+      posicionHobstaculo2:obstaculo2H,
+      posicionVobstaculo2:obstaculo2V,
+      estado:'',
+      displayManzana:'inline',
+      displayBanano:'inline',
       displayMango:'inline',
-      displayFresa:'inline'  
+      displayFresa:'inline'
     };
     this.campoNombre = this.campoNombre.bind(this);         // Mapeo de botones con sus funciones
     this.botonStart = this.botonStart.bind(this);
@@ -122,7 +146,7 @@ class App extends React.Component {
     this.botonRight = this.botonRight.bind(this);
     this.botonReset = this.botonReset.bind(this);
   }
-  
+
   /********************* THICKS (Métodos repetitivos) *********************/
   // tickGetDevice() {
 
@@ -138,6 +162,7 @@ class App extends React.Component {
     if(this.state.segundos === 0 && this.state.frutas < cantidadfrutas * 100 && this.state.vidas > 0){     //Calcula tiempo, cantidad de frutas y si tiene vidas el jugador
         this.vidas();
     } else if(this.state.vidas === 0){     //Calcula tiempo, cantidad de frutas y si tiene vidas el jugador
+      soundGameOver();
       swalert(
         <div>
           <img src={logo} alt="logo" style={{'height':'10vh'}} />
@@ -156,16 +181,16 @@ class App extends React.Component {
           posicionHgusano: this.state.posicionHgusano + 10,
           posicionVgusano: this.state.posicionVgusano + 10
         }));
-      } else if(this.state.posicionHdog > this.state.posicionHgusano && this.state.posicionVdog < this.state.posicionVgusano){           
+      } else if(this.state.posicionHdog > this.state.posicionHgusano && this.state.posicionVdog < this.state.posicionVgusano){
         this.setState(state => ({
           posicionHgusano: this.state.posicionHgusano + 10,
           posicionVgusano: this.state.posicionVgusano - 10
         }));
-      } else if(this.state.posicionHdog === this.state.posicionHgusano && this.state.posicionVdog > this.state.posicionVgusano){     
-        this.setState(state => ({  
+      } else if(this.state.posicionHdog === this.state.posicionHgusano && this.state.posicionVdog > this.state.posicionVgusano){
+        this.setState(state => ({
           posicionVgusano: this.state.posicionVgusano + 10
         }));
-      } else if(this.state.posicionHdog === this.state.posicionHgusano && this.state.posicionVdog < this.state.posicionVgusano){  
+      } else if(this.state.posicionHdog === this.state.posicionHgusano && this.state.posicionVdog < this.state.posicionVgusano){
         this.setState(state => ({
           posicionVgusano: this.state.posicionVgusano - 10
         }));
@@ -206,7 +231,7 @@ class App extends React.Component {
     clearInterval(this.intervalGusano);
   }
 
-  render() {   
+  render() {
     return (
       <div className="App">
         <header className="App-header">
@@ -217,7 +242,7 @@ class App extends React.Component {
                   <td><p className="App-title">Plaza de Frutas</p></td>
                 </tr>
               </tbody>
-            </table>           
+            </table>
             <table className='tablaTablero'>
               <tbody>
                 <tr>
@@ -231,7 +256,7 @@ class App extends React.Component {
                   <td><p> {this.state.segundos}</p></td>
                 </tr>
               </tbody>
-            </table> 
+            </table>
         </header>
         <body className="App-body">
             <div id="cuadrilatero" className="cuadrilatero">
@@ -242,11 +267,11 @@ class App extends React.Component {
               <img id='mango' src={mango} className="fruta" alt="🥭" style={{'marginLeft': this.state.posicionHmango,'marginTop':this.state.posicionVmango,'display':this.state.displayMango}}/>
               <img id='fresa' src={fresa} className="fruta" alt="🍓" style={{'marginLeft': this.state.posicionHfresa,'marginTop':this.state.posicionVfresa,'display':this.state.displayFresa}}/>
               <img id='obstaculo1' src={bloque} className="obstaculo" alt="🧱" style={{'marginTop': this.state.posicionVobstaculo1, 'marginLeft': this.state.posicionHobstaculo1}}/>
-              <img id='obstaculo2' src={bloque} className="obstaculo" alt="🧱" style={{'marginTop': this.state.posicionVobstaculo2, 'marginLeft': this.state.posicionHobstaculo2}}/>    
+              <img id='obstaculo2' src={bloque} className="obstaculo" alt="🧱" style={{'marginTop': this.state.posicionVobstaculo2, 'marginLeft': this.state.posicionHobstaculo2}}/>
             </div>
             <div id='controles' className="controles">
               <table className="tablaFlechas">
-                {/* <thead>                
+                {/* <thead>
                   <tr>
                     <td colSpan={3}><button id="botonReset"  onMouseMove={this.botonReset} onClick={this.botonReset} className='botonReset'><FontAwesomeIcon icon={faRedoAlt} /></button></td>
                   </tr>
@@ -273,7 +298,7 @@ class App extends React.Component {
     );
   }
 
-  
+
   /********************* HELPERS (Funciones llamadas desde la interfaz gráfica *********************/
   getRandom(max=10) {
     let numero = Math.floor((Math.random()*max)/10)*10;
@@ -293,8 +318,11 @@ class App extends React.Component {
     this.getOrientation();
     this.setPositionXY();
     console.log("botonStart FIN" );
-  }                                                       //Funciones para sensar los botones                    
-  
+    if(this.state.vidas === 3){ soundRoundOne(); }
+    else if(this.state.vidas === 2){ soundRoundTwo(); }
+    else if(this.state.vidas === 1){ soundRoundThree(); }
+  }                                                       //Funciones para sensar los botones
+
   botonUp(e) {                                            // Límite inferior movimiento Doggy dentro del cuadrilátero
     e.preventDefault();
     if(this.state.posicionVdog > cuadrilateroLimitsV[0]){
@@ -303,7 +331,7 @@ class App extends React.Component {
   }
   botonDown(e) {                                          // Límite inferior movimiento Doggy dentro del cuadrilátero
     e.preventDefault();
-    if(this.state.posicionVdog < cuadrilateroLimitsV[1]){                    
+    if(this.state.posicionVdog < cuadrilateroLimitsV[1]){
       this.setState(state => ({ posicionVdog: this.state.posicionVdog + 10 }));
     }
   }
@@ -321,11 +349,11 @@ class App extends React.Component {
   }
 
   flechasTeclado(e) {                                     //Función para sensar las flechas del teclado
-    if (e){  
-      e.preventDefault(); 
-      if (e.keyCode === 38){ this.botonUp(e); }   
+    if (e){
+      e.preventDefault();
+      if (e.keyCode === 38){ this.botonUp(e); }
       if (e.keyCode === 40){ this.botonDown(e); }
-      if (e.keyCode === 37){ this.botonLeft(e); }   
+      if (e.keyCode === 37){ this.botonLeft(e); }
       if (e.keyCode === 39){ this.botonRight(e); }
       this.checkGanador();
       this.checkObstaculo();
@@ -335,9 +363,6 @@ class App extends React.Component {
       console.log("posicionHbanano,posicionVbanano: ",this.state.posicionHbanano,this.state.posicionVbanano)
       console.log("posicionHmango,posicionVmango: ",this.state.posicionHmango,this.state.posicionVmango)
       console.log("posicionHfresa,posicionVfresa: ",this.state.posicionHfresa,this.state.posicionVfresa)
-
-      console.log("posicionHdog,posicionHmanzana !!!!: ",this.state.posicionHdog,this.state.posicionHmanzana)
-
     }
 
   }
@@ -361,8 +386,8 @@ class App extends React.Component {
   setPositionXY() {
     console.log("setPositionXY INICIO" );
     // Definicionn de posiciones de imagenes dentro de limites del cuadrilatero
-    const limitWidth = Math.floor(document.getElementById('cuadrilatero').offsetWidth/10) * 10;   // Redondeo de unidades a la decena inferior mas cercana  
-    const limitHeigth = Math.floor(document.getElementById('cuadrilatero').offsetHeight/10) * 10; 
+    const limitWidth = Math.floor(document.getElementById('cuadrilatero').offsetWidth/10) * 10;   // Redondeo de unidades a la decena inferior mas cercana
+    const limitHeigth = Math.floor(document.getElementById('cuadrilatero').offsetHeight/10) * 10;
     cuadrilateroLimitsH = [Math.round((-(limitWidth/2)*95/100)/10)*10, Math.round(((limitWidth/2)*95/100)/10)*10];   // Límite horizontal bordes cuadrilatero
     cuadrilateroLimitsV = [0, Math.floor((limitHeigth*90/100)/10)*10];  // Límite vertical bordes cuadrilatero
     dogH = 0;
@@ -401,12 +426,12 @@ class App extends React.Component {
         posicionHgusano: gusanoH,
         posicionVgusano: gusanoV,
         posicionHmanzana: manzanaH,
-        posicionVmanzana: manzanaV, 
-        posicionHbanano: bananoH, 
-        posicionVbanano: bananoV, 
-        posicionHmango: mangoH, 
-        posicionVmango: mangoV, 
-        posicionHfresa: fresaH, 
+        posicionVmanzana: manzanaV,
+        posicionHbanano: bananoH,
+        posicionVbanano: bananoV,
+        posicionHmango: mangoH,
+        posicionVmango: mangoV,
+        posicionHfresa: fresaH,
         posicionVfresa: fresaV,
         posicionHobstaculo1: obstaculo1H,
         posicionVobstaculo1: obstaculo1V,
@@ -415,12 +440,15 @@ class App extends React.Component {
     }));
     console.log("setPositionXY FIN" );
   }
-  
+
   checkGanador() {                                       // Funcon para revision del estado del juego
     if((this.state.posicionHmanzana - 40  < this.state.posicionHdog && this.state.posicionHdog < this.state.posicionHmanzana + 40) &&
        (this.state.posicionVmanzana - 40  < this.state.posicionVdog && this.state.posicionVdog < this.state.posicionVmanzana + 40)
     ){
       soundCoin();
+      if(this.state.frutas === 0){ soundFine() }
+      else if(this.state.frutas === 100){ soundWonderful() }
+      else if(this.state.frutas === 200){ soundMammaMia() }
       this.setState(state => ({
           frutas: this.state.frutas + 100,
           displayManzana:'none',
@@ -432,6 +460,10 @@ class App extends React.Component {
        (this.state.posicionVbanano - 40  < this.state.posicionVdog && this.state.posicionVdog < this.state.posicionVbanano + 40)
     ){
       soundCoin();
+      if(this.state.frutas === 0){ soundFine() }
+      else if(this.state.frutas === 100){ soundWonderful() }
+      else if(this.state.frutas === 200){ soundMammaMia() }
+      console.log("this.state.frutas Banano:!!!!!!!!!!!! ",this.state.frutas)
       this.setState(state => ({
         frutas: this.state.frutas + 100,
         displayBanano:'none',
@@ -443,6 +475,10 @@ class App extends React.Component {
        (this.state.posicionVmango - 40  < this.state.posicionVdog && this.state.posicionVdog < this.state.posicionVmango + 40)
     ){
       soundCoin();
+      if(this.state.frutas === 0){ soundFine() }
+      else if(this.state.frutas === 100){ soundWonderful() }
+      else if(this.state.frutas === 200){ soundMammaMia() }
+      console.log("this.state.frutas Mango:!!!!!!!!!!!! ",this.state.frutas)
       this.setState(state => ({
         frutas: this.state.frutas + 100,
         displayMango:'none',
@@ -454,6 +490,10 @@ class App extends React.Component {
        (this.state.posicionVfresa - 40  < this.state.posicionVdog && this.state.posicionVdog < this.state.posicionVfresa + 40)
     ){
       soundCoin();
+      if(this.state.frutas === 0){ soundFine() }
+      else if(this.state.frutas === 100){ soundWonderful() }
+      else if(this.state.frutas === 200){ soundMammaMia() }
+      console.log("this.state.frutas Fresa:!!!!!!!!!!!! ",this.state.frutas)
       this.setState(state => ({
         frutas: this.state.frutas + 100,
         displayFresa:'none',
@@ -472,6 +512,7 @@ class App extends React.Component {
       if(this.state.items.length < 10){
         this.setState(state => ({ items: state.items.concat(newItem) }));
       }
+      soundYouWin();
       swalert(
         <div>
           <img src={logo} alt="logo" style={{'height':'10vh'}} />
@@ -511,18 +552,18 @@ class App extends React.Component {
         posicionHgusano: gusanoH,
         posicionVgusano: gusanoV,
         posicionHmanzana: manzanaH,
-        posicionVmanzana: manzanaV, 
-        posicionHbanano: bananoH, 
-        posicionVbanano: bananoV, 
-        posicionHmango: mangoH, 
-        posicionVmango: mangoV, 
-        posicionHfresa: fresaH, 
+        posicionVmanzana: manzanaV,
+        posicionHbanano: bananoH,
+        posicionVbanano: bananoV,
+        posicionHmango: mangoH,
+        posicionVmango: mangoV,
+        posicionHfresa: fresaH,
         posicionVfresa: fresaV,
         frutas : 0,
         estado : 'vidas',
         displayManzana:'inline',
-        displayBanano:'inline', 
-        displayMango:'inline', 
+        displayBanano:'inline',
+        displayMango:'inline',
         displayFresa:'inline'
     }));
   }
@@ -540,18 +581,18 @@ class App extends React.Component {
         posicionHgusano: gusanoH,
         posicionVgusano: gusanoV,
         posicionHmanzana: manzanaH,
-        posicionVmanzana: manzanaV, 
-        posicionHbanano: bananoH, 
-        posicionVbanano: bananoV, 
-        posicionHmango: mangoH, 
-        posicionVmango: mangoV, 
-        posicionHfresa: fresaH, 
+        posicionVmanzana: manzanaV,
+        posicionHbanano: bananoH,
+        posicionVbanano: bananoV,
+        posicionHmango: mangoH,
+        posicionVmango: mangoV,
+        posicionHfresa: fresaH,
         posicionVfresa: fresaV,
         frutas: 0,
         estado: 'reset',
         displayManzana:'inline',
-        displayBanano:'inline', 
-        displayMango:'inline', 
+        displayBanano:'inline',
+        displayMango:'inline',
         displayFresa:'inline',
         nombre: ''
     }));
