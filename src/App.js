@@ -1,11 +1,13 @@
-import logo from './assets/logo.png';
-import dog from './assets/dog.png';
-import gusano from './assets/gusano.svg';
-import manzana from './assets/manzana.svg';
-import banano from './assets/banano.svg';
-import mango from './assets/mango.svg';
-import fresa from './assets/fresa.svg';
-import bloque from './assets/bloque.svg';
+import logo from './assets/images/logo.png';
+import dog from './assets/images/dog.png';
+import gusano from './assets/images/gusano.svg';
+import manzana from './assets/images/manzana.svg';
+import banano from './assets/images/banano.svg';
+import mango from './assets/images/mango.svg';
+import fresa from './assets/images/fresa.svg';
+import bloque from './assets/images/bloque.svg';
+
+import coin from './assets/sounds/coin.mp3'
 
 import './App.css';
 
@@ -20,6 +22,10 @@ const dogname = "Doggy";
 const tiempo = 20;
 const vidas = 3;
 const cantidadfrutas = 4;
+const audioCoin = new Audio(coin);
+const soundCoin = () => {
+  audioCoin.play();
+};
 
 // Orientación y tipo de dispositivo: Laptop | Tablet | Celular
 const cellphoneSize = [380,720];                              // Dimensiones ancho por alto de los dispositivos
@@ -373,7 +379,7 @@ class App extends React.Component {
     fresaV = this.getRandom(cuadrilateroLimitsV[1]);
     obstaculo1H = this.getRandom(cuadrilateroLimitsH[1]);
     obstaculo1V = this.getRandom(cuadrilateroLimitsV[1]);
-    obstaculo2H = this.getRandom(-cuadrilateroLimitsH[1]);
+    obstaculo2H = this.getRandom(cuadrilateroLimitsH[0]);
     obstaculo2V = this.getRandom(cuadrilateroLimitsV[1]);
     console.log("Ancho cuadrilatero: ",limitWidth)
     console.log("Alto cuadrilatero: ",limitHeigth)
@@ -414,6 +420,7 @@ class App extends React.Component {
     if((this.state.posicionHmanzana - 40  < this.state.posicionHdog && this.state.posicionHdog < this.state.posicionHmanzana + 40) &&
        (this.state.posicionVmanzana - 40  < this.state.posicionVdog && this.state.posicionVdog < this.state.posicionVmanzana + 40)
     ){
+      soundCoin();
       this.setState(state => ({
           frutas: this.state.frutas + 100,
           displayManzana:'none',
@@ -424,6 +431,7 @@ class App extends React.Component {
     if((this.state.posicionHbanano - 40  < this.state.posicionHdog && this.state.posicionHdog < this.state.posicionHbanano + 40) &&
        (this.state.posicionVbanano - 40  < this.state.posicionVdog && this.state.posicionVdog < this.state.posicionVbanano + 40)
     ){
+      soundCoin();
       this.setState(state => ({
         frutas: this.state.frutas + 100,
         displayBanano:'none',
@@ -434,6 +442,7 @@ class App extends React.Component {
     if((this.state.posicionHmango - 40  < this.state.posicionHdog && this.state.posicionHdog < this.state.posicionHmango + 40) &&
        (this.state.posicionVmango - 40  < this.state.posicionVdog && this.state.posicionVdog < this.state.posicionVmango + 40)
     ){
+      soundCoin();
       this.setState(state => ({
         frutas: this.state.frutas + 100,
         displayMango:'none',
@@ -444,6 +453,7 @@ class App extends React.Component {
     if((this.state.posicionHfresa - 40  < this.state.posicionHdog && this.state.posicionHdog < this.state.posicionHfresa + 40) &&
        (this.state.posicionVfresa - 40  < this.state.posicionVdog && this.state.posicionVdog < this.state.posicionVfresa + 40)
     ){
+      soundCoin();
       this.setState(state => ({
         frutas: this.state.frutas + 100,
         displayFresa:'none',

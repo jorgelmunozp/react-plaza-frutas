@@ -105,7 +105,7 @@ ol {
   top: 8vmin;
   padding: 0;
   border: 5vmin solid transparent;
-  border-image: url("/src/assets/bloque2.jpeg") 70 round;
+  border-image: url("/src/assets/bloque.jpeg") 70 round;
   -moz-user-select: none;
   -webkit-user-drag: none;
   -webkit-user-select: none;
