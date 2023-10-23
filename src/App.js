@@ -153,6 +153,8 @@ class App extends React.Component {
   // }
 
   tick() {
+    console.log("this.state.estado: ", this.state.estado)
+
     if(this.state.estado === 'start'){     // Se activa cuando se presiona el boton start
       this.setState(state => ({
         segundos: state.segundos - 1,
@@ -328,32 +330,40 @@ class App extends React.Component {
     if(this.state.posicionVdog > cuadrilateroLimitsV[0]){
       this.setState(state => ({ posicionVdog: this.state.posicionVdog - 10 }));
     }
-    this.checkGanador();
-    this.checkObstaculo();
+    if(this.state.estado === 'start'){
+      this.checkGanador();
+      this.checkObstaculo();
+    }
   }
   botonDown(e) {                                          // Límite inferior movimiento Doggy dentro del cuadrilátero
     e.preventDefault();
     if(this.state.posicionVdog < cuadrilateroLimitsV[1]){
       this.setState(state => ({ posicionVdog: this.state.posicionVdog + 10 }));
     }
-    this.checkGanador();
-    this.checkObstaculo();
+    if(this.state.estado === 'start'){
+      this.checkGanador();
+      this.checkObstaculo();
+    }
   }
   botonLeft(e) {                                          // Límite izquierda movimiento Doggy dentro del cuadrilátero
     e.preventDefault();
     if(this.state.posicionHdog > cuadrilateroLimitsH[0]){
       this.setState(state => ({ posicionHdog: this.state.posicionHdog - 10 }));
     }
-    this.checkGanador();
-    this.checkObstaculo();
+    if(this.state.estado === 'start'){
+      this.checkGanador();
+      this.checkObstaculo();
+    }
   }
   botonRight(e) {                                         // Límite derecha movimiento Doggy dentro del cuadrilátero
     e.preventDefault();
     if(this.state.posicionHdog < cuadrilateroLimitsH[1]){
       this.setState(state => ({ posicionHdog: this.state.posicionHdog + 10 }));
     }
-    this.checkGanador();
-    this.checkObstaculo();
+    if(this.state.estado === 'start'){
+      this.checkGanador();
+      this.checkObstaculo();
+    }
   }
 
   flechasTeclado(e) {                                     //Función para sensar las flechas del teclado
@@ -471,7 +481,6 @@ class App extends React.Component {
       if(this.state.frutas === 0){ soundFine() }
       else if(this.state.frutas === 100){ soundWonderful() }
       else if(this.state.frutas === 200){ soundMammaMia() }
-      console.log("this.state.frutas Banano:!!!!!!!!!!!! ",this.state.frutas)
       this.setState(state => ({
         frutas: this.state.frutas + 100,
         displayBanano:'none',
@@ -486,7 +495,6 @@ class App extends React.Component {
       if(this.state.frutas === 0){ soundFine() }
       else if(this.state.frutas === 100){ soundWonderful() }
       else if(this.state.frutas === 200){ soundMammaMia() }
-      console.log("this.state.frutas Mango:!!!!!!!!!!!! ",this.state.frutas)
       this.setState(state => ({
         frutas: this.state.frutas + 100,
         displayMango:'none',
@@ -501,7 +509,6 @@ class App extends React.Component {
       if(this.state.frutas === 0){ soundFine() }
       else if(this.state.frutas === 100){ soundWonderful() }
       else if(this.state.frutas === 200){ soundMammaMia() }
-      console.log("this.state.frutas Fresa:!!!!!!!!!!!! ",this.state.frutas)
       this.setState(state => ({
         frutas: this.state.frutas + 100,
         displayFresa:'none',
