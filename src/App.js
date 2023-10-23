@@ -363,13 +363,13 @@ class App extends React.Component {
     dogV = Math.floor(cuadrilateroLimitsV[1]/10)*10;
     gusanoH = 0;
     gusanoV = 0;
-    manzanaH = this.getRandom(2*cuadrilateroLimitsH[1]);
+    manzanaH = this.getRandom(cuadrilateroLimitsH[1]);
     manzanaV = this.getRandom(cuadrilateroLimitsV[1]);
-    bananoH = this.getRandom(2*cuadrilateroLimitsH[1]);
+    bananoH = this.getRandom(cuadrilateroLimitsH[1]);
     bananoV = this.getRandom(cuadrilateroLimitsV[1]);
-    mangoH = this.getRandom(2*cuadrilateroLimitsH[1]);
+    mangoH = this.getRandom(cuadrilateroLimitsH[1]);
     mangoV = this.getRandom(cuadrilateroLimitsV[1]);
-    fresaH = this.getRandom(2*cuadrilateroLimitsH[1]);
+    fresaH = this.getRandom(cuadrilateroLimitsH[1]);
     fresaV = this.getRandom(cuadrilateroLimitsV[1]);
     obstaculo1H = this.getRandom(cuadrilateroLimitsH[1]);
     obstaculo1V = this.getRandom(cuadrilateroLimitsV[1]);

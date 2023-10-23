@@ -73,6 +73,14 @@
   color: #500;
 }
 /*********** Alertas ***********/
+/* .swal-modal {
+  width: 80vw;
+  margin: auto;
+  align-self: center;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+} */
 .instructions {                        /* Instrucciones de la alerta de bienvenida*/
   font-size: inherit;
   -moz-user-select: none;
