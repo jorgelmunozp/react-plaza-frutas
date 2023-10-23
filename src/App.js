@@ -42,7 +42,7 @@ console.log("Device orientation: ", deviceOrientation)
 console.log("Device Width:", deviceWidth, " Height:", deviceHeight)
 
 let dogH = 0;                                 // Figuras con posicionamiento inicial
-let dogV = deviceHeight*80/100;
+let dogV = Math.floor(deviceHeight*75/100);
 let gusanoH = 0;
 let gusanoV = deviceHeight*5/100;
 let manzanaH = deviceWidth*15/100;
@@ -59,7 +59,7 @@ let obstaculo2H = deviceWidth*20/100;
 let obstaculo2V = deviceHeight*50/100;
 let cuadrilateroLimitsH;
 let cuadrilateroLimitsV;
-
+console.log("dogV inicial: ",dogV)
 // Alerta de bienvenida
 // swalert(                                      
 //   <div>
@@ -271,8 +271,8 @@ class App extends React.Component {
 
   
   /********************* HELPERS (Funciones llamadas desde la interfaz gráfica *********************/
-  getRandom() {
-    let numero = Math.round(Math.random()*10) * 10;
+  getRandom(max=10) {
+    let numero = Math.floor((Math.random()*max)/10)*10;
     return numero
   }
 
@@ -337,63 +337,48 @@ class App extends React.Component {
       anchoVentana:deviceWidth,
       altoVentana:deviceHeight
     }));
-    console.log("this.state.anchoVentana getOrientation(): ", this.state.anchoVentana);
-    console.log("Device Width,Height: ", deviceWidth,deviceHeight);
-    console.log("Device Orientation getOrientation(): ", deviceOrientation);
+    // console.log("this.state.anchoVentana getOrientation(): ", this.state.anchoVentana);
+    // console.log("Device Width,Height: ", deviceWidth,deviceHeight);
+    // console.log("Device Orientation getOrientation(): ", deviceOrientation);
+    console.log("getOrientation FIN" );
+
   }
 
   setPositionXY() {
     console.log("setPositionXY INICIO" );
-    const limitWidth = document.getElementById('cuadrilatero').offsetWidth;   
+    // Definicionn de posiciones de imagenes dentro de limites del cuadrilatero
+    const limitWidth = Math.floor(document.getElementById('cuadrilatero').offsetWidth/10) * 10;   // Redondeo de unidades a la decena inferior mas cercana  
     const limitHeigth = Math.floor(document.getElementById('cuadrilatero').offsetHeight/10) * 10; 
-    const offsetManzanaH = this.getRandom();
-    const offsetManzanaV = this.getRandom();
-    const offsetBananoH = this.getRandom();
-    const offsetBananoV = this.getRandom();
-    const offsetMangoH = this.getRandom();
-    const offsetMangoV = this.getRandom();
-    const offsetFresaH = this.getRandom();
-    const offsetFresaV = this.getRandom();
-    const offsetObstaculo1H = this.getRandom();
-    const offsetObstaculo1V = this.getRandom();
-    const offsetObstaculo2H = this.getRandom();
-    const offsetObstaculo2V = this.getRandom();
-    cuadrilateroLimitsH = [-limitWidth/2, limitWidth/2];   // Límite horizontal bordes cuadrilatero
-    cuadrilateroLimitsV = [0, limitHeigth];            // Límite vertical bordes cuadrilatero
+    cuadrilateroLimitsH = [Math.round((-(limitWidth/2)*95/100)/10)*10, Math.round(((limitWidth/2)*95/100)/10)*10];   // Límite horizontal bordes cuadrilatero
+    cuadrilateroLimitsV = [0, Math.floor((limitHeigth*90/100)/10)*10];  // Límite vertical bordes cuadrilatero
     dogH = 0;
-    dogV = cuadrilateroLimitsV[1];
+    dogV = Math.floor(cuadrilateroLimitsV[1]/10)*10;
     gusanoH = 0;
     gusanoV = 0;
-    // manzanaH = (limitWidth*offsetManzanaH/100);
-    manzanaH = Math.round((limitWidth*offsetManzanaH/100)/10)*10;
-    manzanaV = Math.round((limitHeigth*offsetManzanaV/100)/10)*10;
-    bananoH = Math.round((limitWidth*offsetBananoH/100)/10)*10;
-    bananoV = Math.round((limitHeigth*offsetBananoV/100)/10)*10;
-    mangoH = Math.round((limitWidth*offsetMangoH/100)/10)*10; 
-    mangoV = Math.round((limitHeigth*offsetMangoV/100)/10)*10;
-    fresaH = Math.round((limitWidth*offsetFresaH/100)/10)*10; 
-    fresaV = Math.round((limitHeigth*offsetFresaV/100)/10)*10;
-    obstaculo1H = -limitWidth*offsetObstaculo1H/100;
-    obstaculo1V = limitHeigth*offsetObstaculo1V/100;
-    obstaculo2H = limitWidth*offsetObstaculo2H/100; 
-    obstaculo2V = limitHeigth*offsetObstaculo2V/100;
-    console.log("Límite Width: ",limitWidth)
-    console.log("Límite Heigth: ",limitHeigth)
-    console.log("offset manzana H: ", offsetManzanaH)
-    console.log("offset manzana V: ",offsetManzanaV);
-    console.log("offset banano H: ", offsetBananoH)
-    console.log("offset banano V: ",offsetBananoV);
-    console.log("offset mango H: ", offsetMangoH)
-    console.log("offset mango V: ",offsetMangoV);
-    console.log("offset fresa H: ", offsetFresaH)
-    console.log("offset fresa V: ",offsetFresaV);
+    manzanaH = this.getRandom(2*cuadrilateroLimitsH[1]);
+    manzanaV = this.getRandom(cuadrilateroLimitsV[1]);
+    bananoH = this.getRandom(2*cuadrilateroLimitsH[1]);
+    bananoV = this.getRandom(cuadrilateroLimitsV[1]);
+    mangoH = this.getRandom(2*cuadrilateroLimitsH[1]);
+    mangoV = this.getRandom(cuadrilateroLimitsV[1]);
+    fresaH = this.getRandom(2*cuadrilateroLimitsH[1]);
+    fresaV = this.getRandom(cuadrilateroLimitsV[1]);
+    obstaculo1H = this.getRandom(cuadrilateroLimitsH[1]);
+    obstaculo1V = this.getRandom(cuadrilateroLimitsV[1]);
+    obstaculo2H = this.getRandom(-cuadrilateroLimitsH[1]);
+    obstaculo2V = this.getRandom(cuadrilateroLimitsV[1]);
+    console.log("Ancho cuadrilatero: ",limitWidth)
+    console.log("Alto cuadrilatero: ",limitHeigth)
+    console.log("Limites H cuadrilatero: ",cuadrilateroLimitsH)
+    console.log("Limites V cuadrilatero: ",cuadrilateroLimitsV)
     console.log("dogH,dogV: ",dogH,dogV);
     console.log("gusanoH,gusanoV: ",gusanoH,gusanoV);
     console.log("manzanaH, manzanaV: ",manzanaH, manzanaV);
     console.log("bananoH, bananoV: ",bananoH, bananoV );
     console.log("mangoH, mangoV: ",mangoH, mangoV );
-    console.log("mangoH, fresaV: ",mangoH, fresaV );
+    console.log("fresaH, fresaV: ",fresaH, fresaV );
     console.log("obstaculo1H, obstaculo1V: ",obstaculo1H, obstaculo1V );
+    console.log("obstaculo2H, obstaculo2V: ",obstaculo2H, obstaculo2V );
     this.setState(state => ({
         anchoVentana:deviceWidth,
         altoVentana:deviceHeight,

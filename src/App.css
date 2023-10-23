@@ -1,6 +1,6 @@
 :root {
-  --white-color: #fff;
-  --button-color: #ccc6;
+  --white-color: #ffffff;
+  --button-color: #cccccc66;
 }
 
 .App {
@@ -28,11 +28,11 @@
   font-size: 2.5vmin;
   text-shadow: 2px 2px 2px rgba(0, 0, 0, 1);
   width: 100%;
-  user-select: none;                            /* No permite seleccionar contenido */
   -moz-user-select: none;
   -webkit-user-drag: none;
   -webkit-user-select: none;
   -ms-user-select: none;
+  user-select: none;                            /* No permite seleccionar contenido */
 }
 .App-slogan {
   position: absolute;
@@ -65,7 +65,7 @@
   justify-content: center;
   font-size: 2vmin;
   color: var(--white-color);
-  background: url("/public/fondo.jpg") no-repeat;
+  background: url("/public/fondo.jpg");
   background-size: cover;
 }
 
@@ -75,6 +75,11 @@
 /*********** Alertas ***********/
 .instructions {                        /* Instrucciones de la alerta de bienvenida*/
   font-size: inherit;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;                            /* No permite seleccionar contenido */
 }
 
 /*********** Cuadrilatero ***********/
@@ -94,72 +99,54 @@ ol {
   border: 5vmin solid transparent;
   border-image: url("/src/assets/bloque2.jpeg") 70 round;
   padding: 0;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;                            /* No permite seleccionar contenido */
 }
 /*********** Figuras ***********/
 #dog {
   position: absolute;
   height: 7vh;
   pointer-events: none;
-  user-select: none;                    /* Impide seleccionar la imagen con el mouse*/
-  -moz-user-select: none;
-  -webkit-user-drag: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
   z-index: 1;
 }
 #gusano {
   position: absolute;
   height: 7vh;
   pointer-events: none;
-  user-select: none;                    /* Impide seleccionar la imagen con el mouse*/
-  -moz-user-select: none;
-  -webkit-user-drag: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
   z-index: 1;
 }
 .fruta {
   position: absolute;
   height: 5vh;
   pointer-events: none;
-  user-select: none;                    /* Impide seleccionar la imagen con el mouse*/
-  -moz-user-select: none;
-  -webkit-user-drag: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
   z-index: 1;
 }
-@keyframes image-spin {
+/* @keyframes image-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
 @media (prefers-reduced-motion: no-preference) {
   .fruta { animation: image-spin infinite 20s linear; }
-}
+} */
 .obstaculo {
   position: absolute;
   width: 6vh;
   /* height: 6vh; */
   pointer-events: none;
-  user-select: none;                    /* Impide seleccionar la imagen con el mouse*/
-  -moz-user-select: none;
-  -webkit-user-drag: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
 }
 
 /*********** Controles ***********/
 #controles {                            /*Tiempo, frutas restantes */
   position: absolute;
   display: flex;
-  /* top: 60vh; */
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
   margin: auto;
-  justify-content: center;
+  align-self: center;
   align-items: center;
+  justify-content: center;
+  vertical-align: middle;
   z-index: 1;
 }
 .tablaFlechas {                          /*Botones de flechas */
