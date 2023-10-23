@@ -328,24 +328,32 @@ class App extends React.Component {
     if(this.state.posicionVdog > cuadrilateroLimitsV[0]){
       this.setState(state => ({ posicionVdog: this.state.posicionVdog - 10 }));
     }
+    this.checkGanador();
+    this.checkObstaculo();
   }
   botonDown(e) {                                          // Límite inferior movimiento Doggy dentro del cuadrilátero
     e.preventDefault();
     if(this.state.posicionVdog < cuadrilateroLimitsV[1]){
       this.setState(state => ({ posicionVdog: this.state.posicionVdog + 10 }));
     }
+    this.checkGanador();
+    this.checkObstaculo();
   }
   botonLeft(e) {                                          // Límite izquierda movimiento Doggy dentro del cuadrilátero
     e.preventDefault();
     if(this.state.posicionHdog > cuadrilateroLimitsH[0]){
       this.setState(state => ({ posicionHdog: this.state.posicionHdog - 10 }));
     }
+    this.checkGanador();
+    this.checkObstaculo();
   }
   botonRight(e) {                                         // Límite derecha movimiento Doggy dentro del cuadrilátero
     e.preventDefault();
     if(this.state.posicionHdog < cuadrilateroLimitsH[1]){
       this.setState(state => ({ posicionHdog: this.state.posicionHdog + 10 }));
     }
+    this.checkGanador();
+    this.checkObstaculo();
   }
 
   flechasTeclado(e) {                                     //Función para sensar las flechas del teclado
