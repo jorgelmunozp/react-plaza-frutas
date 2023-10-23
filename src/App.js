@@ -79,7 +79,7 @@ class App extends React.Component {
     super(props);
     this.state = { 
       segundos:tiempo,
-      nombre:'',
+      nombre:{dogname},
       vidas:vidas,
       frutas:0,
       items: [],
@@ -212,16 +212,7 @@ class App extends React.Component {
                   <td><p className="App-title">Plaza de Frutas</p></td>
                 </tr>
               </tbody>
-            </table>
-            {/* <table className='tablaTiempo'>
-              <tbody>
-                <tr>
-                  <td><FontAwesomeIcon icon={faClock} />&nbsp;</td>
-                  <td><p className='tiempo'> {this.state.segundos}</p></td>
-                </tr>
-              </tbody>
-            </table>              */}
-            
+            </table>           
             <table className='tablaTablero'>
               <tbody>
                 <tr>
@@ -281,7 +272,7 @@ class App extends React.Component {
   
   /********************* HELPERS (Funciones llamadas desde la interfaz gráfica *********************/
   getRandom() {
-    let numero = Math.round(Math.random()*100);
+    let numero = Math.round(Math.random()*10) * 10;
     return numero
   }
 
@@ -291,13 +282,13 @@ class App extends React.Component {
 
   botonStart(e){                                          //Función para iniciar el juego
     e.preventDefault();
+    console.log("botonStart START" );
     this.setState(state => ({ estado: 'start' }));
     this.flechasTeclado();
     console.log("Cellphone dimensions: ",cellphoneSize)
     this.getOrientation();
     this.setPositionXY();
-    const offset = this.getRandom();
-    console.log("offset: ",offset);
+    console.log("botonStart FIN" );
   }                                                       //Funciones para sensar los botones                    
   
   botonUp(e) {                                            // Límite inferior movimiento Doggy dentro del cuadrilátero
@@ -339,8 +330,6 @@ class App extends React.Component {
 
   getOrientation() {
     console.log("getOrientation INICIO" );
-    console.log("cellphoneSize: ", cellphoneSize );
-
     deviceWidth = document.documentElement.clientWidth;       // Tamaño horizontal de pantalla
     deviceHeight = document.documentElement.clientHeight;     // Tamaño vertical de pantalla
     deviceOrientation = window.screen.orientation.type;       // Tamaño vertical de pantalla
@@ -348,156 +337,62 @@ class App extends React.Component {
       anchoVentana:deviceWidth,
       altoVentana:deviceHeight
     }));
-    console.log("this.state.anchoVentana getOrientation(): ", this.state.anchoVentana );
-    console.log("deviceWidth getOrientation(): ", deviceWidth );
-    console.log("deviceHeight getOrientation(): ", deviceHeight );
-    console.log("deviceOrientation getOrientation(): ", deviceOrientation );
+    console.log("this.state.anchoVentana getOrientation(): ", this.state.anchoVentana);
+    console.log("Device Width,Height: ", deviceWidth,deviceHeight);
+    console.log("Device Orientation getOrientation(): ", deviceOrientation);
   }
 
   setPositionXY() {
     console.log("setPositionXY INICIO" );
-    const limitLeft = document.getElementById('cuadrilatero').offsetLeft;  // Limites de movimiento dentro del cuadrilatero
-    const limitRight = document.getElementById('cuadrilatero').offsetWidth;
-    const limitUp = document.getElementById('cuadrilatero').offsetTop;
-    const limitDown = document.getElementById('cuadrilatero').offsetHeight;   
     const limitWidth = document.getElementById('cuadrilatero').offsetWidth;   
     const limitHeigth = document.getElementById('cuadrilatero').offsetHeight; 
-    const offsetH = document.getElementById('cuadrilatero').offsetWidth;
-    const offsetV = document.getElementById('cuadrilatero').offsetHeight;
-
-    console.log("limitLeft setPositionXY(): ",limitLeft)
-    console.log("limitRight setPositionXY(): ",limitRight)
-    console.log("limitUp setPositionXY(): ",limitUp)
-    console.log("limitDown setPositionXY(): ",limitDown)
-    console.log("limitWidth setPositionXY(): ",limitWidth)
-    console.log("limitHeigth setPositionXY(): ",limitHeigth)
-    console.log("offsetH setPositionXY(): ",offsetH)
-    console.log("offsetV setPositionXY(): ",offsetV)
-
-    // Orientación Portrait para Celular | Tablet | Laptop
-    if(deviceOrientation === 'portrait-primary') {
-      if(device === 'cellphone') {
-        cuadrilateroLimitsH = [-limitWidth/2, limitWidth/2]; // Límite horizontal bordes cuadrilatero
-        cuadrilateroLimitsV = [0, limitHeigth];            // Límite vertical bordes cuadrilatero
-        dogH = 0;
-        dogV = cuadrilateroLimitsV[1];
-        gusanoH = 0;
-        gusanoV = 0;
-        manzanaH = limitWidth/4;
-        manzanaV = limitUp + offsetV/2;
-        bananoH = limitWidth/8;
-        bananoV = limitUp + offsetV/2;
-        mangoH = limitWidth/16; 
-        mangoV = limitUp + offsetV/4;
-        fresaH = limitWidth/32; 
-        fresaV = limitUp + offsetV/4;
-        obstaculo1H = cuadrilateroLimitsH[1] - 110;
-        obstaculo1V = cuadrilateroLimitsV[0] + 100;
-        obstaculo2H = cuadrilateroLimitsH[0] + 60; 
-        obstaculo2V = cuadrilateroLimitsV[1] - 80;
-      } else if(device === 'tablet') {
-        cuadrilateroLimitsH = [-limitWidth/2, limitWidth/2];   // Límite horizontal bordes cuadrilatero
-        cuadrilateroLimitsV = [0, limitHeigth];            // Límite vertical bordes cuadrilatero
-        dogH = 0;
-        dogV = cuadrilateroLimitsV[1];
-        gusanoH = 0;
-        gusanoV = 0;
-        manzanaH = limitWidth/4;
-        manzanaV = limitUp + offsetV/2;
-        bananoH = limitWidth/8;
-        bananoV = limitUp + offsetV/2;
-        mangoH = limitWidth/16; 
-        mangoV = limitUp + offsetV/4;
-        fresaH = limitWidth/32; 
-        fresaV = limitUp + offsetV/4;
-        obstaculo1H = cuadrilateroLimitsH[1] - 110;
-        obstaculo1V = cuadrilateroLimitsV[0] + 100;
-        obstaculo2H = cuadrilateroLimitsH[0] + 60; 
-        obstaculo2V = cuadrilateroLimitsV[1] - 80;
-      } else if(device === 'laptop') {
-        cuadrilateroLimitsH = [-limitWidth/2, limitWidth/2];   // Límite horizontal bordes cuadrilatero
-        cuadrilateroLimitsV = [0, limitHeigth];            // Límite vertical bordes cuadrilatero
-        dogH = 0;
-        dogV = cuadrilateroLimitsV[1];
-        gusanoH = 0;
-        gusanoV = 0;
-        manzanaH = limitWidth/4;
-        manzanaV = limitUp + offsetV/2;
-        bananoH = limitWidth/8;
-        bananoV = limitUp + offsetV/2;
-        mangoH = limitWidth/16; 
-        mangoV = limitUp + offsetV/4;
-        fresaH = limitWidth/32; 
-        fresaV = limitUp + offsetV/4;
-        obstaculo1H = cuadrilateroLimitsH[1] - 110;
-        obstaculo1V = cuadrilateroLimitsV[0] + 100;
-        obstaculo2H = cuadrilateroLimitsH[0] + 60; 
-        obstaculo2V = cuadrilateroLimitsV[1] - 80;
-      }
-    // Orientación Landscape para Celular | Tablet | Laptop
-    } else if(deviceOrientation === 'landscape-primary') {
-      if(device === 'cellphone') {
-        cuadrilateroLimitsH = [-limitWidth/2, limitWidth/2];   // Límite horizontal bordes cuadrilatero
-        cuadrilateroLimitsV = [0, limitHeigth];            // Límite vertical bordes cuadrilatero
-        // const offset = this.getRandom();
-        // console.log("offset: ", offset)
-        
-        dogH = 0;
-        dogV = cuadrilateroLimitsV[1];
-        gusanoH = 0;
-        gusanoV = 0;
-        manzanaH = limitWidth/4;
-        manzanaV = limitUp + offsetV/2;
-        bananoH = limitWidth/8;
-        bananoV = limitUp + offsetV/2;
-        mangoH = limitWidth/16; 
-        mangoV = limitUp + offsetV/4;
-        fresaH = limitWidth/32; 
-        fresaV = limitUp + offsetV/4;
-        obstaculo1H = cuadrilateroLimitsH[1] - 110;
-        obstaculo1V = cuadrilateroLimitsV[0] + 100;
-        obstaculo2H = cuadrilateroLimitsH[0] + 60; 
-        obstaculo2V = cuadrilateroLimitsV[1] - 80;
-      } else if(device === 'tablet') {
-        cuadrilateroLimitsH = [-limitWidth/2, limitWidth/2];   // Límite horizontal bordes cuadrilatero
-        cuadrilateroLimitsV = [0, limitHeigth];            // Límite vertical bordes cuadrilatero        dogH = (cuadrilateroLimitsH[1] + cuadrilateroLimitsH[0])/2;
-        dogH = 0;
-        dogV = cuadrilateroLimitsV[1];
-        gusanoH = 0;
-        gusanoV = 0;
-        manzanaH = limitWidth/4;
-        manzanaV = limitUp + offsetV/2;
-        bananoH = limitWidth/8;
-        bananoV = limitUp + offsetV/2;
-        mangoH = limitWidth/16; 
-        mangoV = limitUp + offsetV/4;
-        fresaH = limitWidth/32; 
-        fresaV = limitUp + offsetV/4;
-        obstaculo1H = cuadrilateroLimitsH[1] - 160;
-        obstaculo1V = cuadrilateroLimitsV[0] + 170;
-        obstaculo2H = cuadrilateroLimitsH[0] + 190; 
-        obstaculo2V = cuadrilateroLimitsV[1] - 180;
-     } else if(device === 'laptop') {
-        cuadrilateroLimitsH = [-limitWidth/2, limitWidth/2];   // Límite horizontal bordes cuadrilatero
-        cuadrilateroLimitsV = [0, limitHeigth];            // Límite vertical bordes cuadrilatero        dogH = (cuadrilateroLimitsH[1] + cuadrilateroLimitsH[0])/2;
-        dogH = 0;
-        dogV = cuadrilateroLimitsV[1];
-        gusanoH = (cuadrilateroLimitsH[1] + cuadrilateroLimitsH[0])/2;
-        gusanoV = 0; 
-        manzanaH = limitWidth/4;
-        manzanaV = limitUp + offsetV/2;
-        bananoH = limitWidth/8;
-        bananoV = limitUp + offsetV/2;
-        mangoH = limitWidth/16; 
-        mangoV = limitUp + offsetV/4;
-        fresaH = limitWidth/32; 
-        fresaV = limitUp + offsetV/4;
-        obstaculo1H = 130; 
-        obstaculo1V = 135;
-        obstaculo2H = obstaculo1H - 330; 
-        obstaculo2V = obstaculo1V + 260;
-      }
-    }
+    const offsetManzanaH = this.getRandom();
+    const offsetManzanaV = this.getRandom();
+    const offsetBananoH = this.getRandom();
+    const offsetBananoV = this.getRandom();
+    const offsetMangoH = this.getRandom();
+    const offsetMangoV = this.getRandom();
+    const offsetFresaH = this.getRandom();
+    const offsetFresaV = this.getRandom();
+    const offsetObstaculo1H = this.getRandom();
+    const offsetObstaculo1V = this.getRandom();
+    const offsetObstaculo2H = this.getRandom();
+    const offsetObstaculo2V = this.getRandom();
+    cuadrilateroLimitsH = [-limitWidth/2, limitWidth/2];   // Límite horizontal bordes cuadrilatero
+    cuadrilateroLimitsV = [0, limitHeigth];            // Límite vertical bordes cuadrilatero
+    dogH = 0;
+    dogV = cuadrilateroLimitsV[1];
+    gusanoH = 0;
+    gusanoV = 0;
+    manzanaH = limitWidth*offsetManzanaH/100;
+    manzanaV = limitHeigth*offsetManzanaV/100;
+    bananoH = limitWidth*offsetBananoH/100;
+    bananoV = limitHeigth*offsetBananoV/100;
+    mangoH = limitWidth*offsetMangoH/100; 
+    mangoV = limitHeigth*offsetMangoV/100;
+    fresaH = limitWidth*offsetFresaH/100; 
+    fresaV = limitHeigth*offsetFresaV/100;
+    obstaculo1H = -limitWidth*offsetObstaculo1H/100;
+    obstaculo1V = limitHeigth*offsetObstaculo1V/100;
+    obstaculo2H = limitWidth*offsetObstaculo2H/100; 
+    obstaculo2V = limitHeigth*offsetObstaculo2V/100;
+    console.log("Límite Width: ",limitWidth)
+    console.log("Límite Heigth: ",limitHeigth)
+    console.log("offset manzana H: ", offsetManzanaH)
+    console.log("offset manzana V: ",offsetManzanaV);
+    console.log("offset banano H: ", offsetBananoH)
+    console.log("offset banano V: ",offsetBananoV);
+    console.log("offset mango H: ", offsetMangoH)
+    console.log("offset mango V: ",offsetMangoV);
+    console.log("offset fresa H: ", offsetFresaH)
+    console.log("offset fresa V: ",offsetFresaV);
+    console.log("dogH,dogV: ",dogH,dogV);
+    console.log("gusanoH,gusanoV: ",gusanoH,gusanoV);
+    console.log("manzanaH, manzanaV: ",manzanaH, manzanaV);
+    console.log("bananoH, bananoV: ",bananoH, bananoV );
+    console.log("mangoH, mangoV: ",mangoH, mangoV );
+    console.log("mangoH, fresaV: ",mangoH, fresaV );
+    console.log("obstaculo1H, obstaculo1V: ",obstaculo1H, obstaculo1V );
     this.setState(state => ({
         anchoVentana:deviceWidth,
         altoVentana:deviceHeight,
@@ -514,12 +409,13 @@ class App extends React.Component {
         posicionHfresa: fresaH, 
         posicionVfresa: fresaV,
         posicionHobstaculo1: obstaculo1H,
-        posicionVobstaculo1: obstaculo1V
+        posicionVobstaculo1: obstaculo1V,
+        posicionHobstaculo2: obstaculo2H,
+        posicionVobstaculo2: obstaculo2V
     }));
     console.log("setPositionXY FIN" );
   }
   
-
   checkGanador() {                                       // Funcon para revision del estado del juego
     if((this.state.posicionHmanzana - 40  < this.state.posicionHdog && this.state.posicionHdog < this.state.posicionHmanzana + 40) &&
        (this.state.posicionVmanzana - 40  < this.state.posicionVdog && this.state.posicionVdog < this.state.posicionVmanzana + 40)
