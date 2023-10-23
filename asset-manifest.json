@@ -1,27 +1,36 @@
 {
   "files": {
     "main.css": "/react-plaza-frutas/static/css/main.b51e2d72.css",
-    "main.js": "/react-plaza-frutas/static/js/main.51377087.js",
+    "main.js": "/react-plaza-frutas/static/js/main.0922d816.js",
     "static/js/787.884cd976.chunk.js": "/react-plaza-frutas/static/js/787.884cd976.chunk.js",
     "static/media/bloque.svg": "/react-plaza-frutas/static/media/bloque.d0a744bf7c41ba5be3ee8069c535024d.svg",
     "static/media/dog.png": "/react-plaza-frutas/static/media/dog.b016b8c036e234297ec6.png",
     "static/media/gusano.svg": "/react-plaza-frutas/static/media/gusano.3d994d4ffa6517877e68080ea9a7a256.svg",
     "static/media/logo.png": "/react-plaza-frutas/static/media/logo.713961e30e9ec2c3ab9c.png",
     "static/media/banner.jpg": "/react-plaza-frutas/static/media/banner.18ab8e97b959db4cd27b.jpg",
+    "static/media/gameOver.mp3": "/react-plaza-frutas/static/media/gameOver.9c46057ca5e0b988a1ee.mp3",
     "static/media/fondo.jpg": "/react-plaza-frutas/static/media/fondo.c30a41d802d8ef1440bf.jpg",
+    "static/media/countdown.mp3": "/react-plaza-frutas/static/media/countdown.04e772d6c31e027fbed5.mp3",
+    "static/media/roundTwo.mp3": "/react-plaza-frutas/static/media/roundTwo.8ae8bc9a34b5ca79f986.mp3",
+    "static/media/roundOne.mp3": "/react-plaza-frutas/static/media/roundOne.e13e80151a3a8a2bdd18.mp3",
+    "static/media/roundThree.mp3": "/react-plaza-frutas/static/media/roundThree.322506afdb34831378a7.mp3",
+    "static/media/mammaMia.mp3": "/react-plaza-frutas/static/media/mammaMia.36bd6f698677801be72e.mp3",
+    "static/media/fine.mp3": "/react-plaza-frutas/static/media/fine.f5a42c6ac0fdc12988de.mp3",
+    "static/media/wonderful.mp3": "/react-plaza-frutas/static/media/wonderful.b6345812c06b59102177.mp3",
     "static/media/fresa.svg": "/react-plaza-frutas/static/media/fresa.09d4eb9792f592d29353e0adcc968f50.svg",
     "static/media/mango.svg": "/react-plaza-frutas/static/media/mango.9f58b13dc9ede08b8f9c6ba7d8c2fa6d.svg",
     "static/media/manzana.svg": "/react-plaza-frutas/static/media/manzana.7f1cd9fd6be38eb24fccbab6abecb1cf.svg",
     "static/media/LDFComicSans.ttf": "/react-plaza-frutas/static/media/LDFComicSans.acf4b7e829f1fcdc78d4.ttf",
+    "static/media/youWin.mp3": "/react-plaza-frutas/static/media/youWin.5094a1f0ab7b56ce9505.mp3",
     "static/media/banano.svg": "/react-plaza-frutas/static/media/banano.b6bfcd472bfe18e7ee90692ad3c8f148.svg",
     "static/media/coin.mp3": "/react-plaza-frutas/static/media/coin.6d2f24f39101522de271.mp3",
     "index.html": "/react-plaza-frutas/index.html",
     "main.b51e2d72.css.map": "/react-plaza-frutas/static/css/main.b51e2d72.css.map",
-    "main.51377087.js.map": "/react-plaza-frutas/static/js/main.51377087.js.map",
+    "main.0922d816.js.map": "/react-plaza-frutas/static/js/main.0922d816.js.map",
     "787.884cd976.chunk.js.map": "/react-plaza-frutas/static/js/787.884cd976.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.b51e2d72.css",
-    "static/js/main.51377087.js"
+    "static/js/main.0922d816.js"
   ]
 }
