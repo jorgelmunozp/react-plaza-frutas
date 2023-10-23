@@ -345,7 +345,7 @@ class App extends React.Component {
   setPositionXY() {
     console.log("setPositionXY INICIO" );
     const limitWidth = document.getElementById('cuadrilatero').offsetWidth;   
-    const limitHeigth = document.getElementById('cuadrilatero').offsetHeight; 
+    const limitHeigth = Math.floor(document.getElementById('cuadrilatero').offsetHeight/10) * 10; 
     const offsetManzanaH = this.getRandom();
     const offsetManzanaV = this.getRandom();
     const offsetBananoH = this.getRandom();
@@ -364,14 +364,15 @@ class App extends React.Component {
     dogV = cuadrilateroLimitsV[1];
     gusanoH = 0;
     gusanoV = 0;
-    manzanaH = limitWidth*offsetManzanaH/100;
-    manzanaV = limitHeigth*offsetManzanaV/100;
-    bananoH = limitWidth*offsetBananoH/100;
-    bananoV = limitHeigth*offsetBananoV/100;
-    mangoH = limitWidth*offsetMangoH/100; 
-    mangoV = limitHeigth*offsetMangoV/100;
-    fresaH = limitWidth*offsetFresaH/100; 
-    fresaV = limitHeigth*offsetFresaV/100;
+    // manzanaH = (limitWidth*offsetManzanaH/100);
+    manzanaH = Math.round((limitWidth*offsetManzanaH/100)/10)*10;
+    manzanaV = Math.round((limitHeigth*offsetManzanaV/100)/10)*10;
+    bananoH = Math.round((limitWidth*offsetBananoH/100)/10)*10;
+    bananoV = Math.round((limitHeigth*offsetBananoV/100)/10)*10;
+    mangoH = Math.round((limitWidth*offsetMangoH/100)/10)*10; 
+    mangoV = Math.round((limitHeigth*offsetMangoV/100)/10)*10;
+    fresaH = Math.round((limitWidth*offsetFresaH/100)/10)*10; 
+    fresaV = Math.round((limitHeigth*offsetFresaV/100)/10)*10;
     obstaculo1H = -limitWidth*offsetObstaculo1H/100;
     obstaculo1V = limitHeigth*offsetObstaculo1V/100;
     obstaculo2H = limitWidth*offsetObstaculo2H/100; 
