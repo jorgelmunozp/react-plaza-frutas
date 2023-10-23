@@ -79,7 +79,7 @@ class App extends React.Component {
     super(props);
     this.state = { 
       segundos:tiempo,
-      nombre:{dogname},
+      nombre:dogname,
       vidas:vidas,
       frutas:0,
       items: [],
@@ -136,7 +136,7 @@ class App extends React.Component {
         <div>
           <img src={logo} alt="logo" style={{'height':'10vh'}} />
           <h1> {dogname} está <FontAwesomeIcon icon={faFrown} /></h1>
-          <p>Vamos {this.state.nombre}, juega de nuevo!</p>
+          <p>Vamos <b>{this.state.nombre}</b>, juega de nuevo!</p>
         </div>
       )
       this.reset();
