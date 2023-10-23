@@ -22,7 +22,7 @@
 This project consists of the development of a fruit plaza game application
 
 * It was developed with JavaScript, Html, and Css in React Js 5
-
+* The frontend has responsive viewport design and DOM handle
 ***
 
 ## Authors
