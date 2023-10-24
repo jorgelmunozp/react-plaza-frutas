@@ -103,12 +103,22 @@
   height: 10vmin;
 }
 .swal-title {
-  font-size: 3vmax;
-  background: radial-gradient(circle,red,yellow);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  display: inline-flex;
+  text-align: center;
+  align-items: center;
 }
+.swal-title h1 {
+  font-size: 5vmax;
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+.swal-leter1 { color:#f00;  }
+.swal-leter2 { color:#f80; }
+.swal-leter3 { color:#ff0; }
+.swal-leter4 { color:#0f0; }
+.swal-leter5 { color:#08f; }
 .swal-subtitle {
   color: orangered;
 }

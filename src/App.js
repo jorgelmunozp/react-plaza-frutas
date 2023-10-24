@@ -107,12 +107,20 @@ console.log("dogV inicial: ",dogV)
 // Alerta de bienvenida
 swalert(
   <div>
-      <h1 className='swal-title'>{dogname}</h1>
-      <img className='swal-logo' src={logo} alt='🐶' />
-      {/* <input type="text" id="nombre" onChange={this.campoNombre} value={this.state.nombre} placeholder="nombre" autoComplete='off'/> */}
-      <p><b>{dogname}</b> debe recolectar todas las frutas antes que el malvado <b>Gusanor</b> lo atrape</p>
-      <h2 className='swal-subtitle'> {dogname} está listo! <FontAwesomeIcon icon={faSmile} /></h2>
-      {/* <p>Vamos {nombre}, juega con todo!</p> */}
+      <div className='swal-title'>
+        <h1 className='swal-leter1'>D</h1>
+        <h1 className='swal-leter2'>O</h1>
+        <h1 className='swal-leter3'>G</h1>
+        <h1 className='swal-leter4'>G</h1>
+        <h1 className='swal-leter5'>Y</h1>
+      </div>
+      <div>
+        <img className='swal-logo' src={logo} alt='🐶' />
+        {/* <input type="text" id="nombre" onChange={this.campoNombre} value={this.state.nombre} placeholder="nombre" autoComplete='off'/> */}
+        <p><b>{dogname}</b> debe recolectar todas las frutas antes que el malvado <b>Gusanor</b> lo atrape</p>
+        <h2 className='swal-subtitle'> {dogname} está listo! <FontAwesomeIcon icon={faSmile} /></h2>
+        {/* <p>Vamos {nombre}, juega con todo!</p> */}
+      </div>
     </div>
 )
 
