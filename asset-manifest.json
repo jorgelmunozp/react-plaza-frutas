@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/react-plaza-frutas/static/css/main.8f2b8513.css",
-    "main.js": "/react-plaza-frutas/static/js/main.abc2dbe8.js",
+    "main.css": "/react-plaza-frutas/static/css/main.3c6788c4.css",
+    "main.js": "/react-plaza-frutas/static/js/main.27bf9185.js",
     "static/js/787.884cd976.chunk.js": "/react-plaza-frutas/static/js/787.884cd976.chunk.js",
     "static/media/bloque.svg": "/react-plaza-frutas/static/media/bloque.d0a744bf7c41ba5be3ee8069c535024d.svg",
     "static/media/dog.png": "/react-plaza-frutas/static/media/dog.b016b8c036e234297ec6.png",
@@ -23,18 +23,19 @@
     "static/media/fresa.svg": "/react-plaza-frutas/static/media/fresa.09d4eb9792f592d29353e0adcc968f50.svg",
     "static/media/mango.svg": "/react-plaza-frutas/static/media/mango.9f58b13dc9ede08b8f9c6ba7d8c2fa6d.svg",
     "static/media/manzana.svg": "/react-plaza-frutas/static/media/manzana.7f1cd9fd6be38eb24fccbab6abecb1cf.svg",
+    "static/media/bloque2.jpeg": "/react-plaza-frutas/static/media/bloque2.c822924ab510d0fdcc83.jpeg",
     "static/media/LDFComicSans.ttf": "/react-plaza-frutas/static/media/LDFComicSans.acf4b7e829f1fcdc78d4.ttf",
     "static/media/youWin.mp3": "/react-plaza-frutas/static/media/youWin.5094a1f0ab7b56ce9505.mp3",
     "static/media/banano.svg": "/react-plaza-frutas/static/media/banano.b6bfcd472bfe18e7ee90692ad3c8f148.svg",
     "static/media/coin.mp3": "/react-plaza-frutas/static/media/coin.6d2f24f39101522de271.mp3",
     "static/media/ooh.mp3": "/react-plaza-frutas/static/media/ooh.cf61ed3126d9919b8ca6.mp3",
     "index.html": "/react-plaza-frutas/index.html",
-    "main.8f2b8513.css.map": "/react-plaza-frutas/static/css/main.8f2b8513.css.map",
-    "main.abc2dbe8.js.map": "/react-plaza-frutas/static/js/main.abc2dbe8.js.map",
+    "main.3c6788c4.css.map": "/react-plaza-frutas/static/css/main.3c6788c4.css.map",
+    "main.27bf9185.js.map": "/react-plaza-frutas/static/js/main.27bf9185.js.map",
     "787.884cd976.chunk.js.map": "/react-plaza-frutas/static/js/787.884cd976.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.8f2b8513.css",
-    "static/js/main.abc2dbe8.js"
+    "static/css/main.3c6788c4.css",
+    "static/js/main.27bf9185.js"
   ]
 }
