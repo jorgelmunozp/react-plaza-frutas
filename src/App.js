@@ -107,11 +107,11 @@ console.log("dogV inicial: ",dogV)
 // Alerta de bienvenida
 swalert(
   <div>
-      <h1>{dogname}</h1>
+      <h1 className='swal-title'>{dogname}</h1>
       <img className='swal-logo' src={logo} alt='🐶' />
       {/* <input type="text" id="nombre" onChange={this.campoNombre} value={this.state.nombre} placeholder="nombre" autoComplete='off'/> */}
-      <p><b>{dogname}</b> debe recolectar todas las frutas antes que<br></br>el malvado <b>Gusanor</b> lo atrape</p>
-      <h2> {dogname} está listo! <FontAwesomeIcon icon={faSmile} /></h2>
+      <p><b>{dogname}</b> debe recolectar todas las frutas antes que el malvado <b>Gusanor</b> lo atrape</p>
+      <h2 className='swal-subtitle'> {dogname} está listo! <FontAwesomeIcon icon={faSmile} /></h2>
       {/* <p>Vamos {nombre}, juega con todo!</p> */}
     </div>
 )
@@ -181,7 +181,7 @@ class App extends React.Component {
       swalert(
         <div>
           <img className='swal-logo' src={logo} alt='🐶' />
-          <h2> {dogname} está <FontAwesomeIcon icon={faFrown} /></h2>
+          <h2 className='swal-subtitle'> {dogname} está <FontAwesomeIcon icon={faFrown} /></h2>
           <p>Vamos <b>{this.state.nombre}</b>, juega de nuevo!</p>
         </div>
       )
@@ -545,7 +545,7 @@ class App extends React.Component {
       swalert(
         <div>
           <img className='swal-logo' src={logo} alt='🐶' />
-          <h2>{dogname} está <FontAwesomeIcon icon={faSmile} /></h2>
+          <h2 className='swal-subtitle'>{dogname} está <FontAwesomeIcon icon={faSmile} /></h2>
           <p>Ganáste {this.state.nombre}! buen juego</p>
           <div >
               <h3>Ranking</h3>
@@ -571,7 +571,7 @@ class App extends React.Component {
     swalert(
       <div>
         <img className='swal-logo' src={logo} alt='🐶' />
-        <h2>{dogname} está <FontAwesomeIcon icon={faMeh} /></h2>
+        <h2 className='swal-subtitle'>{dogname} está <FontAwesomeIcon icon={faMeh} /></h2>
         <p>Lo siento, intentalo otra vez!</p>
       </div>
     )
