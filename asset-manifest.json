@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/react-plaza-frutas/static/css/main.5e365927.css",
+    "main.css": "/react-plaza-frutas/static/css/main.bf4b3697.css",
     "main.js": "/react-plaza-frutas/static/js/main.a6f0ddc7.js",
     "static/js/787.884cd976.chunk.js": "/react-plaza-frutas/static/js/787.884cd976.chunk.js",
     "static/media/bloque.svg": "/react-plaza-frutas/static/media/bloque.d0a744bf7c41ba5be3ee8069c535024d.svg",
@@ -30,12 +30,12 @@
     "static/media/coin.mp3": "/react-plaza-frutas/static/media/coin.6d2f24f39101522de271.mp3",
     "static/media/ooh.mp3": "/react-plaza-frutas/static/media/ooh.cf61ed3126d9919b8ca6.mp3",
     "index.html": "/react-plaza-frutas/index.html",
-    "main.5e365927.css.map": "/react-plaza-frutas/static/css/main.5e365927.css.map",
+    "main.bf4b3697.css.map": "/react-plaza-frutas/static/css/main.bf4b3697.css.map",
     "main.a6f0ddc7.js.map": "/react-plaza-frutas/static/js/main.a6f0ddc7.js.map",
     "787.884cd976.chunk.js.map": "/react-plaza-frutas/static/js/787.884cd976.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.5e365927.css",
+    "static/css/main.bf4b3697.css",
     "static/js/main.a6f0ddc7.js"
   ]
 }
