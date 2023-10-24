@@ -108,11 +108,10 @@ console.log("dogV inicial: ",dogV)
 swalert(
   <div>
       <h1>{dogname}</h1>
-      <img src={logo} alt="logo" style={{ 'height': '10vh' }} />
-      <p>Bienvenido</p>
+      <img className='swal-logo' src={logo} alt='🐶' />
       {/* <input type="text" id="nombre" onChange={this.campoNombre} value={this.state.nombre} placeholder="nombre" autoComplete='off'/> */}
-      <p className='instructions'><b>{dogname}</b> debe recolectar<br></br> todas las frutas antes que<br></br>el malvado <b>Gusanor</b> lo atrape</p>
-      <h1> {dogname} está listo! <FontAwesomeIcon icon={faSmile} /></h1>
+      <p><b>{dogname}</b> debe recolectar todas las frutas antes que<br></br>el malvado <b>Gusanor</b> lo atrape</p>
+      <h2> {dogname} está listo! <FontAwesomeIcon icon={faSmile} /></h2>
       {/* <p>Vamos {nombre}, juega con todo!</p> */}
     </div>
 )
@@ -181,8 +180,8 @@ class App extends React.Component {
       soundGameOver();
       swalert(
         <div>
-          <img src={logo} alt="logo" style={{'height':'10vh'}} />
-          <h1> {dogname} está <FontAwesomeIcon icon={faFrown} /></h1>
+          <img className='swal-logo' src={logo} alt='🐶' />
+          <h2> {dogname} está <FontAwesomeIcon icon={faFrown} /></h2>
           <p>Vamos <b>{this.state.nombre}</b>, juega de nuevo!</p>
         </div>
       )
@@ -545,8 +544,8 @@ class App extends React.Component {
       soundYeahLaugh();
       swalert(
         <div>
-          <img src={logo} alt="logo" style={{'height':'10vh'}} />
-          <h1>{dogname} está <FontAwesomeIcon icon={faSmile} /></h1>
+          <img className='swal-logo' src={logo} alt='🐶' />
+          <h2>{dogname} está <FontAwesomeIcon icon={faSmile} /></h2>
           <p>Ganáste {this.state.nombre}! buen juego</p>
           <div >
               <h3>Ranking</h3>
@@ -571,8 +570,8 @@ class App extends React.Component {
     soundLoser();
     swalert(
       <div>
-        <img src={logo} alt="logo" style={{'height':'10vh'}} />
-        <h1>{dogname} está <FontAwesomeIcon icon={faMeh} /></h1>
+        <img className='swal-logo' src={logo} alt='🐶' />
+        <h2>{dogname} está <FontAwesomeIcon icon={faMeh} /></h2>
         <p>Lo siento, intentalo otra vez!</p>
       </div>
     )
