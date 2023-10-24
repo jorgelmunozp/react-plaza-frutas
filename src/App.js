@@ -7,17 +7,20 @@ import mango from './assets/images/mango.svg';
 import fresa from './assets/images/fresa.svg';
 import bloque from './assets/images/bloque.svg';
 
+import introMp3 from './assets/sounds/intro.mp3';
 import coinMp3 from './assets/sounds/coin.mp3';
 import roundOneMp3 from './assets/sounds/roundOne.mp3';
 import roundTwoMp3 from './assets/sounds/roundTwo.mp3';
 import roundThreeMp3 from './assets/sounds/roundThree.mp3';
 import youWinMp3 from './assets/sounds/youWin.mp3';
-import countdown from './assets/sounds/countdown.mp3';
+import countdownMp3 from './assets/sounds/countdown.mp3';
 import gameOverMp3 from './assets/sounds/gameOver.mp3';
-
 import fineMp3 from './assets/sounds/fine.mp3';
 import wonderfulMp3 from './assets/sounds/wonderful.mp3';
 import mammaMiaMp3 from './assets/sounds/mammaMia.mp3';
+import yeahLaughMp3 from './assets/sounds/yeahLaugh.mp3';
+import oohMp3 from './assets/sounds/ooh.mp3'
+import loserMp3 from './assets/sounds/loser.mp3'
 
 import './App.css';
 
@@ -32,6 +35,7 @@ const dogname = "Doggy";
 const tiempo = 20;
 const vidas = 3;
 const cantidadfrutas = 4;
+const audioIntro = new Audio(introMp3);
 const audioCoin = new Audio(coinMp3);
 const audioRoundOne = new Audio(roundOneMp3);
 const audioRoundTwo = new Audio(roundTwoMp3);
@@ -41,6 +45,11 @@ const audioFine = new Audio(fineMp3);
 const audioWonderful = new Audio(wonderfulMp3);
 const audioMammaMia = new Audio(mammaMiaMp3);
 const audioGameOver = new Audio(gameOverMp3);
+const audioCountdown = new Audio(countdownMp3);
+const audioOoh = new Audio(oohMp3);
+const audioLoser = new Audio(loserMp3);
+const audioYeahLaugh = new Audio(yeahLaughMp3);
+const soundIntro = () => { audioIntro.play(); };
 const soundCoin = () => { audioCoin.play(); };
 const soundRoundOne = () => { audioRoundOne.play(); };
 const soundRoundTwo = () => { audioRoundTwo.play(); };
@@ -49,7 +58,11 @@ const soundYouWin = () => { audioYouWin.play(); };
 const soundFine= () => { audioFine.play(); };
 const soundWonderful = () => { audioWonderful.play(); };
 const soundMammaMia = () => { audioMammaMia.play(); };
-const soundGameOver= () => { audioGameOver.play(); };
+const soundGameOver = () => { audioGameOver.play(); };
+const soundCountdown = () => { audioCountdown.play(); };
+const soundOoh = () => { audioOoh.play(); };
+const soundLoser = () => { audioLoser.play(); };
+const soundYeahLaugh = () => { audioYeahLaugh.play(); };
 
 // Orientación y tipo de dispositivo: Laptop | Tablet | Celular
 const cellphoneSize = [380,720];                              // Dimensiones ancho por alto de los dispositivos
@@ -90,18 +103,21 @@ let obstaculo2V = deviceHeight*50/100;
 let cuadrilateroLimitsH;
 let cuadrilateroLimitsV;
 console.log("dogV inicial: ",dogV)
+
 // Alerta de bienvenida
-// swalert(
-//   <div>
-//     <h1>{dogname}</h1>
-//     <img src={logo} alt="logo" style={{'height':'10vh'}} />
-//     <p>Bienvenido</p>
-//     {/* <input type="text" id="nombre" onChange={this.campoNombre} value={this.state.nombre} placeholder="nombre" autoComplete='off'/> */}
-//     <p className='instructions'><b>{dogname}</b> debe recolectar<br></br> todas las frutas antes que<br></br>el malvado <b>Gusanor</b> lo atrape</p>
-//     <h1> {dogname} está listo! <FontAwesomeIcon icon={faSmile} /></h1>
-//     {/* <p>Vamos {nombre}, juega con todo!</p> */}
-//   </div>
-// )
+swalert(
+  <div>
+      <h1>{dogname}</h1>
+      <img src={logo} alt="logo" style={{ 'height': '10vh' }} />
+      <p>Bienvenido</p>
+      {/* <input type="text" id="nombre" onChange={this.campoNombre} value={this.state.nombre} placeholder="nombre" autoComplete='off'/> */}
+      <p className='instructions'><b>{dogname}</b> debe recolectar<br></br> todas las frutas antes que<br></br>el malvado <b>Gusanor</b> lo atrape</p>
+      <h1> {dogname} está listo! <FontAwesomeIcon icon={faSmile} /></h1>
+      {/* <p>Vamos {nombre}, juega con todo!</p> */}
+    </div>
+)
+
+
 
 // function App() {
 class App extends React.Component {
@@ -153,8 +169,6 @@ class App extends React.Component {
   // }
 
   tick() {
-    console.log("this.state.estado: ", this.state.estado)
-
     if(this.state.estado === 'start'){     // Se activa cuando se presiona el boton start
       this.setState(state => ({
         segundos: state.segundos - 1,
@@ -259,6 +273,9 @@ class App extends React.Component {
                 </tr>
               </tbody>
             </table>
+            <audio controls autoPlay loop>
+              <source src={introMp3} type="audio/mpeg"/>
+            </audio>
         </header>
         <body className="App-body">
             <div id="cuadrilatero" className="cuadrilatero">
@@ -528,6 +545,7 @@ class App extends React.Component {
         this.setState(state => ({ items: state.items.concat(newItem) }));
       }
       soundYouWin();
+      soundYeahLaugh();
       swalert(
         <div>
           <img src={logo} alt="logo" style={{'height':'10vh'}} />
@@ -552,6 +570,8 @@ class App extends React.Component {
   }
 
   vidas(){
+    soundOoh();
+    soundLoser();
     swalert(
       <div>
         <img src={logo} alt="logo" style={{'height':'10vh'}} />

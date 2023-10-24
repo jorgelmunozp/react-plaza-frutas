@@ -90,6 +90,10 @@
   user-select: none;                            /* No permite seleccionar contenido */
 }
 
+.swal-button {
+  
+}
+
 /*********** Cuadrilatero ***********/
 ol {
   margin-block-start: 0px;
