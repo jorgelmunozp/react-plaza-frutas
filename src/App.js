@@ -109,10 +109,10 @@ swalert(
   <div>
       <div className='swal-title'>
         <h1 className='swal-leter1'>D</h1>
-        <h1 className='swal-leter2'>O</h1>
-        <h1 className='swal-leter3'>G</h1>
-        <h1 className='swal-leter4'>G</h1>
-        <h1 className='swal-leter5'>Y</h1>
+        <h1 className='swal-leter2'>o</h1>
+        <h1 className='swal-leter3'>o</h1>
+        <h1 className='swal-leter4'>g</h1>
+        <h1 className='swal-leter5'>y</h1>
       </div>
       <div>
         <img className='swal-logo' src={logo} alt='🐶' />
