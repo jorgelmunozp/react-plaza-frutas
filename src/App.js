@@ -26,12 +26,13 @@ import './App.css';
 
 import React from 'react';
 import { ListaRanking } from './components/ranking/ListaRanking';
+import { DogName } from './components/dogname/DogName';
 
 import { faCaretUp, faCaretDown, faCaretLeft, faCaretRight, faClock, faPlayCircle, faFrown, faRedoAlt, faSmile, faMeh, faLemon} from "@fortawesome/fontawesome-free-solid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";     //Importa iconos fontawesome
 import swalert from '@sweetalert/with-react';                         //Libreria alertas con diseño en JSX
 
-const dogname = "Doggy";
+const dogname = "doggy";
 const tiempo = 20;
 const vidas = 3;
 const cantidadfrutas = 4;
@@ -108,17 +109,13 @@ console.log("dogV inicial: ",dogV)
 swalert(
   <div>
       <div className='swal-title'>
-        <h1 className='swal-leter1'>D</h1>
-        <h1 className='swal-leter2'>o</h1>
-        <h1 className='swal-leter3'>o</h1>
-        <h1 className='swal-leter4'>g</h1>
-        <h1 className='swal-leter5'>y</h1>
+        <h1><DogName/></h1>
       </div>
       <div>
         <img className='swal-logo' src={logo} alt='🐶' />
         {/* <input type="text" id="nombre" onChange={this.campoNombre} value={this.state.nombre} placeholder="nombre" autoComplete='off'/> */}
-        <p><b>{dogname}</b> debe recolectar todas las frutas antes que el malvado <b>Gusanor</b> lo atrape</p>
-        <h2 className='swal-subtitle'> {dogname} está listo! <FontAwesomeIcon icon={faSmile} /></h2>
+        <p><b>Doggy</b> debe recolectar todas las frutas antes que el malvado <b>Gusanor</b> lo atrape</p>
+        <h2 className='swal-subtitle'> <DogName/> está listo! <FontAwesomeIcon icon={faSmile} /></h2>
         {/* <p>Vamos {nombre}, juega con todo!</p> */}
       </div>
     </div>
@@ -189,7 +186,7 @@ class App extends React.Component {
       swalert(
         <div>
           <img className='swal-logo' src={logo} alt='🐶' />
-          <h2 className='swal-subtitle'> {dogname} está <FontAwesomeIcon icon={faFrown} /></h2>
+          <h2 className='swal-subtitle'> <DogName/> está <FontAwesomeIcon icon={faFrown} /></h2>
           <p>Vamos <b>{this.state.nombre}</b>, juega de nuevo!</p>
         </div>
       )
@@ -553,7 +550,7 @@ class App extends React.Component {
       swalert(
         <div>
           <img className='swal-logo' src={logo} alt='🐶' />
-          <h2 className='swal-subtitle'>{dogname} está <FontAwesomeIcon icon={faSmile} /></h2>
+          <h2 className='swal-subtitle'><DogName/> está <FontAwesomeIcon icon={faSmile} /></h2>
           <p>Ganáste {this.state.nombre}! buen juego</p>
           <div >
               <h3>Ranking</h3>
@@ -579,7 +576,7 @@ class App extends React.Component {
     swalert(
       <div>
         <img className='swal-logo' src={logo} alt='🐶' />
-        <h2 className='swal-subtitle'>{dogname} está <FontAwesomeIcon icon={faMeh} /></h2>
+        <h2 className='swal-subtitle'><DogName/> está <FontAwesomeIcon icon={faMeh} /></h2>
         <p>Lo siento, intentalo otra vez!</p>
       </div>
     )

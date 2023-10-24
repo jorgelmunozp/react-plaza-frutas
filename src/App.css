@@ -103,7 +103,6 @@
   height: 10vmin;
 }
 .swal-title {
-  display: inline-flex;
   text-align: center;
   align-items: center;
 }
