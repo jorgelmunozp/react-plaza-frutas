@@ -6,13 +6,16 @@
 
 .App {
   text-align: center;
-  font-family: "LDF Comic Sans MS", "Comic Sans", cursive;     /*** Letra ***/
+  font-family: "LDF Comic Sans MS", "Comic Sans MS", cursive;     /*** Letra ***/
 }
 @font-face {
   font-family: "LDF Comic Sans MS";
   font-style: normal;
   font-weight: normal;
   src: url("./assets/fonts/LDF-ComicSans/LDFComicSans.ttf") format("truetype");
+}
+.App-link {
+  color: var(--wine-color)
 }
 /****************************** HEADER ******************************/
 .App-header {
@@ -69,11 +72,6 @@
   background: url("/public/fondo.jpg");
   background-size: cover;
 }
-
-.App-link {
-  color: var(--wine-color)
-}
-
 
 /*********** Alertas ***********/
 .swal-modal {
