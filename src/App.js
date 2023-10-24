@@ -273,9 +273,6 @@ class App extends React.Component {
                 </tr>
               </tbody>
             </table>
-            <audio controls autoPlay loop>
-              <source src={introMp3} type="audio/mpeg"/>
-            </audio>
         </header>
         <body className="App-body">
             <div id="cuadrilatero" className="cuadrilatero">

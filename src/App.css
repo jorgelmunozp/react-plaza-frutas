@@ -72,15 +72,22 @@
 .App-link {
   color: #500;
 }
+
+
 /*********** Alertas ***********/
-/* .swal-modal {
-  width: 80vw;
+.swal-modal {
+  /* width: 80vw;
   margin: auto;
   align-self: center;
   align-items: center;
   justify-content: center;
-  vertical-align: middle;
-} */
+  vertical-align: middle; */
+
+  background: url("/public/fondo.jpg") no-repeat;
+  background-size: cover;
+  background-color:#210;
+  color: var(--white-color);
+}
 .instructions {                        /* Instrucciones de la alerta de bienvenida*/
   font-size: inherit;
   -moz-user-select: none;
@@ -91,7 +98,7 @@
 }
 
 .swal-button {
-  
+
 }
 
 /*********** Cuadrilatero ***********/
